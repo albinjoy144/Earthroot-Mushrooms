@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Catalog Product Data & Rendering / Filtering
-  const products = [
+  // 2. Catalog Product Data & Stock Management
+  const initialProducts = [
     {
       id: 'oyster-fresh',
       name: 'Pearl & Grey Oyster Mushrooms',
@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Tender, velvety texture with a mild earthy flavor. Rich in protein, fiber and antioxidants. Harvested daily in Kozhikode.',
       pills: ['Rich in B Vitamins', 'Low Calorie', '100% Organic'],
       price: 180,
-      unit: 'per 250g pack'
+      unit: 'per 250g pack',
+      stock: 20,
+      inStock: true
     },
     {
       id: 'milky-fresh',
@@ -53,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Thick, fleshy gourmet mushrooms with exceptional shelf-life and succulent bite. Ideal for coconut curries & spicy roasts.',
       pills: ['High Fibre', 'Immunity Boost', 'Fresh Harvest'],
       price: 220,
-      unit: 'per 250g pack'
+      unit: 'per 250g pack',
+      stock: 15,
+      inStock: true
     },
     {
       id: 'button-white',
@@ -64,7 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Plump, firm white buttons cultivated under controlled climate conditions. Perfect for daily stir-fries, soups, and pizza toppings.',
       pills: ['Selenium Rich', 'Versatile Cooking', 'Zero Pesticides'],
       price: 150,
-      unit: 'per 250g pack'
+      unit: 'per 250g pack',
+      stock: 25,
+      inStock: true
     },
     {
       id: 'lions-mane',
@@ -75,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Premium culinary superfood known for cognitive clarity, memory support, and seafood-like delicate flavor.',
       pills: ['Brain Health', 'Focus & Energy', 'Superfood'],
       price: 450,
-      unit: 'per 200g pack'
+      unit: 'per 200g pack',
+      stock: 10,
+      inStock: true
     },
     {
       id: 'oyster-bulk',
@@ -86,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Daily harvested commercial quantity for hotels, caterers, and supermarkets across Kerala.',
       pills: ['5kg Bulk Pack', 'Direct Wholesale', 'Cold Chain Delivery'],
       price: 2800,
-      unit: 'per 5kg crate'
+      unit: 'per 5kg crate',
+      stock: 5,
+      inStock: true
     },
     {
       id: 'grow-kit',
@@ -97,14 +107,54 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Grow your own fresh oyster mushrooms at home on your kitchen counter! Guaranteed fruiting within 10-14 days.',
       pills: ['Beginner Friendly', 'Includes Sprayer', 'Guaranteed Crop'],
       price: 599,
-      unit: 'per complete kit'
+      unit: 'per complete kit',
+      stock: 12,
+      inStock: true
     }
   ];
 
+  // Load or initialize stock from localStorage
+  function loadProductsWithStock() {
+    try {
+      const saved = localStorage.getItem('earthroot_inventory_stock');
+      if (saved) {
+        const stockMap = JSON.parse(saved);
+        return initialProducts.map(p => {
+          if (stockMap[p.id] !== undefined) {
+            return {
+              ...p,
+              stock: Number(stockMap[p.id].stock ?? 0),
+              inStock: Boolean(stockMap[p.id].inStock && Number(stockMap[p.id].stock) > 0)
+            };
+          }
+          return p;
+        });
+      }
+    } catch (err) {
+      console.warn('Error reading stock from storage:', err);
+    }
+    return initialProducts;
+  }
+
+  let products = loadProductsWithStock();
+
+  function saveStockToStorage() {
+    const stockMap = {};
+    products.forEach(p => {
+      stockMap[p.id] = {
+        stock: p.stock,
+        inStock: p.inStock && p.stock > 0
+      };
+    });
+    localStorage.setItem('earthroot_inventory_stock', JSON.stringify(stockMap));
+  }
+
   const catalogGrid = document.getElementById('catalogGrid');
   const tabBtns = document.querySelectorAll('.tab-btn');
+  let currentFilter = 'all';
 
-  function renderProducts(filter = 'all') {
+  function renderProducts(filter = currentFilter) {
+    currentFilter = filter;
     if (!catalogGrid) return;
     catalogGrid.innerHTML = '';
 
@@ -113,12 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
       : products.filter(p => p.category === filter);
 
     filtered.forEach(product => {
+      const isAvailable = product.inStock && product.stock > 0;
       const card = document.createElement('div');
-      card.className = 'product-card';
+      card.className = `product-card ${!isAvailable ? 'out-of-stock' : ''}`;
       card.innerHTML = `
         <div class="product-image-wrap">
           <img src="${product.image}" alt="${product.name}" class="product-image">
           <span class="product-badge">${product.badge}</span>
+          ${!isAvailable ? '<span class="out-of-stock-overlay"><i class="fas fa-ban"></i> Out of Stock</span>' : ''}
         </div>
         <div class="product-body">
           <h3 class="product-title">${product.name}</h3>
@@ -126,21 +178,33 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="product-nutrition-pills">
             ${product.pills.map(pill => `<span class="nutri-pill">${pill}</span>`).join('')}
           </div>
+          
+          <div class="stock-status-pill ${isAvailable ? 'in-stock' : 'out-of-stock'}">
+            <i class="fas ${isAvailable ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+            ${isAvailable ? `In Stock (${product.stock} available)` : 'Harvest Sold Out'}
+          </div>
+
           <div class="product-footer">
             <div class="price-tag">
               <span class="price-amount">₹${product.price}</span>
               <span class="price-unit">${product.unit}</span>
             </div>
-            <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
-              <i class="fas fa-cart-plus"></i> Add to Order
-            </button>
+            ${isAvailable ? `
+              <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
+                <i class="fas fa-cart-plus"></i> Add to Order
+              </button>
+            ` : `
+              <button class="btn btn-disabled btn-sm" disabled data-id="${product.id}">
+                <i class="fas fa-times-circle"></i> Out of Stock
+              </button>
+            `}
           </div>
         </div>
       `;
       catalogGrid.appendChild(card);
     });
 
-    // Attach Add to Cart listener
+    // Attach Add to Cart listener for active buttons
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = e.currentTarget.getAttribute('data-id');
@@ -191,8 +255,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
+    if (!product.inStock || product.stock <= 0) {
+      showToast(`Sorry, ${product.name} is currently out of stock!`);
+      return;
+    }
+
     const existing = cart.find(item => item.id === productId);
     if (existing) {
+      if (existing.qty >= product.stock) {
+        showToast(`Only ${product.stock} pack(s) available in stock for ${product.name}!`);
+        return;
+      }
       existing.qty += 1;
     } else {
       cart.push({ ...product, qty: 1 });
@@ -261,9 +334,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', (e) => {
         const id = e.currentTarget.getAttribute('data-id');
         const item = cart.find(i => i.id === id);
-        if (item) {
-          item.qty += 1;
-          updateCartUI();
+        const product = products.find(p => p.id === id);
+        if (item && product) {
+          if (item.qty < product.stock) {
+            item.qty += 1;
+            updateCartUI();
+          } else {
+            showToast(`Maximum harvest stock reached (${product.stock} packs available).`);
+          }
         }
       });
     });
@@ -332,6 +410,198 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 7. Admin Stock Inventory Manager
+  const adminOpenBtn = document.getElementById('adminOpenBtn');
+  const footerAdminLink = document.getElementById('footerAdminLink');
+  const adminModalOverlay = document.getElementById('adminModalOverlay');
+  const adminModalCloseBtn = document.getElementById('adminModalCloseBtn');
+  const adminLoginForm = document.getElementById('adminLoginForm');
+  const adminPinInput = document.getElementById('adminPinInput');
+  const adminLoginBox = document.getElementById('adminLoginBox');
+  const adminDashboardBox = document.getElementById('adminDashboardBox');
+  const adminStockList = document.getElementById('adminStockList');
+  const adminRestockAllBtn = document.getElementById('adminRestockAllBtn');
+  const adminSaveAllBtn = document.getElementById('adminSaveAllBtn');
+  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+  let isAdminAuthenticated = sessionStorage.getItem('earthroot_admin_auth') === 'true';
+
+  function openAdminModal() {
+    if (!adminModalOverlay) return;
+    adminModalOverlay.classList.add('active');
+    if (isAdminAuthenticated) {
+      showAdminDashboard();
+    } else {
+      showAdminLogin();
+    }
+  }
+
+  function closeAdminModal() {
+    if (adminModalOverlay) adminModalOverlay.classList.remove('active');
+  }
+
+  function showAdminLogin() {
+    if (adminLoginBox) adminLoginBox.style.display = 'block';
+    if (adminDashboardBox) adminDashboardBox.style.display = 'none';
+    if (adminPinInput) {
+      adminPinInput.value = '';
+      setTimeout(() => adminPinInput.focus(), 100);
+    }
+  }
+
+  function showAdminDashboard() {
+    if (adminLoginBox) adminLoginBox.style.display = 'none';
+    if (adminDashboardBox) adminDashboardBox.style.display = 'block';
+    renderAdminStockList();
+  }
+
+  if (adminOpenBtn) adminOpenBtn.addEventListener('click', openAdminModal);
+  if (footerAdminLink) footerAdminLink.addEventListener('click', openAdminModal);
+  if (adminModalCloseBtn) adminModalCloseBtn.addEventListener('click', closeAdminModal);
+  if (adminModalOverlay) {
+    adminModalOverlay.addEventListener('click', (e) => {
+      if (e.target === adminModalOverlay) closeAdminModal();
+    });
+  }
+
+  // Admin PIN Auth (Passcode: admin123 or 673603)
+  if (adminLoginForm) {
+    adminLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pin = adminPinInput.value.trim();
+      if (pin === 'admin123' || pin === '673603' || pin === 'admin') {
+        isAdminAuthenticated = true;
+        sessionStorage.setItem('earthroot_admin_auth', 'true');
+        showAdminDashboard();
+        showToast('Admin access unlocked successfully!');
+      } else {
+        alert('Incorrect Passcode. Try default passcode: admin123');
+      }
+    });
+  }
+
+  if (adminLogoutBtn) {
+    adminLogoutBtn.addEventListener('click', () => {
+      isAdminAuthenticated = false;
+      sessionStorage.removeItem('earthroot_admin_auth');
+      showAdminLogin();
+      showToast('Logged out from Admin Portal.');
+    });
+  }
+
+  function renderAdminStockList() {
+    if (!adminStockList) return;
+    adminStockList.innerHTML = '';
+
+    products.forEach(product => {
+      const isAvailable = product.inStock && product.stock > 0;
+      const row = document.createElement('div');
+      row.className = 'admin-stock-card';
+      row.innerHTML = `
+        <div class="admin-item-info">
+          <img src="${product.image}" alt="${product.name}" class="admin-item-img">
+          <div>
+            <div class="admin-item-title">${product.name}</div>
+            <div class="admin-item-sub">Price: ₹${product.price} | Category: ${product.category}</div>
+          </div>
+        </div>
+
+        <div class="admin-item-controls">
+          <div class="admin-stock-input-wrap">
+            <label for="stock_${product.id}">Stock:</label>
+            <input type="number" id="stock_${product.id}" class="admin-stock-input" min="0" max="999" value="${product.stock}">
+          </div>
+
+          <button class="admin-toggle-btn ${isAvailable ? 'in-stock' : 'out-of-stock'}" data-id="${product.id}" id="toggle_${product.id}">
+            <i class="fas ${isAvailable ? 'fa-check' : 'fa-ban'}"></i>
+            <span>${isAvailable ? 'In Stock' : 'Out of Stock'}</span>
+          </button>
+
+          <button class="admin-save-item-btn" data-id="${product.id}">
+            <i class="fas fa-save"></i> Save
+          </button>
+        </div>
+      `;
+      adminStockList.appendChild(row);
+    });
+
+    // Toggle button listener
+    document.querySelectorAll('.admin-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        const product = products.find(p => p.id === id);
+        if (product) {
+          const input = document.getElementById(`stock_${id}`);
+          if (product.inStock && product.stock > 0) {
+            // Turn Out of Stock
+            product.inStock = false;
+            product.stock = 0;
+            if (input) input.value = 0;
+          } else {
+            // Turn In Stock
+            product.inStock = true;
+            if (product.stock <= 0) product.stock = 15;
+            if (input) input.value = product.stock;
+          }
+          saveStockToStorage();
+          renderProducts(currentFilter);
+          renderAdminStockList();
+          showToast(`Updated ${product.name} status`);
+        }
+      });
+    });
+
+    // Single item update listener
+    document.querySelectorAll('.admin-save-item-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        const input = document.getElementById(`stock_${id}`);
+        const product = products.find(p => p.id === id);
+        if (product && input) {
+          const newStock = Math.max(0, parseInt(input.value, 10) || 0);
+          product.stock = newStock;
+          product.inStock = newStock > 0;
+          saveStockToStorage();
+          renderProducts(currentFilter);
+          renderAdminStockList();
+          showToast(`Saved ${product.name} stock: ${newStock} packs`);
+        }
+      });
+    });
+  }
+
+  // Quick Restock All +10
+  if (adminRestockAllBtn) {
+    adminRestockAllBtn.addEventListener('click', () => {
+      products.forEach(p => {
+        p.stock = (p.stock || 0) + 10;
+        p.inStock = true;
+      });
+      saveStockToStorage();
+      renderProducts(currentFilter);
+      renderAdminStockList();
+      showToast('Added +10 fresh stock to all varieties!');
+    });
+  }
+
+  // Save All Stock
+  if (adminSaveAllBtn) {
+    adminSaveAllBtn.addEventListener('click', () => {
+      products.forEach(product => {
+        const input = document.getElementById(`stock_${product.id}`);
+        if (input) {
+          const val = Math.max(0, parseInt(input.value, 10) || 0);
+          product.stock = val;
+          product.inStock = val > 0;
+        }
+      });
+      saveStockToStorage();
+      renderProducts(currentFilter);
+      renderAdminStockList();
+      showToast('All stock levels saved & updated live on website!');
+    });
+  }
+
   // Simple Notification Toast
   function showToast(text) {
     let toast = document.getElementById('toastNotification');
@@ -348,11 +618,12 @@ document.addEventListener('DOMContentLoaded', () => {
         padding: 0.8rem 1.8rem;
         border-radius: 9999px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        z-index: 2000;
+        z-index: 3000;
         font-weight: 600;
         font-size: 0.9rem;
         border: 1px solid #d4a342;
         transition: all 0.3s ease;
+        pointer-events: none;
       `;
       document.body.appendChild(toast);
     }
@@ -364,3 +635,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2800);
   }
 });
+
