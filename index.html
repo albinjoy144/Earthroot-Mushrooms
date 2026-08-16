@@ -94,9 +94,6 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="admin-open-btn" id="adminOpenBtn" title="Farm Stock Inventory Manager">
-          <i class="fas fa-boxes-stacked"></i> Stock Admin
-        </button>
         <button class="cart-icon-btn" id="cartIconBtn" aria-label="View Harvest Cart">
           <i class="fas fa-shopping-basket"></i>
           <span class="cart-badge" id="cartBadge">0</span>
@@ -563,66 +560,12 @@
 
       <div class="footer-bottom">
         <p>© 2026 Earthroot Mushrooms. All Rights Reserved.</p>
-        <p>
-          <a href="javascript:void(0)" id="footerAdminLink" style="color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: underline;">
-            <i class="fas fa-lock"></i> Farm Owner Stock Portal
-          </a>
-        </p>
+        <p>Premium Organic Mushroom Farm Landing Page</p>
       </div>
     </div>
   </footer>
 
-  <!-- Admin Stock Manager Modal -->
-  <div class="admin-modal-overlay" id="adminModalOverlay">
-    <div class="admin-modal" id="adminModal">
-      <div class="admin-modal-header">
-        <div class="admin-modal-title">
-          <i class="fas fa-warehouse" style="color: var(--accent-gold);"></i> Farm Harvest Stock Manager
-        </div>
-        <button class="admin-modal-close" id="adminModalCloseBtn" aria-label="Close">&times;</button>
-      </div>
 
-      <div class="admin-modal-body">
-        <!-- Auth Section -->
-        <div class="admin-login-box" id="adminLoginBox">
-          <div style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i></div>
-          <h4>Owner / Admin Authentication</h4>
-          <p>Enter your 4-digit PIN or Admin Passcode to manage live inventory and stock status.</p>
-          <form id="adminLoginForm">
-            <input type="password" class="admin-pin-input" id="adminPinInput" placeholder="Enter PIN (Default: admin123)" required autocomplete="current-password">
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <i class="fas fa-unlock-alt"></i> Unlock Stock Manager
-            </button>
-          </form>
-          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem;">Default Demo Passcode: <strong style="color: var(--primary-mid);">admin123</strong></p>
-        </div>
-
-        <!-- Dashboard Section -->
-        <div id="adminDashboardBox" style="display: none;">
-          <div class="admin-toolbar">
-            <div class="admin-badge-info">
-              <i class="fas fa-info-circle" style="color: var(--accent-terracotta);"></i> Set stock counts or toggle items to <strong>Out of Stock</strong>. Changes update customer view immediately.
-            </div>
-            <div class="admin-quick-actions">
-              <button class="btn btn-outline btn-sm" id="adminRestockAllBtn" style="border-color: var(--primary-mid); color: var(--primary-mid);">
-                <i class="fas fa-plus-circle"></i> +10 To All
-              </button>
-              <button class="btn btn-primary btn-sm" id="adminSaveAllBtn">
-                <i class="fas fa-save"></i> Save All Stock
-              </button>
-              <button class="btn btn-sm" id="adminLogoutBtn" style="background: #e2e8f0; color: #4a5568;">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </button>
-            </div>
-          </div>
-
-          <div class="admin-stock-grid" id="adminStockList">
-            <!-- Rendered dynamically via JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Custom JavaScript -->
   <script src="js/app.js"></script>

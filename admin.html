@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Stock Manager | Earthroot Mushrooms Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      background-color: #f4efe6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-nav {
+      background: var(--primary-dark);
+      padding: 1rem 0;
+      border-bottom: 3px solid var(--accent-gold);
+      color: #ffffff;
+    }
+
+    .admin-nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .admin-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .admin-nav-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+    }
+
+    .admin-nav-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .admin-nav-subtitle {
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .admin-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .admin-page-wrap {
+      max-width: 1100px;
+      width: 100%;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      flex-grow: 1;
+    }
+
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .admin-stat-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .stat-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .stat-icon-wrap.green { background: #eafaf1; color: #1e7e34; }
+    .stat-icon-wrap.gold { background: #fdf5e6; color: #d4a342; }
+    .stat-icon-wrap.red { background: #fff5f5; color: #e53e3e; }
+
+    .stat-val {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.1;
+    }
+
+    .stat-lbl {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .admin-panel-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .admin-panel-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #faf8f5;
+    }
+
+    .admin-panel-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .admin-search-filter {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-search-input, .admin-filter-select {
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .admin-search-input:focus, .admin-filter-select:focus {
+      border-color: var(--accent-terracotta);
+    }
+
+    .admin-list-body {
+      padding: 1.75rem 2rem;
+    }
+
+    .admin-auth-card {
+      max-width: 440px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .auth-icon {
+      font-size: 3.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    .admin-auth-card h2 {
+      font-size: 1.6rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-auth-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.75rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Admin Navigation -->
+  <header class="admin-nav">
+    <div class="admin-nav-container">
+      <div class="admin-nav-brand">
+        <img src="assets/logo.jpg" alt="Earthroot Logo" class="admin-nav-logo">
+        <div>
+          <div class="admin-nav-title">EARTHROOT MUSHROOMS</div>
+          <div class="admin-nav-subtitle">Farm Stock & Inventory Portal</div>
+        </div>
+      </div>
+
+      <div class="admin-nav-links">
+        <a href="index.html" class="btn btn-outline btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+          <i class="fas fa-external-link-alt"></i> View Storefront
+        </a>
+        <button id="adminLogoutBtn" class="btn btn-sm" style="display: none; background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Admin Content Area -->
+  <main class="admin-page-wrap">
+
+    <!-- 1. Authentication Screen -->
+    <div id="adminAuthSection" class="admin-auth-card">
+      <div class="auth-icon"><i class="fas fa-shield-halved"></i></div>
+      <h2>Farm Owner Portal</h2>
+      <p>Enter your secret Admin Passcode to view and update harvest stock levels.</p>
+
+      <form id="adminLoginForm">
+        <input type="password" id="adminPinInput" class="admin-pin-input" placeholder="Enter Passcode (Default: admin123)" required autocomplete="current-password">
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+          <i class="fas fa-lock-open"></i> Unlock Inventory Controls
+        </button>
+      </form>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1.25rem;">
+        Default Demo Passcode: <strong style="color: var(--primary-mid);">admin123</strong>
+      </p>
+    </div>
+
+    <!-- 2. Inventory Dashboard Screen (Shown on Login) -->
+    <div id="adminDashboardSection" style="display: none;">
+      
+      <!-- Stats Overview -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div class="stat-icon-wrap gold"><i class="fas fa-boxes-stacked"></i></div>
+          <div>
+            <div class="stat-val" id="totalVarietyCount">6</div>
+            <div class="stat-lbl">Mushroom Varieties</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-icon-wrap green"><i class="fas fa-circle-check"></i></div>
+          <div>
+            <div class="stat-val" id="inStockCount">6</div>
+            <div class="stat-lbl">In Stock Varieties</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-icon-wrap red"><i class="fas fa-circle-xmark"></i></div>
+          <div>
+            <div class="stat-val" id="outOfStockCount">0</div>
+            <div class="stat-lbl">Sold Out Varieties</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Inventory Control Panel -->
+      <div class="admin-panel-card">
+        <div class="admin-panel-header">
+          <div class="admin-panel-title">
+            <i class="fas fa-warehouse" style="color: var(--accent-gold);"></i> Real-Time Harvest Stock
+          </div>
+
+          <div class="admin-search-filter">
+            <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search mushroom name...">
+            <select id="adminCategoryFilter" class="admin-filter-select">
+              <option value="all">All Categories</option>
+              <option value="gourmet">Gourmet Fresh</option>
+              <option value="medicinal">Medicinal & Superfood</option>
+              <option value="bulk">Wholesale Crates</option>
+              <option value="kits">DIY Grow Kits</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Toolbar Quick Batch Actions -->
+        <div style="padding: 1rem 2rem; background: #fff; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="font-size: 0.85rem; color: var(--text-muted);">
+            💡 Toggle <strong>Out of Stock</strong> or adjust pack quantities. Website updates automatically in real-time.
+          </div>
+          <div class="admin-quick-actions">
+            <button class="btn btn-outline btn-sm" id="adminRestock10Btn" style="border-color: var(--primary-mid); color: var(--primary-mid);">
+              <i class="fas fa-plus"></i> +10 All
+            </button>
+            <button class="btn btn-outline btn-sm" id="adminRestock25Btn" style="border-color: var(--accent-terracotta); color: var(--accent-terracotta);">
+              <i class="fas fa-plus"></i> +25 All
+            </button>
+            <button class="btn btn-primary btn-sm" id="adminSaveAllBtn">
+              <i class="fas fa-floppy-disk"></i> Save All Stock
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-list-body">
+          <div class="admin-stock-grid" id="adminStockGrid">
+            <!-- Rendered dynamically via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialProducts = [
+        {
+          id: 'oyster-fresh',
+          name: 'Pearl & Grey Oyster Mushrooms',
+          category: 'gourmet',
+          badge: 'Farm Favorite',
+          image: 'assets/oyster.jpg',
+          price: 180,
+          unit: 'per 250g pack',
+          stock: 20,
+          inStock: true
+        },
+        {
+          id: 'milky-fresh',
+          name: 'Kerala Milky Mushrooms',
+          category: 'gourmet',
+          badge: 'High Protein',
+          image: 'assets/milky.jpg',
+          price: 220,
+          unit: 'per 250g pack',
+          stock: 15,
+          inStock: true
+        },
+        {
+          id: 'button-white',
+          name: 'Fresh White Button Mushrooms',
+          category: 'gourmet',
+          badge: 'Classic Choice',
+          image: 'assets/button.jpg',
+          price: 150,
+          unit: 'per 250g pack',
+          stock: 25,
+          inStock: true
+        },
+        {
+          id: 'lions-mane',
+          name: "Organic Lion's Mane",
+          category: 'medicinal',
+          badge: 'Brain & Nootropic',
+          image: 'assets/lions_mane.jpg',
+          price: 450,
+          unit: 'per 200g pack',
+          stock: 10,
+          inStock: true
+        },
+        {
+          id: 'oyster-bulk',
+          name: 'Wholesale Oyster Bulk Crate',
+          category: 'bulk',
+          badge: 'Restaurant Grade',
+          image: 'assets/oyster.jpg',
+          price: 2800,
+          unit: 'per 5kg crate',
+          stock: 5,
+          inStock: true
+        },
+        {
+          id: 'grow-kit',
+          name: 'Mycelium DIY Mushroom Grow Kit',
+          category: 'kits',
+          badge: 'Fun & Educational',
+          image: 'assets/hero.jpg',
+          price: 599,
+          unit: 'per complete kit',
+          stock: 12,
+          inStock: true
+        }
+      ];
+
+      function loadStock() {
+        try {
+          const saved = localStorage.getItem('earthroot_inventory_stock');
+          if (saved) {
+            const stockMap = JSON.parse(saved);
+            return initialProducts.map(p => {
+              if (stockMap[p.id] !== undefined) {
+                return {
+                  ...p,
+                  stock: Number(stockMap[p.id].stock ?? 0),
+                  inStock: Boolean(stockMap[p.id].inStock && Number(stockMap[p.id].stock) > 0)
+                };
+              }
+              return p;
+            });
+          }
+        } catch (err) {
+          console.warn('Storage read error:', err);
+        }
+        return initialProducts;
+      }
+
+      let products = loadStock();
+
+      function saveStock() {
+        const stockMap = {};
+        products.forEach(p => {
+          stockMap[p.id] = {
+            stock: p.stock,
+            inStock: p.inStock && p.stock > 0
+          };
+        });
+        localStorage.setItem('earthroot_inventory_stock', JSON.stringify(stockMap));
+        updateStats();
+      }
+
+      // UI Elements
+      const authSection = document.getElementById('adminAuthSection');
+      const dashboardSection = document.getElementById('adminDashboardSection');
+      const loginForm = document.getElementById('adminLoginForm');
+      const pinInput = document.getElementById('adminPinInput');
+      const logoutBtn = document.getElementById('adminLogoutBtn');
+      const stockGrid = document.getElementById('adminStockGrid');
+      const searchInput = document.getElementById('adminSearchInput');
+      const categoryFilter = document.getElementById('adminCategoryFilter');
+      const restock10Btn = document.getElementById('adminRestock10Btn');
+      const restock25Btn = document.getElementById('adminRestock25Btn');
+      const saveAllBtn = document.getElementById('adminSaveAllBtn');
+
+      const totalVarietyCount = document.getElementById('totalVarietyCount');
+      const inStockCount = document.getElementById('inStockCount');
+      const outOfStockCount = document.getElementById('outOfStockCount');
+
+      let isAuth = sessionStorage.getItem('earthroot_admin_auth') === 'true';
+
+      function checkAuth() {
+        if (isAuth) {
+          authSection.style.display = 'none';
+          dashboardSection.style.display = 'block';
+          logoutBtn.style.display = 'inline-flex';
+          renderGrid();
+          updateStats();
+        } else {
+          authSection.style.display = 'block';
+          dashboardSection.style.display = 'none';
+          logoutBtn.style.display = 'none';
+          pinInput.value = '';
+          pinInput.focus();
+        }
+      }
+
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pin = pinInput.value.trim();
+        if (pin === 'admin123' || pin === '673603' || pin === 'admin') {
+          isAuth = true;
+          sessionStorage.setItem('earthroot_admin_auth', 'true');
+          checkAuth();
+          showToast('Welcome back, Farm Manager!');
+        } else {
+          alert('Incorrect Passcode. Default passcode is: admin123');
+        }
+      });
+
+      logoutBtn.addEventListener('click', () => {
+        isAuth = false;
+        sessionStorage.removeItem('earthroot_admin_auth');
+        checkAuth();
+        showToast('Logged out securely.');
+      });
+
+      function updateStats() {
+        if (totalVarietyCount) totalVarietyCount.textContent = products.length;
+        const inStock = products.filter(p => p.inStock && p.stock > 0).length;
+        if (inStockCount) inStockCount.textContent = inStock;
+        if (outOfStockCount) outOfStockCount.textContent = products.length - inStock;
+      }
+
+      function renderGrid() {
+        if (!stockGrid) return;
+        stockGrid.innerHTML = '';
+
+        const search = (searchInput.value || '').toLowerCase().trim();
+        const cat = categoryFilter.value || 'all';
+
+        const filtered = products.filter(p => {
+          const matchCat = cat === 'all' || p.category === cat;
+          const matchSearch = !search || p.name.toLowerCase().includes(search);
+          return matchCat && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          stockGrid.innerHTML = `<div style="text-align: center; padding: 2rem; color: var(--text-muted);">No products match your search or filter.</div>`;
+          return;
+        }
+
+        filtered.forEach(product => {
+          const isAvailable = product.inStock && product.stock > 0;
+          const row = document.createElement('div');
+          row.className = 'admin-stock-card';
+          row.innerHTML = `
+            <div class="admin-item-info">
+              <img src="${product.image}" alt="${product.name}" class="admin-item-img">
+              <div>
+                <div class="admin-item-title">${product.name}</div>
+                <div class="admin-item-sub">Price: ₹${product.price} | Category: ${product.category}</div>
+              </div>
+            </div>
+
+            <div class="admin-item-controls">
+              <div class="admin-stock-input-wrap">
+                <label for="stock_${product.id}">Packs:</label>
+                <input type="number" id="stock_${product.id}" class="admin-stock-input" min="0" max="999" value="${product.stock}">
+              </div>
+
+              <button class="admin-toggle-btn ${isAvailable ? 'in-stock' : 'out-of-stock'}" data-id="${product.id}">
+                <i class="fas ${isAvailable ? 'fa-check' : 'fa-ban'}"></i>
+                <span>${isAvailable ? 'In Stock' : 'Out of Stock'}</span>
+              </button>
+
+              <button class="admin-save-item-btn" data-id="${product.id}">
+                <i class="fas fa-save"></i> Save
+              </button>
+            </div>
+          `;
+          stockGrid.appendChild(row);
+        });
+
+        // Toggle buttons
+        document.querySelectorAll('.admin-toggle-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const product = products.find(p => p.id === id);
+            if (product) {
+              const input = document.getElementById(`stock_${id}`);
+              if (product.inStock && product.stock > 0) {
+                product.inStock = false;
+                product.stock = 0;
+                if (input) input.value = 0;
+              } else {
+                product.inStock = true;
+                if (product.stock <= 0) product.stock = 15;
+                if (input) input.value = product.stock;
+              }
+              saveStock();
+              renderGrid();
+              showToast(`Updated stock status for ${product.name}`);
+            }
+          });
+        });
+
+        // Save single item
+        document.querySelectorAll('.admin-save-item-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const input = document.getElementById(`stock_${id}`);
+            const product = products.find(p => p.id === id);
+            if (product && input) {
+              const val = Math.max(0, parseInt(input.value, 10) || 0);
+              product.stock = val;
+              product.inStock = val > 0;
+              saveStock();
+              renderGrid();
+              showToast(`Saved ${product.name} (${val} packs)`);
+            }
+          });
+        });
+      }
+
+      // Quick restock +10
+      restock10Btn.addEventListener('click', () => {
+        products.forEach(p => {
+          p.stock = (p.stock || 0) + 10;
+          p.inStock = true;
+        });
+        saveStock();
+        renderGrid();
+        showToast('Restocked +10 packs for all varieties!');
+      });
+
+      // Quick restock +25
+      restock25Btn.addEventListener('click', () => {
+        products.forEach(p => {
+          p.stock = (p.stock || 0) + 25;
+          p.inStock = true;
+        });
+        saveStock();
+        renderGrid();
+        showToast('Restocked +25 packs for all varieties!');
+      });
+
+      // Save all
+      saveAllBtn.addEventListener('click', () => {
+        products.forEach(p => {
+          const input = document.getElementById(`stock_${p.id}`);
+          if (input) {
+            const val = Math.max(0, parseInt(input.value, 10) || 0);
+            p.stock = val;
+            p.inStock = val > 0;
+          }
+        });
+        saveStock();
+        renderGrid();
+        showToast('All stock quantities saved successfully!');
+      });
+
+      searchInput.addEventListener('input', renderGrid);
+      categoryFilter.addEventListener('change', renderGrid);
+
+      function showToast(text) {
+        let toast = document.getElementById('toastNotification');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'toastNotification';
+          toast.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f271d;
+            color: #f7e8c4;
+            padding: 0.8rem 1.8rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 3000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #d4a342;
+            transition: all 0.3s ease;
+            pointer-events: none;
+          `;
+          document.body.appendChild(toast);
+        }
+        toast.textContent = text;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+      }
+
+      checkAuth();
+    });
+  </script>
+</body>
+
+</html>
