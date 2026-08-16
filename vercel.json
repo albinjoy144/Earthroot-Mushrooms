@@ -1,5 +1,10 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/login", "destination": "/admin.html" },
+    { "source": "/admin-login", "destination": "/admin.html" }
+  ]
 }
