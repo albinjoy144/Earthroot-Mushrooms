@@ -6,28 +6,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Navigation Menu Toggle
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMobileNav() {
+    if (navMenu) navMenu.classList.remove('active');
+    if (navOverlay) navOverlay.classList.remove('active');
+    if (mobileToggle) {
+      const icon = mobileToggle.querySelector('i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
+  }
 
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
+      const isOpen = navMenu.classList.toggle('active');
+      if (navOverlay) navOverlay.classList.toggle('active', isOpen);
       const icon = mobileToggle.querySelector('i');
       if (icon) {
-        if (navMenu.classList.contains('active')) {
-          icon.className = 'fas fa-times';
-        } else {
-          icon.className = 'fas fa-bars';
-        }
+        icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
       }
     });
 
+    if (navOverlay) navOverlay.addEventListener('click', closeMobileNav);
+
     // Close menu when clicking links
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        if (mobileToggle.querySelector('i')) {
-          mobileToggle.querySelector('i').className = 'fas fa-bars';
-        }
-      });
+      link.addEventListener('click', closeMobileNav);
     });
   }
 
