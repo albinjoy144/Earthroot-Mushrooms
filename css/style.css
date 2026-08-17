@@ -247,7 +247,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 247, 240, 0.88);
+  background: rgba(250, 247, 240, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
@@ -259,22 +259,26 @@ img {
   align-items: center;
   justify-content: space-between;
   height: 85px;
+  gap: 1rem;
 }
 
 .brand-logo-link {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  min-width: 0;
+  text-decoration: none;
 }
 
 .brand-logo-img {
-  width: 58px;
-  height: 58px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: 2px solid var(--accent-gold);
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .brand-logo-link:hover .brand-logo-img {
@@ -289,6 +293,7 @@ img {
   letter-spacing: -0.01em;
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .brand-subtitle {
@@ -298,6 +303,7 @@ img {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-terracotta);
+  white-space: nowrap;
 }
 
 .nav-menu {
@@ -338,15 +344,23 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.header-quick-order-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
 }
 
 .cart-icon-btn {
   position: relative;
   background: var(--bg-cream-dark);
   border: 1px solid var(--border-color);
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -354,6 +368,7 @@ img {
   cursor: pointer;
   color: var(--primary-dark);
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .cart-icon-btn:hover {
@@ -368,7 +383,7 @@ img {
   right: -4px;
   background-color: var(--accent-terracotta);
   color: #ffffff;
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 700;
   width: 20px;
   height: 20px;
@@ -383,11 +398,12 @@ img {
   display: none;
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--primary-dark);
   cursor: pointer;
   padding: 0.25rem;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 /* Mobile Nav Drawer & Overlay */
@@ -399,6 +415,7 @@ img {
   height: 100%;
   background: rgba(15, 39, 29, 0.6);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 98;
   opacity: 0;
   visibility: hidden;
@@ -432,41 +449,72 @@ img {
   }
 
   .mobile-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 101;
   }
 }
 
-@media (max-width: 480px) {
+/* Specific Mobile Header Breakpoints to Prevent Any Overlap */
+@media (max-width: 640px) {
+  .header-quick-order-btn {
+    display: none; /* Hide from crowded top header on small mobile screens */
+  }
+
   .nav-container {
-    height: 70px;
-  }
-
-  .brand-logo-img {
-    width: 44px;
-    height: 44px;
-  }
-
-  .brand-title {
-    font-size: 1.15rem;
-  }
-
-  .brand-subtitle {
-    font-size: 0.65rem;
-  }
-
-  .nav-actions {
+    height: 68px;
     gap: 0.5rem;
   }
 
-  .nav-actions .btn-sm {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.75rem;
+  .brand-logo-link {
+    gap: 0.6rem;
+  }
+
+  .brand-logo-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-title {
+    font-size: 1.08rem;
+    line-height: 1.15;
+  }
+
+  .brand-subtitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-actions {
+    gap: 0.6rem;
   }
 
   .cart-icon-btn {
     width: 40px;
     height: 40px;
+    font-size: 0.95rem;
+  }
+
+  .mobile-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-title {
+    font-size: 0.95rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .brand-logo-img {
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -502,16 +550,26 @@ img {
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0.5rem 1.25rem;
+  padding: 0.45rem 1.2rem;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--accent-gold-light);
   margin-bottom: 1.5rem;
+  max-width: 100%;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.hero-badge i {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  font-size: 0.95rem;
 }
 
 .hero-title {
