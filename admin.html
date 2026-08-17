@@ -714,6 +714,15 @@
         setTimeout(() => { toast.style.opacity = '0'; }, 2500);
       }
 
+      // Live updates when customers place orders in other tabs
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'earthroot_inventory_stock') {
+          products = loadProductsWithStock();
+          renderGrid();
+          updateStats();
+        }
+      });
+
       checkAuth();
     });
   </script>

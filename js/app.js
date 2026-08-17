@@ -366,11 +366,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const linePrice = item.price * item.qty;
         total += linePrice;
         message += `${index + 1}. *${item.name}*\n   Qty: ${item.qty} pack(s) | ₹${linePrice}\n`;
+
+        // Deduct purchased count from available product inventory
+        const product = products.find(p => p.id === item.id);
+        if (product) {
+          product.stock = Math.max(0, (product.stock || 0) - item.qty);
+          if (product.stock === 0) {
+            product.inStock = false;
+          }
+        }
       });
 
       message += `\n💵 *Total Estimated Value:* ₹${total}\n`;
       message += `\n📍 *Delivery Request:* Fresh Harvest Delivery Kerala\n`;
       message += `\nPlease confirm item availability and dispatch time. Thank you!`;
+
+      // Persist updated stock counts to storage & refresh storefront
+      saveStock(products);
+      renderProducts();
+
+      // Clear customer's cart
+      cart = [];
+      updateCartUI();
+      toggleCart(false);
+      showToast('Order sent to WhatsApp! Harvest stock updated.');
 
       const encodedUrl = `https://wa.me/919048622044?text=${encodeURIComponent(message)}`;
       window.open(encodedUrl, '_blank');
