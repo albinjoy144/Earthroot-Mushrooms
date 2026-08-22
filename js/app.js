@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  let cart = [];
   let currentFilter = 'all';
   let revealObserver = null;
 
@@ -137,6 +136,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let products = loadProductsWithStock();
+
+  function loadCartFromStorage() {
+    try {
+      const saved = localStorage.getItem('earthroot_harvest_cart');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed.map(item => {
+            const freshProduct = products.find(p => p.id === item.id);
+            if (!freshProduct || !freshProduct.inStock || freshProduct.stock <= 0) {
+              return null;
+            }
+            return {
+              ...freshProduct,
+              qty: Math.min(Number(item.qty) || 1, freshProduct.stock)
+            };
+          }).filter(Boolean);
+        }
+      }
+    } catch (err) {
+      console.warn('Error reading cart from storage:', err);
+    }
+    return [];
+  }
+
+  function saveCartToStorage() {
+    try {
+      localStorage.setItem('earthroot_harvest_cart', JSON.stringify(cart));
+    } catch (err) {
+      console.warn('Error saving cart to storage:', err);
+    }
+  }
+
+  let cart = loadCartFromStorage();
 
   function saveStockToStorage() {
     const stockMap = {};
@@ -249,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateCartUI() {
+    saveCartToStorage();
     const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     if (cartBadge) cartBadge.textContent = totalItems;
     if (!cartItemsList) return;
@@ -706,12 +740,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'earthroot_inventory_stock') {
       products = loadProductsWithStock();
       renderProducts(currentFilter);
+      cart = loadCartFromStorage();
+      updateCartUI();
+    }
+    if (e.key === 'earthroot_harvest_cart') {
+      cart = loadCartFromStorage();
       updateCartUI();
     }
   });
 
   // --- Initialize All Components ---
   renderProducts('all');
+  updateCartUI();
   observeScrollReveals();
   initCounters();
   initProcessTimeline();
