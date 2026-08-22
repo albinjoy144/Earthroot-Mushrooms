@@ -522,20 +522,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- Pincode Eligibility ---
+  const eligiblePincodes = {
+    '673602': 'Kodenchery & Nearby Areas',
+    '673604': 'Thiruvambady & Pullurampara Farm Area',
+    '673580': 'Adivaram & Nearby Foothills Area'
+  };
+
   if (pincodeForm && pincodeInput && pincodeResult) {
     pincodeForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const code = pincodeInput.value.trim();
       
-      if (/^67360\d$/.test(code)) {
+      if (eligiblePincodes[code]) {
         pincodeResult.className = 'pincode-result success';
-        pincodeResult.innerHTML = `<i class="fas fa-check-circle"></i> Great news! Delivery is <strong>Available</strong> for Pincode <strong>${code}</strong> (Pullurampara & Thiruvambady area).`;
+        pincodeResult.innerHTML = `<i class="fas fa-check-circle"></i> Great news! Daily Fresh Delivery is <strong>Available</strong> for Pincode <strong>${code}</strong> (${eligiblePincodes[code]}).`;
       } else if (/^\d{6}$/.test(code)) {
         pincodeResult.className = 'pincode-result error';
-        pincodeResult.innerHTML = `<i class="fas fa-times-circle"></i> Sorry, delivery is <strong>Not Available</strong> for Pincode <strong>${code}</strong>. Delivery is currently only available for 67360x PIN code areas.`;
+        pincodeResult.innerHTML = `<i class="fas fa-times-circle"></i> Delivery is <strong>Not Available</strong> for Pincode <strong>${code}</strong>. Direct daily delivery is currently exclusive to <strong>673602, 673604, and 673580</strong>. For bulk orders outside these areas, please contact us on WhatsApp.`;
       } else {
         pincodeResult.className = 'pincode-result error';
-        pincodeResult.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please enter a valid 6-digit PIN code (e.g. 673603).`;
+        pincodeResult.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please enter a valid 6-digit PIN code.`;
       }
     });
   }
