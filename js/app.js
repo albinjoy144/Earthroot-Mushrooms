@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pincodeResult.innerHTML = `<i class="fas fa-times-circle"></i> Delivery is <strong>Not Available</strong> for Pincode <strong>${code}</strong>. Direct daily delivery is currently exclusive to <strong>673602, 673604, and 673580</strong>. For bulk orders outside these areas, please contact us on WhatsApp.`;
       } else {
         pincodeResult.className = 'pincode-result error';
-        pincodeResult.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please enter a valid 6-digit PIN code.`;
+        pincodeResult.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please enter a valid 6-digit PIN code (e.g. 673602).`;
       }
     });
   }
