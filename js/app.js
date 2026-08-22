@@ -101,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartCloseBtn = document.getElementById('cartCloseBtn');
   const cartBadge = document.getElementById('cartBadge');
   const cartItemsList = document.getElementById('cartItemsList');
-  const cartTotalAmount = document.getElementById('cartTotalAmount');
-  const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
+  const checkoutBtn = document.getElementById('checkoutBtn') || document.getElementById('whatsappCheckoutBtn');
   const pincodeForm = document.getElementById('pincodeForm');
   const pincodeInput = document.getElementById('pincodeInput');
   const pincodeResult = document.getElementById('pincodeResult');
@@ -317,21 +316,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- WhatsApp Order ---
-  if (whatsappCheckoutBtn) {
-    whatsappCheckoutBtn.addEventListener('click', () => {
+  // --- Place Harvest Order ---
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
       if (cart.length === 0) {
-        alert('Please add at least one item to your order before checkout.');
+        showToast('Please add at least one item to your order before placing it.');
         return;
       }
 
-      let message = `🌱 *NEW ORDER - EARTHROOT MUSHROOMS* 🌱\n\n`;
       let total = 0;
+      let orderItemsSummary = [];
 
       cart.forEach((item, index) => {
         const linePrice = item.price * item.qty;
         total += linePrice;
-        message += `${index + 1}. *${item.name}*\n   Qty: ${item.qty} pack(s) | ₹${linePrice}\n`;
+        orderItemsSummary.push(`${item.name} (${item.qty} pack)`);
 
         const product = products.find(p => p.id === item.id);
         if (product) {
@@ -342,20 +341,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      message += `\n💵 *Total Estimated Value:* ₹${total}\n`;
-      message += `\n📍 *Delivery Request:* Fresh Harvest Delivery Kerala\n`;
-      message += `\nPlease confirm item availability and dispatch time. Thank you!`;
-
       saveStockToStorage();
       renderProducts();
 
       cart = [];
       updateCartUI();
       toggleCart(false);
-      showToast('Order sent to WhatsApp! Harvest stock updated.');
-
-      const encodedUrl = `https://wa.me/919048622044?text=${encodeURIComponent(message)}`;
-      window.open(encodedUrl, '_blank');
+      showToast('🎉 Harvest Order Placed Successfully! Stock updated.');
     });
   }
 
