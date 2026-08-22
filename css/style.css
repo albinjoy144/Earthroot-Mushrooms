@@ -246,7 +246,80 @@ img {
   }
 }
 
-/* Navigation Header */
+/* ==========================================================================
+   Earthroot Mushrooms - Scroll Animation System & Visual Polish
+   ========================================================================== */
+
+/* Top Glowing Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-terracotta) 50%, #25D366 100%);
+  z-index: 99999;
+  box-shadow: 0 0 10px rgba(212, 163, 66, 0.7);
+  transition: width 0.1s cubic-bezier(0.1, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Scroll-Revealed Classes & Transitions */
+[data-reveal] {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="fade-up"] {
+  transform: translateY(45px);
+}
+
+[data-reveal="fade-down"] {
+  transform: translateY(-45px);
+}
+
+[data-reveal="fade-left"] {
+  transform: translateX(50px);
+}
+
+[data-reveal="fade-right"] {
+  transform: translateX(-50px);
+}
+
+[data-reveal="zoom-in"] {
+  transform: scale(0.9);
+}
+
+[data-reveal="zoom-out"] {
+  transform: scale(1.08);
+}
+
+[data-reveal="flip-up"] {
+  transform: perspective(1000px) rotateX(15deg) translateY(35px);
+  transform-origin: center bottom;
+}
+
+/* Revealed State */
+[data-reveal].revealed,
+.revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) rotate(0) !important;
+}
+
+/* Stagger Delays */
+[data-delay="100"] { transition-delay: 0.1s; }
+[data-delay="150"] { transition-delay: 0.15s; }
+[data-delay="200"] { transition-delay: 0.2s; }
+[data-delay="250"] { transition-delay: 0.25s; }
+[data-delay="300"] { transition-delay: 0.3s; }
+[data-delay="350"] { transition-delay: 0.35s; }
+[data-delay="400"] { transition-delay: 0.4s; }
+[data-delay="500"] { transition-delay: 0.5s; }
+[data-delay="600"] { transition-delay: 0.6s; }
+
+/* Dynamic Header Scrolled State */
 .header {
   position: sticky;
   top: 0;
@@ -255,7 +328,204 @@ img {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
-  transition: all var(--transition-normal);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.scrolled {
+  background: rgba(250, 247, 240, 0.98);
+  box-shadow: 0 10px 30px rgba(15, 39, 29, 0.1);
+  border-bottom: 1px solid rgba(212, 163, 66, 0.25);
+}
+
+.header.scrolled .nav-container {
+  height: 72px;
+}
+
+.nav-link.active-nav {
+  color: var(--accent-terracotta);
+  font-weight: 600;
+}
+
+.nav-link.active-nav::after {
+  width: 100%;
+}
+
+/* Floating Spore Particles in Hero */
+.spore-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.spore {
+  position: absolute;
+  background: radial-gradient(circle, rgba(212, 163, 66, 0.85) 0%, rgba(247, 232, 196, 0.1) 70%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatSpore 12s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+@keyframes floatSpore {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-280px) translateX(60px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Hero Scroll Down Indicator */
+.hero-scroll-indicator {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.hero-scroll-indicator:hover {
+  color: var(--accent-gold);
+  transform: translateY(3px);
+}
+
+.mouse-icon {
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-scroll-indicator:hover .mouse-icon {
+  border-color: var(--accent-gold);
+}
+
+.mouse-wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  animation: scrollWheelAnim 2s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnim {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Floating Back To Top Button with Circular Progress Ring (Second in row, rightmost position) */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 55px;
+  right: 28px;
+  left: auto;
+  width: 50px;
+  height: 50px;
+  background: var(--primary-dark);
+  color: var(--accent-gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateX(15px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s ease,
+              background-color 0.2s ease;
+  box-shadow: 0 8px 24px rgba(15, 39, 29, 0.3);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateX(0);
+}
+
+.scroll-top-btn:hover {
+  background: var(--accent-terracotta);
+  color: #ffffff;
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 12px 28px rgba(202, 101, 54, 0.4);
+}
+
+.scroll-top-btn svg.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 3;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--accent-gold);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 125.66;
+  stroke-dashoffset: 125.66;
+  transition: stroke-dashoffset 0.1s linear, stroke 0.2s ease;
+}
+
+.scroll-top-btn:hover .progress-ring-fill {
+  stroke: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .scroll-top-btn {
+    bottom: 43px;
+    right: 20px;
+    left: auto;
+    width: 46px;
+    height: 46px;
+  }
 }
 
 .nav-container {
@@ -277,11 +547,51 @@ img {
 .brand-logo-img {
   width: 56px;
   height: 56px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   border: 2px solid var(--accent-gold);
   object-fit: cover;
+  object-position: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform var(--transition-fast);
+  flex-shrink: 0;
+  display: block;
+}
+
+.cta-logo-img {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 3px solid var(--accent-gold);
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto 1.5rem auto;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.footer-logo-img {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+
+.admin-nav-logo {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  object-fit: cover;
+  object-position: center;
+  display: block;
   flex-shrink: 0;
 }
 
@@ -1056,12 +1366,12 @@ img {
   }
 }
 
-/* Process Step Timeline */
 .process-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
+  position: relative;
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {
@@ -1076,6 +1386,19 @@ img {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
+
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 55px;
+    left: 8%;
+    width: 84%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-gold), #25D366);
+    z-index: 1;
+    opacity: 0.4;
+    border-radius: 3px;
+  }
 }
 
 .process-card {
@@ -1085,7 +1408,8 @@ img {
   border: 1px solid var(--border-color);
   position: relative;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
 }
 
 @media (max-width: 639px) {
@@ -1094,25 +1418,35 @@ img {
   }
 }
 
-.process-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-terracotta);
-  box-shadow: var(--shadow-md);
+.process-card:hover,
+.process-card.active-step {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 16px 36px rgba(212, 163, 66, 0.18);
 }
 
 .process-step-num {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background-color: var(--accent-terracotta);
   color: #ffffff;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
   font-family: 'Poppins', sans-serif;
+  box-shadow: 0 6px 16px rgba(202, 101, 54, 0.3);
+  transition: all 0.35s ease;
+}
+
+.process-card:hover .process-step-num,
+.process-card.active-step .process-step-num {
+  background-color: var(--accent-gold);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 20px rgba(212, 163, 66, 0.6);
 }
 
 .process-card h3 {
@@ -1120,6 +1454,11 @@ img {
   font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--primary-dark);
+  transition: color 0.3s ease;
+}
+
+.process-card:hover h3 {
+  color: var(--accent-terracotta);
 }
 
 .process-card p {
@@ -1158,6 +1497,13 @@ img {
   overflow: hidden;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(15, 39, 29, 0.12);
+  border-color: var(--accent-gold);
 }
 
 .recipe-body {
@@ -1559,11 +1905,11 @@ img {
   }
 }
 
-/* Floating WhatsApp Quick Action Button */
+/* Floating WhatsApp Quick Action Button (First in row, left of Scroll-To-Top) */
 .whatsapp-float {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 50px;
+  right: 92px;
   background-color: #25D366;
   color: #ffffff;
   width: 60px;
@@ -1573,15 +1919,25 @@ img {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-  z-index: 999;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+  z-index: 1001;
   transition: all var(--transition-fast);
   text-decoration: none;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
-  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.55);
+}
+
+@media (max-width: 767px) {
+  .whatsapp-float {
+    bottom: 40px;
+    right: 76px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.7rem;
+  }
 }
 
 /* ==========================================================================

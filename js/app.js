@@ -1,41 +1,9 @@
 /* ==========================================================================
-   Earthroot Mushrooms - Interactive Logic & WhatsApp Integration
+   Earthroot Mushrooms - Interactive Logic, Scroll Animation Engine & WhatsApp
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Navigation Menu Toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-  const navOverlay = document.getElementById('navOverlay');
-
-  function closeMobileNav() {
-    if (navMenu) navMenu.classList.remove('active');
-    if (navOverlay) navOverlay.classList.remove('active');
-    if (mobileToggle) {
-      const icon = mobileToggle.querySelector('i');
-      if (icon) icon.className = 'fas fa-bars';
-    }
-  }
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('active');
-      if (navOverlay) navOverlay.classList.toggle('active', isOpen);
-      const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
-      }
-    });
-
-    if (navOverlay) navOverlay.addEventListener('click', closeMobileNav);
-
-    // Close menu when clicking links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', closeMobileNav);
-    });
-  }
-
-  // 2. Catalog Product Data & Stock Management
+  // --- Data & State ---
   const initialProducts = [
     {
       id: 'oyster-fresh',
@@ -117,7 +85,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // Load or initialize stock from localStorage
+  let cart = [];
+  let currentFilter = 'all';
+  let revealObserver = null;
+
+  // DOM Elements
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+  const navOverlay = document.getElementById('navOverlay');
+  const catalogGrid = document.getElementById('catalogGrid');
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartOverlay = document.getElementById('cartDrawerOverlay');
+  const cartIconBtn = document.getElementById('cartIconBtn');
+  const cartCloseBtn = document.getElementById('cartCloseBtn');
+  const cartBadge = document.getElementById('cartBadge');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartTotalAmount = document.getElementById('cartTotalAmount');
+  const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
+  const pincodeForm = document.getElementById('pincodeForm');
+  const pincodeInput = document.getElementById('pincodeInput');
+  const pincodeResult = document.getElementById('pincodeResult');
+  const faqItems = document.querySelectorAll('.faq-item');
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
+  const mainHeader = document.getElementById('mainHeader');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const progressRingFill = document.getElementById('progressRingFill');
+  const ringCircumference = 2 * Math.PI * 20; // ~125.66px
+
+  // --- Helper Functions ---
   function loadProductsWithStock() {
     try {
       const saved = localStorage.getItem('earthroot_inventory_stock');
@@ -153,95 +149,67 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('earthroot_inventory_stock', JSON.stringify(stockMap));
   }
 
-  const catalogGrid = document.getElementById('catalogGrid');
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  let currentFilter = 'all';
-
-  function renderProducts(filter = currentFilter) {
-    currentFilter = filter;
-    if (!catalogGrid) return;
-    catalogGrid.innerHTML = '';
-
-    const filtered = filter === 'all' 
-      ? products 
-      : products.filter(p => p.category === filter);
-
-    filtered.forEach(product => {
-      const isAvailable = product.inStock && product.stock > 0;
-      const card = document.createElement('div');
-      card.className = `product-card ${!isAvailable ? 'out-of-stock' : ''}`;
-      card.innerHTML = `
-        <div class="product-image-wrap">
-          <img src="${product.image}" alt="${product.name}" class="product-image">
-          <span class="product-badge">${product.badge}</span>
-          ${!isAvailable ? '<span class="out-of-stock-overlay"><i class="fas fa-ban"></i> Out of Stock</span>' : ''}
-        </div>
-        <div class="product-body">
-          <h3 class="product-title">${product.name}</h3>
-          <p class="product-desc">${product.desc}</p>
-          <div class="product-nutrition-pills">
-            ${product.pills.map(pill => `<span class="nutri-pill">${pill}</span>`).join('')}
-          </div>
-          
-          <div class="stock-status-pill ${isAvailable ? 'in-stock' : 'out-of-stock'}">
-            <i class="fas ${isAvailable ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-            ${isAvailable ? `In Stock (${product.stock} available)` : 'Harvest Sold Out'}
-          </div>
-
-          <div class="product-footer">
-            <div class="price-tag">
-              <span class="price-amount">₹${product.price}</span>
-              <span class="price-unit">${product.unit}</span>
-            </div>
-            ${isAvailable ? `
-              <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
-                <i class="fas fa-cart-plus"></i> Add to Order
-              </button>
-            ` : `
-              <button class="btn btn-disabled btn-sm" disabled data-id="${product.id}">
-                <i class="fas fa-times-circle"></i> Out of Stock
-              </button>
-            `}
-          </div>
-        </div>
+  function showToast(text) {
+    let toast = document.getElementById('toastNotification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toastNotification';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0f271d;
+        color: #f7e8c4;
+        padding: 0.8rem 1.8rem;
+        border-radius: 9999px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 3000;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid #d4a342;
+        transition: all 0.3s ease;
+        pointer-events: none;
       `;
-      catalogGrid.appendChild(card);
+      document.body.appendChild(toast);
+    }
+    toast.textContent = text;
+    toast.style.opacity = '1';
+    
+    setTimeout(() => {
+      toast.style.opacity = '0';
+    }, 2800);
+  }
+
+  // --- Mobile Nav ---
+  function closeMobileNav() {
+    if (navMenu) navMenu.classList.remove('active');
+    if (navOverlay) navOverlay.classList.remove('active');
+    if (mobileToggle) {
+      const icon = mobileToggle.querySelector('i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
+  }
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('active');
+      if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+      const icon = mobileToggle.querySelector('i');
+      if (icon) {
+        icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+      }
     });
 
-    // Attach Add to Cart listener for active buttons
-    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.currentTarget.getAttribute('data-id');
-        addToCart(id);
-      });
+    if (navOverlay) navOverlay.addEventListener('click', closeMobileNav);
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
     });
   }
 
-  // Filter tab click handlers
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
-      renderProducts(filter);
-    });
-  });
-
-  renderProducts('all');
-
-  // 3. Cart & Order Drawer Management
-  let cart = [];
-
-  const cartDrawer = document.getElementById('cartDrawer');
-  const cartOverlay = document.getElementById('cartDrawerOverlay');
-  const cartIconBtn = document.getElementById('cartIconBtn');
-  const cartCloseBtn = document.getElementById('cartCloseBtn');
-  const cartBadge = document.getElementById('cartBadge');
-  const cartItemsList = document.getElementById('cartItemsList');
-  const cartTotalAmount = document.getElementById('cartTotalAmount');
-  const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
-
+  // --- Cart System ---
   function toggleCart(open = true) {
+    if (!cartDrawer || !cartOverlay) return;
     if (open) {
       cartDrawer.classList.add('active');
       cartOverlay.classList.add('active');
@@ -283,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     if (cartBadge) cartBadge.textContent = totalItems;
-
     if (!cartItemsList) return;
 
     if (cart.length === 0) {
@@ -318,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cartTotalAmount) cartTotalAmount.textContent = `₹${total}`;
 
-    // Attach qty listeners
     document.querySelectorAll('.qty-minus').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = e.currentTarget.getAttribute('data-id');
@@ -351,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. WhatsApp Direct Order Formatter
+  // --- WhatsApp Order ---
   if (whatsappCheckoutBtn) {
     whatsappCheckoutBtn.addEventListener('click', () => {
       if (cart.length === 0) {
@@ -367,7 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
         total += linePrice;
         message += `${index + 1}. *${item.name}*\n   Qty: ${item.qty} pack(s) | ₹${linePrice}\n`;
 
-        // Deduct purchased count from available product inventory
         const product = products.find(p => p.id === item.id);
         if (product) {
           product.stock = Math.max(0, (product.stock || 0) - item.qty);
@@ -381,11 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
       message += `\n📍 *Delivery Request:* Fresh Harvest Delivery Kerala\n`;
       message += `\nPlease confirm item availability and dispatch time. Thank you!`;
 
-      // Persist updated stock counts to storage & refresh storefront
-      saveStock(products);
+      saveStockToStorage();
       renderProducts();
 
-      // Clear customer's cart
       cart = [];
       updateCartUI();
       toggleCart(false);
@@ -396,17 +359,140 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Pincode Eligibility Checker
-  const pincodeForm = document.getElementById('pincodeForm');
-  const pincodeInput = document.getElementById('pincodeInput');
-  const pincodeResult = document.getElementById('pincodeResult');
+  // --- Scroll Reveal Engine ---
+  function observeScrollReveals() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+      return;
+    }
 
+    if (revealObserver) {
+      revealObserver.disconnect();
+    }
+
+    revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    document.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => {
+      revealObserver.observe(el);
+    });
+  }
+
+  // --- 3D Card Tilt ---
+  function attachCardTiltEffect() {
+    const cards = document.querySelectorAll('.product-card, .recipe-card, .heritage-image-frame');
+    cards.forEach(card => {
+      card.onmousemove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      };
+
+      card.onmouseleave = () => {
+        card.style.transform = '';
+      };
+    });
+  }
+
+  // --- Product Catalog Renderer ---
+  function renderProducts(filter = currentFilter) {
+    currentFilter = filter;
+    if (!catalogGrid) return;
+    catalogGrid.innerHTML = '';
+
+    const filtered = filter === 'all' 
+      ? products 
+      : products.filter(p => p.category === filter);
+
+    filtered.forEach((product, index) => {
+      const isAvailable = product.inStock && product.stock > 0;
+      const card = document.createElement('div');
+      card.className = `product-card ${!isAvailable ? 'out-of-stock' : ''}`;
+      card.setAttribute('data-reveal', 'fade-up');
+      card.setAttribute('data-delay', `${(index % 3 + 1) * 100}`);
+      
+      card.innerHTML = `
+        <div class="product-image-wrap">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <span class="product-badge">${product.badge}</span>
+          ${!isAvailable ? '<span class="out-of-stock-overlay"><i class="fas fa-ban"></i> Out of Stock</span>' : ''}
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">${product.name}</h3>
+          <p class="product-desc">${product.desc}</p>
+          <div class="product-nutrition-pills">
+            ${product.pills.map(pill => `<span class="nutri-pill">${pill}</span>`).join('')}
+          </div>
+          
+          <div class="stock-status-pill ${isAvailable ? 'in-stock' : 'out-of-stock'}">
+            <i class="fas ${isAvailable ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+            ${isAvailable ? `In Stock (${product.stock} available)` : 'Harvest Sold Out'}
+          </div>
+
+          <div class="product-footer">
+            <div class="price-tag">
+              <span class="price-amount">₹${product.price}</span>
+              <span class="price-unit">${product.unit}</span>
+            </div>
+            ${isAvailable ? `
+              <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
+                <i class="fas fa-cart-plus"></i> Add to Order
+              </button>
+            ` : `
+              <button class="btn btn-disabled btn-sm" disabled data-id="${product.id}">
+                <i class="fas fa-times-circle"></i> Out of Stock
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+      catalogGrid.appendChild(card);
+    });
+
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        addToCart(id);
+      });
+    });
+
+    observeScrollReveals();
+    attachCardTiltEffect();
+  }
+
+  // Filter tabs
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      renderProducts(filter);
+    });
+  });
+
+  // --- Pincode Eligibility ---
   if (pincodeForm && pincodeInput && pincodeResult) {
     pincodeForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const code = pincodeInput.value.trim();
       
-      // Only 67360x pincodes are eligible for delivery
       if (/^67360\d$/.test(code)) {
         pincodeResult.className = 'pincode-result success';
         pincodeResult.innerHTML = `<i class="fas fa-check-circle"></i> Great news! Delivery is <strong>Available</strong> for Pincode <strong>${code}</strong> (Pullurampara & Thiruvambady area).`;
@@ -420,20 +506,202 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. FAQ Accordion Interactive Toggle
-  const faqItems = document.querySelectorAll('.faq-item');
+  // --- FAQ Accordion ---
   faqItems.forEach(item => {
     const header = item.querySelector('.faq-header');
-    header.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      faqItems.forEach(i => i.classList.remove('active'));
-      if (!isActive) {
-        item.classList.add('active');
+    if (header) {
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+
+  // --- Scroll Progress, Sticky Header & Back to Top ---
+  function handleScrollProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (scrollProgressBar) {
+      scrollProgressBar.style.width = `${scrollPercent}%`;
+    }
+
+    if (mainHeader) {
+      mainHeader.classList.toggle('scrolled', scrollTop > 40);
+    }
+
+    if (scrollTopBtn && progressRingFill) {
+      scrollTopBtn.classList.toggle('visible', scrollTop > 300);
+      const offset = ringCircumference - (scrollPercent / 100) * ringCircumference;
+      progressRingFill.style.strokeDashoffset = Math.max(0, offset);
+    }
+  }
+
+  window.addEventListener('scroll', handleScrollProgress, { passive: true });
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // --- Scroll Spy ---
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function handleScrollSpy() {
+    const scrollPos = (window.scrollY || document.documentElement.scrollTop) + 120;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.classList.add('active-nav');
+          } else {
+            link.classList.remove('active-nav');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScrollSpy, { passive: true });
+
+  // --- Number Counters on Scroll ---
+  function initCounters() {
+    const counterElements = document.querySelectorAll('[data-counter]');
+    if (!counterElements.length) return;
+
+    let countersDone = false;
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersDone) {
+          countersDone = true;
+          counterElements.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-counter'), 10);
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const duration = 1800; // ms
+            const startTime = performance.now();
+
+            function updateCount(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const easeOut = 1 - Math.pow(1 - progress, 3);
+              const currentVal = Math.floor(easeOut * target);
+
+              if (target >= 1000) {
+                counter.textContent = `${currentVal.toLocaleString()}${suffix}`;
+              } else {
+                counter.textContent = `${currentVal}${suffix}`;
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(updateCount);
+              } else {
+                if (target >= 1000) {
+                  counter.textContent = `${target.toLocaleString()}${suffix}`;
+                } else {
+                  counter.textContent = `${target}${suffix}`;
+                }
+              }
+            }
+
+            requestAnimationFrame(updateCount);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const statsWrap = document.querySelector('.hero-stats');
+    if (statsWrap) {
+      counterObserver.observe(statsWrap);
+    }
+  }
+
+  // --- Process Timeline Glow on Scroll ---
+  function initProcessTimeline() {
+    const stepCards = document.querySelectorAll('.process-card[data-step]');
+    if (!stepCards.length) return;
+
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active-step');
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    stepCards.forEach(card => stepObserver.observe(card));
+  }
+
+  // --- Ambient Spore Particles in Hero ---
+  function createSporeParticles() {
+    const sporeContainer = document.getElementById('sporeParticles');
+    if (!sporeContainer) return;
+    sporeContainer.innerHTML = '';
+
+    const sporeCount = 20;
+    for (let i = 0; i < sporeCount; i++) {
+      const spore = document.createElement('div');
+      spore.className = 'spore';
+      
+      const size = Math.random() * 8 + 4;
+      const left = Math.random() * 100;
+      const top = Math.random() * 80 + 20;
+      const delay = Math.random() * 8;
+      const duration = Math.random() * 8 + 8;
+
+      spore.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${left}%;
+        top: ${top}%;
+        animation-delay: -${delay}s;
+        animation-duration: ${duration}s;
+      `;
+      sporeContainer.appendChild(spore);
+    }
+  }
+
+  // --- Smooth Anchored Scrolling ---
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = 75;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     });
   });
 
-  // Real-time synchronization when Admin updates stock in admin.html
+  // --- Real-time Inventory Sync from Admin ---
   window.addEventListener('storage', (e) => {
     if (e.key === 'earthroot_inventory_stock') {
       products = loadProductsWithStock();
@@ -442,37 +710,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Simple Notification Toast
-  function showToast(text) {
-    let toast = document.getElementById('toastNotification');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'toastNotification';
-      toast.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #0f271d;
-        color: #f7e8c4;
-        padding: 0.8rem 1.8rem;
-        border-radius: 9999px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        z-index: 3000;
-        font-weight: 600;
-        font-size: 0.9rem;
-        border: 1px solid #d4a342;
-        transition: all 0.3s ease;
-        pointer-events: none;
-      `;
-      document.body.appendChild(toast);
-    }
-    toast.textContent = text;
-    toast.style.opacity = '1';
-    
-    setTimeout(() => {
-      toast.style.opacity = '0';
-    }, 2800);
-  }
+  // --- Initialize All Components ---
+  renderProducts('all');
+  observeScrollReveals();
+  initCounters();
+  initProcessTimeline();
+  createSporeParticles();
+  handleScrollProgress();
+  handleScrollSpy();
 });
-

@@ -56,8 +56,6 @@
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         "opens": "08:00",
-        "closes": "18:00"
-      }
     ]
   }
   </script>
@@ -65,13 +63,16 @@
 
 <body>
 
+  <!-- Top Glowing Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
   <!-- Announcement Bar -->
   <div class="announcement-bar">
     <span class="pulse-dot"></span> Fresh Daily Harvest Harvested Today in Kozhikode! Home Delivery Across Kozhikode.
   </div>
 
   <!-- Header Navigation -->
-  <header class="header">
+  <header class="header" id="mainHeader">
     <div class="container nav-container">
       <a href="#" class="brand-logo-link">
         <img src="assets/logo.jpg" alt="Earthroot Mushrooms Logo" class="brand-logo-img">
@@ -113,19 +114,20 @@
 
   <!-- Hero Section -->
   <section class="hero" id="home">
+    <div class="spore-particles" id="sporeParticles"></div>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge" data-reveal="fade-down" data-delay="100">
           <i class="fas fa-seedling"></i> 100% Organic & Chemical-Free Mycelium Cultivation
         </div>
-        <h1 class="hero-title">Grown in Living Soil, Harvested at <span>Peak Vitality</span></h1>
-        <p class="hero-description">
+        <h1 class="hero-title" data-reveal="fade-up" data-delay="200">Grown in Living Soil, Harvested at <span>Peak Vitality</span></h1>
+        <p class="hero-description" data-reveal="fade-up" data-delay="300">
           Welcome to Earthroot Mushrooms. We cultivate nutrient-dense gourmet and medicinal mushrooms with pure organic
           substrate, pristine climate control, and zero synthetic sprays. Delivered straight from our Pullurampara farm
           to your kitchen table.
         </p>
-        <div class="hero-cta-group">
+        <div class="hero-cta-group" data-reveal="fade-up" data-delay="400">
           <a href="#varieties" class="btn btn-primary">
             <i class="fas fa-utensils"></i> Explore Harvest Catalog
           </a>
@@ -134,9 +136,9 @@
             <i class="fab fa-whatsapp"></i> WhatsApp Order Now
           </a>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats" data-reveal="fade-up" data-delay="500">
           <div class="stat-item">
-            <span class="stat-number">100%</span>
+            <span class="stat-number" data-counter="100" data-suffix="%">100%</span>
             <span class="stat-label">Organic & Clean</span>
           </div>
           <div class="stat-item">
@@ -144,13 +146,20 @@
             <span class="stat-label">Fresh Harvest</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">15,000+</span>
+            <span class="stat-number" data-counter="15000" data-suffix="+">15,000+</span>
             <span class="stat-label">Satisfied Tables</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">0%</span>
+            <span class="stat-number" data-counter="0" data-suffix="%">0%</span>
             <span class="stat-label">Pesticides or Chemicals</span>
           </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;" data-reveal="fade-up" data-delay="600">
+          <a href="#varieties" class="hero-scroll-indicator" aria-label="Scroll down to varieties">
+            <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+            <span>Scroll to Explore</span>
+          </a>
         </div>
       </div>
     </div>
@@ -160,28 +169,28 @@
   <div class="trust-ribbon">
     <div class="container">
       <div class="trust-grid">
-        <div class="trust-card">
+        <div class="trust-card" data-reveal="fade-up" data-delay="100">
           <div class="trust-icon"><i class="fas fa-leaf"></i></div>
           <div class="trust-text">
             <h4>100% Pure Organic</h4>
             <p>Cultivated on natural oak & straw substrate</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card" data-reveal="fade-up" data-delay="200">
           <div class="trust-icon"><i class="fas fa-sun"></i></div>
           <div class="trust-text">
             <h4>Daily Morning Harvest</h4>
             <p>Hand-picked at maximum nutritional peak</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card" data-reveal="fade-up" data-delay="300">
           <div class="trust-icon"><i class="fas fa-truck-ramp-box"></i></div>
           <div class="trust-text">
             <h4>Express Kerala Shipping</h4>
             <p>Cold-pack delivery to major cities</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card" data-reveal="fade-up" data-delay="400">
           <div class="trust-icon"><i class="fas fa-store"></i></div>
           <div class="trust-text">
             <h4>Wholesale & Retail</h4>
@@ -195,7 +204,7 @@
   <!-- Product Catalog Section -->
   <section class="section-padding" id="varieties">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal="fade-up">
         <span class="section-tag"><i class="fas fa-spa"></i> Fresh From Our Farm</span>
         <h2 class="section-title">Our Gourmet & Medicinal Harvest</h2>
         <p class="section-subtitle">Select from our freshly harvested mushroom varieties below. Select your quantity and
@@ -203,7 +212,7 @@
       </div>
 
       <!-- Catalog Filter Tabs -->
-      <div class="catalog-tabs">
+      <div class="catalog-tabs" data-reveal="fade-up" data-delay="150">
         <button class="tab-btn active" data-filter="all">All Varieties</button>
         <button class="tab-btn" data-filter="gourmet">Fresh Gourmet</button>
         <button class="tab-btn" data-filter="medicinal">Medicinal Superfoods</button>
@@ -213,13 +222,13 @@
 
       <!-- Products Grid -->
       <div class="products-grid" id="catalogGrid">
-        <!-- Rendered dynamically by app.js -->
+        <!-- Rendered dynamically by app.js with scroll-animation triggers -->
       </div>
     </div>
   </section>
 
   <!-- Pincode Delivery Eligibility Checker -->
-  <section class="container">
+  <section class="container" data-reveal="zoom-in">
     <div class="pincode-banner">
       <div class="pincode-wrap">
         <span class="section-tag"
@@ -244,7 +253,7 @@
   <section class="section-padding heritage-section" id="heritage" style="margin-top: 5rem;">
     <div class="container">
       <div class="heritage-grid">
-        <div class="heritage-content">
+        <div class="heritage-content" data-reveal="fade-right">
           <span class="section-tag"
             style="background: rgba(212, 163, 66, 0.15); color: var(--accent-gold); border-color: rgba(212, 163, 66, 0.3);">
             <i class="fas fa-tree"></i> Rooted In Purity
@@ -262,19 +271,19 @@
           </p>
 
           <div class="heritage-highlights">
-            <div class="heritage-item">
+            <div class="heritage-item" data-reveal="fade-up" data-delay="100">
               <h4><i class="fas fa-check-circle"></i> Clean Air Chambers</h4>
               <p>HEPA filtered cultivation facilities preventing contamination naturally.</p>
             </div>
-            <div class="heritage-item">
+            <div class="heritage-item" data-reveal="fade-up" data-delay="200">
               <h4><i class="fas fa-check-circle"></i> Chemical-Free Guarantee</h4>
               <p>Zero artificial fertilizers, pesticides, or bleaching agents used.</p>
             </div>
-            <div class="heritage-item">
+            <div class="heritage-item" data-reveal="fade-up" data-delay="300">
               <h4><i class="fas fa-check-circle"></i> Nutrient-Dense Substrate</h4>
               <p>Formulated with sterilized organic saw dust and crop straw.</p>
             </div>
-            <div class="heritage-item">
+            <div class="heritage-item" data-reveal="fade-up" data-delay="400">
               <h4><i class="fas fa-check-circle"></i> Sustainable Packaging</h4>
               <p>Eco-conscious breathable trays ensuring extended farm freshness.</p>
             </div>
@@ -286,7 +295,7 @@
           </a>
         </div>
 
-        <div class="heritage-image-frame">
+        <div class="heritage-image-frame" data-reveal="fade-left" data-delay="200">
           <img src="assets/hero.jpg" alt="Earthroot Mushrooms Cultivation Farm">
         </div>
       </div>
@@ -296,32 +305,32 @@
   <!-- Process Timeline Section -->
   <section class="section-padding" id="process">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal="fade-up">
         <span class="section-tag"><i class="fas fa-microscope"></i> Transparent Cultivation</span>
         <h2 class="section-title">From Spore to Table Process</h2>
         <p class="section-subtitle">Take a glimpse inside our natural 4-step sustainable growing methodology.</p>
       </div>
 
       <div class="process-grid">
-        <div class="process-card">
+        <div class="process-card" data-reveal="fade-up" data-delay="100" data-step="1">
           <div class="process-step-num">01</div>
           <h3>Organic Preparation</h3>
           <p>We source pure organic agricultural biomass and steam-sterilize it at high temperature to create a pristine
             substrate free of pathogens.</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" data-reveal="fade-up" data-delay="200" data-step="2">
           <div class="process-step-num">02</div>
           <h3>Spawning & Mycelium</h3>
           <p>High-vigor pure mushroom culture (spawn) is introduced under sterile laminar air flow, encouraging dense
             mycelial network development.</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" data-reveal="fade-up" data-delay="300" data-step="3">
           <div class="process-step-num">03</div>
           <h3>Climate Fruiting</h3>
           <p>Bags are placed in humidity and oxygen-controlled fruiting rooms where perfect ambient light triggers
             rapid, healthy mushroom blooming.</p>
         </div>
-        <div class="process-card">
+        <div class="process-card" data-reveal="fade-up" data-delay="400" data-step="4">
           <div class="process-step-num">04</div>
           <h3>Morning Harvest</h3>
           <p>Mushrooms are individually hand-picked at peak caps size, gently sorted into ventilated packages, and
@@ -334,7 +343,7 @@
   <!-- Culinary Recipes Section -->
   <section class="section-padding recipes-section" id="recipes">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal="fade-up">
         <span class="section-tag"><i class="fas fa-mortar-pestle"></i> Kitchen Inspiration</span>
         <h2 class="section-title">Gourmet Mushroom Recipes</h2>
         <p class="section-subtitle">Discover delicious ways to cook Earthroot mushrooms in traditional and modern
@@ -342,7 +351,7 @@
       </div>
 
       <div class="recipe-grid">
-        <div class="recipe-card">
+        <div class="recipe-card" data-reveal="fade-up" data-delay="100">
           <div class="recipe-body">
             <span class="recipe-tag">Kerala Special</span>
             <h3 class="recipe-title">Spiced Oyster Mushroom Pepper Roast</h3>
@@ -357,7 +366,7 @@
           </div>
         </div>
 
-        <div class="recipe-card">
+        <div class="recipe-card" data-reveal="fade-up" data-delay="200">
           <div class="recipe-body">
             <span class="recipe-tag">Gourmet Classic</span>
             <h3 class="recipe-title">Garlic Butter Milky Mushroom Stir-Fry</h3>
@@ -372,7 +381,7 @@
           </div>
         </div>
 
-        <div class="recipe-card">
+        <div class="recipe-card" data-reveal="fade-up" data-delay="300">
           <div class="recipe-body">
             <span class="recipe-tag">Superfood Broth</span>
             <h3 class="recipe-title">Immunity Lion's Mane Herbal Soup</h3>
@@ -393,7 +402,7 @@
   <!-- FAQ Section -->
   <section class="section-padding" id="faq">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal="fade-up">
         <span class="section-tag"><i class="fas fa-question-circle"></i> Got Questions?</span>
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">Everything you need to know about ordering, storing, and enjoying fresh organic
@@ -401,7 +410,7 @@
       </div>
 
       <div class="faq-container">
-        <div class="faq-item active">
+        <div class="faq-item active" data-reveal="fade-up" data-delay="100">
           <button class="faq-header">
             <span>How do I order fresh mushrooms from Earthroot online?</span>
             <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
@@ -413,7 +422,7 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal="fade-up" data-delay="200">
           <button class="faq-header">
             <span>Which areas do you deliver to?</span>
             <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
@@ -424,7 +433,7 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal="fade-up" data-delay="300">
           <button class="faq-header">
             <span>How long do Earthroot fresh mushrooms remain fresh?</span>
             <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
@@ -435,7 +444,7 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal="fade-up" data-delay="400">
           <button class="faq-header">
             <span>Do you offer wholesale bulk supply for restaurants and stores?</span>
             <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
@@ -446,7 +455,7 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal="fade-up" data-delay="500">
           <button class="faq-header">
             <span>Are your mushrooms grown organically without synthetic sprays?</span>
             <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
@@ -463,9 +472,8 @@
 
   <!-- WhatsApp Call To Action Banner -->
   <section class="section-padding" id="contact" style="background-color: var(--primary-dark); color: #fff;">
-    <div class="container text-center">
-      <img src="assets/logo.jpg" alt="Earthroot Logo"
-        style="width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1.5rem auto; border: 3px solid var(--accent-gold);">
+    <div class="container text-center" data-reveal="zoom-in">
+      <img src="assets/logo.jpg" alt="Earthroot Logo" class="cta-logo-img">
       <h2 class="heading-serif" style="font-size: 2.75rem; color: #fff; margin-bottom: 1rem;">Experience Farm-Fresh
         Organic Mushrooms Today</h2>
       <p style="font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 2.5rem auto;">
@@ -507,14 +515,22 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Floating Scroll-To-Top Button with Circular SVG Progress Ring -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to Top">
+    <svg class="progress-ring" width="52" height="52">
+      <circle class="progress-ring-bg" cx="26" cy="26" r="20"></circle>
+      <circle class="progress-ring-fill" id="progressRingFill" cx="26" cy="26" r="20"></circle>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <img src="assets/logo.jpg" alt="Logo"
-              style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--accent-gold);">
+            <img src="assets/logo.jpg" alt="Earthroot Logo" class="footer-logo-img">
             <div>
               <div style="font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff;">
                 EARTHROOT</div>
@@ -566,8 +582,6 @@
       </div>
     </div>
   </footer>
-
-
 
   <!-- Custom JavaScript -->
   <script src="js/app.js"></script>
