@@ -1426,7 +1426,7 @@ img {
   .process-grid::before {
     content: '';
     position: absolute;
-    top: calc(2.25rem + 26px);
+    top: 50%;
     left: calc(12.5% - 0.75rem);
     right: calc(12.5% - 0.75rem);
     width: auto;
