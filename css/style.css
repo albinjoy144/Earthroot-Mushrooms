@@ -1426,9 +1426,10 @@ img {
   .process-grid::before {
     content: '';
     position: absolute;
-    top: 62px;
-    left: 12.5%;
-    width: 75%;
+    top: calc(2.25rem + 26px);
+    left: calc(12.5% - 0.75rem);
+    right: calc(12.5% - 0.75rem);
+    width: auto;
     height: 3px;
     background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-gold), #25D366);
     z-index: 1;
