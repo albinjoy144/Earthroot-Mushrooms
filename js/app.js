@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainHeader = document.getElementById('mainHeader');
   const scrollTopBtn = document.getElementById('scrollTopBtn');
   const progressRingFill = document.getElementById('progressRingFill');
-  const ringCircumference = 2 * Math.PI * 20; // ~125.66px
+  const ringCircumference = 2 * Math.PI * 22; // ~138.23px
 
   // --- Helper Functions ---
   function loadProductsWithStock() {
