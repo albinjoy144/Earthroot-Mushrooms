@@ -579,6 +579,91 @@
       transition: width 0.6s ease;
     }
 
+    /* Monthly Toolbar Component */
+    .monthly-toolbar-body {
+      padding: 1.15rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      background: #faf8f5;
+    }
+
+    .monthly-select-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .monthly-select-label {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .monthly-filter-select {
+      font-weight: 600;
+      min-width: 170px;
+    }
+
+    .monthly-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .monthly-action-btn {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 767px) {
+      .monthly-toolbar-body {
+        padding: 0.9rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+
+      .monthly-select-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.4rem;
+        width: 100%;
+      }
+
+      .monthly-select-label {
+        font-size: 0.84rem;
+      }
+
+      .monthly-filter-select {
+        width: 100%;
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .monthly-btn-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .monthly-action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+      }
+    }
+
     /* Modal Form Styles */
     .modal-overlay {
       position: fixed;
@@ -1366,20 +1451,22 @@
         
         <!-- Monthly Selector Toolbar -->
         <div class="admin-panel-card" style="margin-bottom: 1.5rem;">
-          <div style="padding: 1.25rem 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #faf8f5;">
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
-              <span style="font-weight: 700; color: var(--primary-dark);"><i class="fas fa-calendar-alt" style="color: var(--accent-gold);"></i> Select Analysis Period:</span>
-              <select id="monthlyReportSelect" class="admin-filter-select" style="font-weight: 600; min-width: 180px;">
+          <div class="monthly-toolbar-body">
+            <div class="monthly-select-group">
+              <label for="monthlyReportSelect" class="monthly-select-label">
+                <i class="fas fa-calendar-alt" style="color: var(--accent-gold);"></i> Analysis Period:
+              </label>
+              <select id="monthlyReportSelect" class="admin-filter-select monthly-filter-select">
                 <!-- Populated dynamically -->
               </select>
             </div>
 
-            <div style="display: flex; gap: 0.6rem;">
-              <button class="btn btn-outline btn-sm" id="printMonthlyReportBtn">
-                <i class="fas fa-print"></i> Print / Save PDF
+            <div class="monthly-btn-group">
+              <button class="btn btn-outline btn-sm monthly-action-btn" id="printMonthlyReportBtn">
+                <i class="fas fa-print"></i> <span>Print / PDF</span>
               </button>
-              <button class="btn btn-primary btn-sm" id="exportMonthlyReportCsvBtn">
-                <i class="fas fa-file-arrow-down"></i> Export Month CSV
+              <button class="btn btn-primary btn-sm monthly-action-btn" id="exportMonthlyReportCsvBtn">
+                <i class="fas fa-file-arrow-down"></i> <span>Export CSV</span>
               </button>
             </div>
           </div>
