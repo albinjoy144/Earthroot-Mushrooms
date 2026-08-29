@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farm Stock Manager | Earthroot Mushrooms Admin</title>
+  <title>Farm Admin Portal | Earthroot Mushrooms</title>
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Favicon -->
@@ -27,13 +27,17 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-family: 'Poppins', sans-serif;
     }
 
     .admin-nav {
       background: var(--primary-dark);
-      padding: 1rem 0;
+      padding: 0.85rem 0;
       border-bottom: 3px solid var(--accent-gold);
       color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .admin-nav-container {
@@ -43,93 +47,219 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      gap: 0.75rem;
     }
 
     .admin-nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .admin-brand-text {
+      display: flex;
+      flex-direction: column;
     }
 
     .admin-nav-logo {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       border: 2px solid var(--accent-gold);
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     .admin-nav-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: -0.01em;
-      line-height: 1.2;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
     .admin-nav-subtitle {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--accent-gold);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .admin-nav-links {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .admin-header-btn {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      border-radius: 9999px;
     }
 
     .admin-page-wrap {
-      max-width: 1100px;
+      max-width: 1200px;
       width: 100%;
-      margin: 2.5rem auto;
+      margin: 2rem auto 4rem;
       padding: 0 1.5rem;
       flex-grow: 1;
     }
 
+    /* Admin Navigation Tabs */
+    .admin-tab-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+      background: #e8ded1;
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .admin-tab-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.75rem 0.6rem;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--primary-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .admin-tab-btn i {
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .admin-tab-btn span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .admin-tab-btn:hover {
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .admin-tab-btn.active {
+      background: #ffffff;
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .admin-tab-btn .badge-pill {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 9999px;
+      background: #eafaf1;
+      color: #1e7e34;
+      font-weight: 700;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+
+    .admin-tab-btn .badge-pill.alert {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    @media (max-width: 860px) {
+      .admin-tab-nav {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0.3rem;
+        gap: 0.35rem;
+      }
+      .admin-tab-nav::-webkit-scrollbar {
+        display: none;
+      }
+      .admin-tab-btn {
+        flex: 1 0 auto;
+        min-width: max-content;
+        padding: 0.65rem 0.9rem;
+        font-size: 0.82rem;
+      }
+    }
+
+    /* Stats Grid */
     .admin-stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.15rem;
+      margin-bottom: 1.75rem;
     }
 
     .admin-stat-card {
       background: #ffffff;
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.25rem 1.4rem;
       border: 1px solid var(--border-color);
       box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1.15rem;
+      transition: transform 0.2s ease;
+    }
+
+    .admin-stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .stat-icon-wrap {
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
 
     .stat-icon-wrap.green { background: #eafaf1; color: #1e7e34; }
     .stat-icon-wrap.gold { background: #fdf5e6; color: #d4a342; }
     .stat-icon-wrap.red { background: #fff5f5; color: #e53e3e; }
+    .stat-icon-wrap.blue { background: #ebf8ff; color: #3182ce; }
+    .stat-icon-wrap.purple { background: #f3e8ff; color: #805ad5; }
+    .stat-icon-wrap.orange { background: #fffaf0; color: #dd6b20; }
+    .stat-icon-wrap.whatsapp { background: #dcfce7; color: #15803d; }
 
     .stat-val {
-      font-size: 1.75rem;
+      font-size: 1.55rem;
       font-weight: 800;
       color: var(--primary-dark);
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     .stat-lbl {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       font-weight: 500;
+      margin-top: 0.2rem;
     }
 
     .admin-panel-card {
@@ -138,10 +268,11 @@
       border: 1px solid var(--border-color);
       box-shadow: var(--shadow-md);
       overflow: hidden;
+      margin-bottom: 2rem;
     }
 
     .admin-panel-header {
-      padding: 1.5rem 2rem;
+      padding: 1.25rem 1.75rem;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
@@ -152,7 +283,7 @@
     }
 
     .admin-panel-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--primary-dark);
       display: flex;
@@ -162,26 +293,404 @@
 
     .admin-search-filter {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
+      align-items: center;
     }
 
-    .admin-search-input, .admin-filter-select {
-      padding: 0.5rem 0.85rem;
+    .admin-search-input, .admin-filter-select, .admin-date-input {
+      padding: 0.52rem 0.8rem;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       outline: none;
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-family: inherit;
     }
 
-    .admin-search-input:focus, .admin-filter-select:focus {
-      border-color: var(--accent-terracotta);
+    .admin-search-input:focus, .admin-filter-select:focus, .admin-date-input:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 3px rgba(212, 163, 66, 0.15);
     }
 
     .admin-list-body {
-      padding: 1.75rem 2rem;
+      padding: 1.5rem 1.75rem;
     }
 
+    /* Table Styles */
+    .data-table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .data-table th {
+      background: #f7f3ec;
+      padding: 0.85rem 1.1rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 0.95rem 1.1rem;
+      border-bottom: 1px solid #f0ebe2;
+      color: #333333;
+      vertical-align: middle;
+    }
+
+    .data-table tbody tr:hover {
+      background-color: #fcfbfa;
+    }
+
+    .data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Badges */
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .cat-substrate { background: #fef3c7; color: #92400e; }
+    .cat-spawn { background: #e0f2fe; color: #0369a1; }
+    .cat-labor { background: #e0e7ff; color: #3730a3; }
+    .cat-electricity { background: #fae8ff; color: #86198f; }
+    .cat-packaging { background: #ffedd5; color: #9a3412; }
+    .cat-maintenance { background: #f1f5f9; color: #334155; }
+    .cat-transport { background: #dcfce7; color: #166534; }
+    .cat-rent { background: #ccfbf1; color: #115e59; }
+    .cat-misc { background: #f3f4f6; color: #4b5563; }
+
+    .pay-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .pay-cash { background: #eafaf1; color: #166534; border: 1px solid #86efac; }
+    .pay-upi { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
+    .pay-bank { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+    .pay-cod { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .pay-pending { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .pay-default { background: #f4efe6; color: var(--primary-mid); border: 1px solid #e0d7c7; }
+
+    .avail-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .avail-ready { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .avail-waitlist { background: #fef9c3; color: #a16207; border: 1px solid #fde047; }
+    .avail-delivered { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+    /* WhatsApp Notification Status Badges */
+    .msg-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: default;
+      user-select: none;
+    }
+
+    .msg-status-badge.sent {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .msg-status-badge.not-sent {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .qty-tag {
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: #fdf6e7;
+      border: 1px solid #f5e4bd;
+      padding: 0.18rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      display: inline-block;
+    }
+
+    .money-tag {
+      font-weight: 800;
+      color: #15803d;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .btn-action-icon {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+    }
+
+    .btn-action-icon:hover.edit {
+      color: #0284c7;
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    .btn-action-icon:hover.delete {
+      color: #dc2626;
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .btn-whatsapp-send {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      background: #25D366;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+      white-space: nowrap;
+    }
+
+    .btn-whatsapp-send:hover {
+      background: #1eb956;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp-send.resend {
+      background: #ffffff;
+      color: #15803d;
+      border: 1px solid #86efac;
+      box-shadow: none;
+    }
+
+    .btn-whatsapp-send.resend:hover {
+      background: #f0fdf4;
+    }
+
+    /* Breakdown Progress Bars */
+    .breakdown-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .breakdown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.88rem;
+    }
+
+    .breakdown-label {
+      font-weight: 600;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .breakdown-values {
+      font-weight: 700;
+      color: #b91c1c;
+    }
+
+    .breakdown-bar-bg {
+      height: 10px;
+      background: #e9e3d8;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.6s ease;
+    }
+
+    /* Modal Form Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 39, 29, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 560px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      animation: modalSlideUp 0.25s ease;
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      background: #faf8f5;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close-btn:hover {
+      background: #eee7db;
+      color: var(--primary-dark);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 3px rgba(212, 163, 66, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: #faf8f5;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    /* Auth card */
     .admin-auth-card {
       max-width: 440px;
       margin: 4rem auto;
@@ -211,36 +720,273 @@
       margin-bottom: 1.75rem;
     }
 
-    @media (max-width: 767px) {
+    /* Print styling */
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .admin-nav, .admin-tab-nav, .admin-search-filter, .admin-quick-actions, .action-btn-group, .btn, .btn-whatsapp-send, .modal-overlay {
+        display: none !important;
+      }
       .admin-page-wrap {
-        margin: 1.5rem auto;
-        padding: 0 1rem;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+      .admin-panel-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .admin-nav {
+        padding: 0.65rem 0;
+      }
+
+      .admin-nav-container {
+        padding: 0 0.85rem;
+        gap: 0.5rem;
+      }
+
+      .admin-nav-brand {
+        gap: 0.55rem;
+        flex-shrink: 0;
+      }
+
+      .admin-nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .admin-nav-title {
+        font-size: 0.92rem;
+        letter-spacing: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .admin-nav-subtitle {
+        font-size: 0.6rem;
+        letter-spacing: 0.04em;
+      }
+
+      .admin-nav-links {
+        gap: 0.4rem;
+        flex-shrink: 0;
+      }
+
+      .header-btn-text {
+        display: none;
+      }
+
+      .admin-header-btn {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.9rem;
+      }
+
+      .admin-page-wrap {
+        margin: 1rem auto 3rem;
+        padding: 0 0.75rem;
+      }
+
+      .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .admin-stat-card {
+        padding: 0.85rem 0.9rem;
+        gap: 0.65rem;
+        border-radius: 10px;
+      }
+
+      .stat-icon-wrap {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+      }
+
+      .stat-val {
+        font-size: 1.2rem;
+      }
+
+      .stat-lbl {
+        font-size: 0.72rem;
       }
 
       .admin-panel-header {
-        padding: 1.25rem 1rem;
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
       }
 
-      .admin-list-body {
-        padding: 1.25rem 1rem;
+      .admin-panel-title {
+        font-size: 1.1rem;
       }
 
       .admin-search-filter {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
       }
 
-      .admin-search-input, .admin-filter-select {
+      .admin-search-input, .admin-filter-select, .admin-date-input {
         width: 100%;
+        box-sizing: border-box;
+        font-size: 0.88rem;
+        padding: 0.6rem 0.8rem;
+      }
+
+      .admin-search-filter .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.65rem;
+      }
+
+      .admin-quick-actions {
+        width: 100%;
+        display: flex;
+        gap: 0.4rem;
+      }
+
+      .admin-quick-actions .btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.5rem 0.3rem;
+        font-size: 0.76rem;
+      }
+
+      .admin-list-body {
+        padding: 0.75rem;
+      }
+
+      .data-table-container {
+        border-radius: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .data-table th {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.74rem;
+      }
+
+      .data-table td {
+        padding: 0.75rem 0.75rem;
+        font-size: 0.82rem;
+      }
+
+      .btn-whatsapp-send {
+        padding: 0.38rem 0.65rem;
+        font-size: 0.75rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .form-group {
+        margin-bottom: 0.9rem;
       }
 
       .admin-stock-card {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 0.85rem;
+        padding: 1rem;
+      }
+
+      .admin-item-info {
+        gap: 0.75rem;
+      }
+
+      .admin-item-img {
+        width: 48px;
+        height: 48px;
       }
 
       .admin-item-controls {
         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .admin-stock-input-wrap {
+        grid-column: span 2;
+        display: flex;
         justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .admin-toggle-btn, .admin-save-item-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal-box {
+        max-width: 95vw;
+        margin: 0.5rem;
+        border-radius: 14px;
+      }
+
+      .modal-header {
+        padding: 1rem 1.15rem;
+      }
+
+      .modal-body {
+        padding: 1rem;
+        max-height: 70vh;
+      }
+
+      .modal-footer {
+        padding: 0.85rem 1.15rem;
+        gap: 0.5rem;
+      }
+
+      .modal-footer .btn {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .admin-auth-card {
+        margin: 2rem auto;
+        padding: 1.75rem 1.25rem;
+      }
+
+      .auth-icon {
+        font-size: 2.75rem;
+      }
+
+      .admin-auth-card h2 {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-nav-title {
+        font-size: 0.88rem;
+      }
+      .admin-nav-subtitle {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .admin-stats-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -253,18 +999,18 @@
     <div class="admin-nav-container">
       <div class="admin-nav-brand">
         <img src="assets/logo.jpg" alt="Earthroot Logo" class="admin-nav-logo">
-        <div>
+        <div class="admin-brand-text">
           <div class="admin-nav-title">EARTHROOT MUSHROOMS</div>
-          <div class="admin-nav-subtitle">Farm Stock & Inventory Portal</div>
+          <div class="admin-nav-subtitle">Farm Admin Portal</div>
         </div>
       </div>
 
       <div class="admin-nav-links">
-        <a href="index.html" class="btn btn-outline btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
-          <i class="fas fa-external-link-alt"></i> View Storefront
+        <a href="index.html" class="btn btn-outline btn-sm admin-header-btn" style="color: #ffffff; border-color: rgba(255,255,255,0.4);" title="View Storefront">
+          <i class="fas fa-store"></i> <span class="header-btn-text">Store</span>
         </a>
-        <button id="adminLogoutBtn" class="btn btn-sm" style="display: none; background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);">
-          <i class="fas fa-sign-out-alt"></i> Logout
+        <button id="adminLogoutBtn" class="btn btn-sm admin-header-btn" style="display: none; background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);" title="Logout">
+          <i class="fas fa-sign-out-alt"></i> <span class="header-btn-text">Logout</span>
         </button>
       </div>
     </div>
@@ -276,8 +1022,8 @@
     <!-- 1. Authentication Screen -->
     <div id="adminAuthSection" class="admin-auth-card">
       <div class="auth-icon"><i class="fas fa-shield-halved"></i></div>
-      <h2>Farm Owner Portal</h2>
-      <p>Enter your secret Admin Passcode to view and update harvest stock levels.</p>
+      <h2>Farm Management Portal</h2>
+      <p>Enter your secret Admin Password to manage harvest stock, buyer customer orders, WhatsApp stock alerts, and farm expenses.</p>
 
       <form id="adminLoginForm">
         <div style="position: relative; margin-bottom: 1rem;">
@@ -287,91 +1033,624 @@
           </button>
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
-          <i class="fas fa-lock-open"></i> Unlock Inventory Controls
+          <i class="fas fa-lock-open"></i> Unlock Admin Portal
         </button>
       </form>
     </div>
 
-    <!-- 2. Inventory Dashboard Screen (Shown on Login) -->
+    <!-- 2. Admin Dashboard Screen (Shown on Login) -->
     <div id="adminDashboardSection" style="display: none;">
       
-      <!-- Stats Overview -->
-      <div class="admin-stats-grid">
-        <div class="admin-stat-card">
-          <div class="stat-icon-wrap gold"><i class="fas fa-boxes-stacked"></i></div>
-          <div>
-            <div class="stat-val" id="totalVarietyCount">6</div>
-            <div class="stat-lbl">Mushroom Varieties</div>
+      <!-- Top Tab Navigation -->
+      <nav class="admin-tab-nav" aria-label="Admin Navigation Tabs">
+        <button class="admin-tab-btn active" id="tabBtnStock" data-tab="stockTab">
+          <i class="fas fa-boxes-stacked"></i>
+          <span>Harvest Stock</span>
+        </button>
+        <button class="admin-tab-btn" id="tabBtnBuyers" data-tab="buyersTab">
+          <i class="fas fa-users"></i>
+          <span>Buyers & WhatsApp</span>
+          <span class="badge-pill alert" id="tabBuyerPendingBadge">0 Alerts</span>
+        </button>
+        <button class="admin-tab-btn" id="tabBtnFarmExp" data-tab="farmExpTab">
+          <i class="fas fa-receipt"></i>
+          <span>Farm Expenses</span>
+          <span class="badge-pill" id="tabExpenseBadge">₹0</span>
+        </button>
+        <button class="admin-tab-btn" id="tabBtnMonthlyExp" data-tab="monthlyExpTab">
+          <i class="fas fa-chart-pie"></i>
+          <span>Monthly Reports</span>
+        </button>
+      </nav>
+
+      <!-- ============================================== -->
+      <!-- TAB 1: HARVEST STOCK & INVENTORY               -->
+      <!-- ============================================== -->
+      <div id="tabContentStock" class="tab-content-panel">
+        <!-- Stock Overview Stats -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap gold"><i class="fas fa-boxes-stacked"></i></div>
+            <div>
+              <div class="stat-val" id="totalVarietyCount">6</div>
+              <div class="stat-lbl">Mushroom Varieties</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap green"><i class="fas fa-circle-check"></i></div>
+            <div>
+              <div class="stat-val" id="inStockCount">6</div>
+              <div class="stat-lbl">In Stock Varieties</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap red"><i class="fas fa-circle-xmark"></i></div>
+            <div>
+              <div class="stat-val" id="outOfStockCount">0</div>
+              <div class="stat-lbl">Sold Out Varieties</div>
+            </div>
           </div>
         </div>
 
-        <div class="admin-stat-card">
-          <div class="stat-icon-wrap green"><i class="fas fa-circle-check"></i></div>
-          <div>
-            <div class="stat-val" id="inStockCount">6</div>
-            <div class="stat-lbl">In Stock Varieties</div>
-          </div>
-        </div>
+        <!-- Main Stock Panel Card -->
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div class="admin-panel-title">
+              <i class="fas fa-warehouse" style="color: var(--accent-gold);"></i> Real-Time Harvest Stock
+            </div>
 
-        <div class="admin-stat-card">
-          <div class="stat-icon-wrap red"><i class="fas fa-circle-xmark"></i></div>
-          <div>
-            <div class="stat-val" id="outOfStockCount">0</div>
-            <div class="stat-lbl">Sold Out Varieties</div>
+            <div class="admin-search-filter">
+              <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search mushroom name...">
+              <select id="adminCategoryFilter" class="admin-filter-select">
+                <option value="all">All Categories</option>
+                <option value="gourmet">Gourmet Fresh</option>
+                <option value="medicinal">Medicinal & Superfood</option>
+                <option value="bulk">Wholesale Crates</option>
+                <option value="kits">DIY Grow Kits</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Actions Bar -->
+          <div style="padding: 1rem 1.75rem; background: #fff; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              💡 Toggle <strong>Out of Stock</strong> or adjust pack quantities. Website store updates automatically.
+            </div>
+            <div class="admin-quick-actions">
+              <button class="btn btn-outline btn-sm" id="adminRestock10Btn" style="border-color: var(--primary-mid); color: var(--primary-mid);">
+                <i class="fas fa-plus"></i> +10 All
+              </button>
+              <button class="btn btn-outline btn-sm" id="adminRestock25Btn" style="border-color: var(--accent-terracotta); color: var(--accent-terracotta);">
+                <i class="fas fa-plus"></i> +25 All
+              </button>
+              <button class="btn btn-primary btn-sm" id="adminSaveAllBtn">
+                <i class="fas fa-floppy-disk"></i> Save All Stock
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-list-body">
+            <div class="admin-stock-grid" id="adminStockGrid">
+              <!-- Rendered dynamically -->
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Main Inventory Control Panel -->
-      <div class="admin-panel-card">
-        <div class="admin-panel-header">
-          <div class="admin-panel-title">
-            <i class="fas fa-warehouse" style="color: var(--accent-gold);"></i> Real-Time Harvest Stock
+      <!-- ============================================== -->
+      <!-- TAB 2: BUYER CUSTOMERS & WHATSAPP ALERTS       -->
+      <!-- ============================================== -->
+      <div id="tabContentBuyers" class="tab-content-panel" style="display: none;">
+        <!-- Buyer Stats Grid -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap blue"><i class="fas fa-users"></i></div>
+            <div>
+              <div class="stat-val" id="totalBuyerCount">0</div>
+              <div class="stat-lbl">Total Buyer Orders</div>
+            </div>
           </div>
 
-          <div class="admin-search-filter">
-            <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search mushroom name...">
-            <select id="adminCategoryFilter" class="admin-filter-select">
-              <option value="all">All Categories</option>
-              <option value="gourmet">Gourmet Fresh</option>
-              <option value="medicinal">Medicinal & Superfood</option>
-              <option value="bulk">Wholesale Crates</option>
-              <option value="kits">DIY Grow Kits</option>
-            </select>
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap green"><i class="fas fa-scale-balanced"></i></div>
+            <div>
+              <div class="stat-val" id="totalKgOrdered">0 kg</div>
+              <div class="stat-lbl">Total Quantity Booked</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap gold"><i class="fas fa-indian-rupee-sign"></i></div>
+            <div>
+              <div class="stat-val" id="totalBuyerRevenue">₹0</div>
+              <div class="stat-lbl">Total Money Received / Due</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <div class="stat-val" id="whatsappSentCount">0</div>
+              <div class="stat-lbl">WhatsApp Alerts Sent</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap orange"><i class="fas fa-bell"></i></div>
+            <div>
+              <div class="stat-val" id="whatsappNotSentCount">0</div>
+              <div class="stat-lbl">No Message Sent (Pending)</div>
+            </div>
           </div>
         </div>
 
-        <!-- Toolbar Quick Batch Actions -->
-        <div style="padding: 1rem 2rem; background: #fff; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-          <div style="font-size: 0.85rem; color: var(--text-muted);">
-            💡 Toggle <strong>Out of Stock</strong> or adjust pack quantities. Website updates automatically in real-time.
+        <!-- Buyer Customers Management Card -->
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div class="admin-panel-title">
+              <i class="fas fa-user-tag" style="color: var(--accent-gold);"></i> Buyer Customer Orders & Stock Availability Alerts
+            </div>
+
+            <div class="admin-search-filter">
+              <input type="text" id="buyerSearchInput" class="admin-search-input" placeholder="Search customer, phone, item...">
+              
+              <select id="buyerMsgStatusFilter" class="admin-filter-select">
+                <option value="all">All WhatsApp Status</option>
+                <option value="sent">✓ Message Sent</option>
+                <option value="not_sent">⏳ No Message Sent</option>
+              </select>
+
+              <select id="buyerPaymentFilter" class="admin-filter-select">
+                <option value="all">All Payment Methods</option>
+                <option value="Cash">💵 Cash</option>
+                <option value="UPI / GPay">📱 UPI / GPay</option>
+                <option value="Bank Transfer">🏦 Bank Transfer</option>
+                <option value="Cash on Delivery">🚚 Cash on Delivery</option>
+                <option value="Pending">⏳ Pending</option>
+              </select>
+
+              <button class="btn btn-primary btn-sm" id="openAddBuyerBtn">
+                <i class="fas fa-user-plus"></i> + Add Customer Order
+              </button>
+
+              <button class="btn btn-outline btn-sm" id="exportBuyersCsvBtn" title="Export Buyers to CSV">
+                <i class="fas fa-file-csv"></i> Export CSV
+              </button>
+            </div>
           </div>
-          <div class="admin-quick-actions">
-            <button class="btn btn-outline btn-sm" id="adminRestock10Btn" style="border-color: var(--primary-mid); color: var(--primary-mid);">
-              <i class="fas fa-plus"></i> +10 All
-            </button>
-            <button class="btn btn-outline btn-sm" id="adminRestock25Btn" style="border-color: var(--accent-terracotta); color: var(--accent-terracotta);">
-              <i class="fas fa-plus"></i> +25 All
-            </button>
-            <button class="btn btn-primary btn-sm" id="adminSaveAllBtn">
-              <i class="fas fa-floppy-disk"></i> Save All Stock
-            </button>
+
+          <!-- Quick Tip Bar -->
+          <div style="padding: 0.85rem 1.75rem; background: #fffcf7; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="font-size: 0.84rem; color: var(--text-muted);">
+              💬 Click <strong>"Send Alert"</strong> when harvest is ready. It will open WhatsApp with custom order details and update status to <strong style="color: #166534;">"Message Sent"</strong> automatically.
+            </div>
+          </div>
+
+          <div class="admin-list-body">
+            <div class="data-table-container">
+              <table class="data-table" id="buyerCustomerTable">
+                <thead>
+                  <tr>
+                    <th>Customer Name & Contact</th>
+                    <th>Product & Quantity (g/kg)</th>
+                    <th>Money / Price (₹)</th>
+                    <th>Stock Status</th>
+                    <th>WhatsApp Message Status</th>
+                    <th style="text-align: center;">Send WhatsApp</th>
+                    <th style="text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="buyerCustomerTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 3: FARM EXPENSES TRACKER                   -->
+      <!-- ============================================== -->
+      <div id="tabContentFarmExp" class="tab-content-panel" style="display: none;">
+        <!-- Expense Overview Stats -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap red"><i class="fas fa-indian-rupee-sign"></i></div>
+            <div>
+              <div class="stat-val" id="totalExpenseStat">₹0</div>
+              <div class="stat-lbl">Total Farm Expenses</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap orange"><i class="fas fa-calendar-day"></i></div>
+            <div>
+              <div class="stat-val" id="currentMonthExpenseStat">₹0</div>
+              <div class="stat-lbl">This Month's Spend</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap blue"><i class="fas fa-tag"></i></div>
+            <div>
+              <div class="stat-val" id="topExpenseCatStat" style="font-size: 1.25rem;">-</div>
+              <div class="stat-lbl">Top Expense Driver</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap purple"><i class="fas fa-file-invoice"></i></div>
+            <div>
+              <div class="stat-val" id="totalExpenseCountStat">0</div>
+              <div class="stat-lbl">Recorded Expense Entries</div>
+            </div>
           </div>
         </div>
 
-        <div class="admin-list-body">
-          <div class="admin-stock-grid" id="adminStockGrid">
-            <!-- Rendered dynamically via JavaScript -->
+        <!-- Farm Expenses List Card -->
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div class="admin-panel-title">
+              <i class="fas fa-tractor" style="color: var(--accent-gold);"></i> Farm Operational Expenses
+            </div>
+
+            <div class="admin-search-filter">
+              <input type="text" id="expenseSearchInput" class="admin-search-input" placeholder="Search item, vendor...">
+              <select id="expenseCategoryFilter" class="admin-filter-select">
+                <option value="all">All Expense Categories</option>
+                <option value="substrate">Substrate & Raw Materials</option>
+                <option value="spawn">Spawn & Cultures</option>
+                <option value="labor">Farm Labor & Wages</option>
+                <option value="electricity">Electricity & Climate Control</option>
+                <option value="packaging">Packaging & Storage</option>
+                <option value="maintenance">Equipment & Repairs</option>
+                <option value="transport">Transport & Fuel</option>
+                <option value="rent">Facility & Land Lease</option>
+                <option value="misc">Miscellaneous</option>
+              </select>
+              <select id="expenseMonthFilter" class="admin-filter-select">
+                <option value="all">All Months</option>
+                <!-- Populated dynamically -->
+              </select>
+              <button class="btn btn-primary btn-sm" id="openAddExpenseBtn">
+                <i class="fas fa-plus-circle"></i> + Add Expense
+              </button>
+              <button class="btn btn-outline btn-sm" id="exportExpensesCsvBtn" title="Export to CSV spreadsheet">
+                <i class="fas fa-file-csv"></i> Export CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-list-body">
+            <div class="data-table-container">
+              <table class="data-table" id="expensesTable">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Expense Description</th>
+                    <th>Category</th>
+                    <th>Vendor / Paid To</th>
+                    <th>Payment Mode</th>
+                    <th>Amount (₹)</th>
+                    <th style="text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 4: MONTHLY EXPENSE REPORTS & ANALYSIS      -->
+      <!-- ============================================== -->
+      <div id="tabContentMonthlyExp" class="tab-content-panel" style="display: none;">
+        
+        <!-- Monthly Selector Toolbar -->
+        <div class="admin-panel-card" style="margin-bottom: 1.5rem;">
+          <div style="padding: 1.25rem 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #faf8f5;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="font-weight: 700; color: var(--primary-dark);"><i class="fas fa-calendar-alt" style="color: var(--accent-gold);"></i> Select Analysis Period:</span>
+              <select id="monthlyReportSelect" class="admin-filter-select" style="font-weight: 600; min-width: 180px;">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 0.6rem;">
+              <button class="btn btn-outline btn-sm" id="printMonthlyReportBtn">
+                <i class="fas fa-print"></i> Print / Save PDF
+              </button>
+              <button class="btn btn-primary btn-sm" id="exportMonthlyReportCsvBtn">
+                <i class="fas fa-file-arrow-down"></i> Export Month CSV
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly Key Stats -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap red"><i class="fas fa-wallet"></i></div>
+            <div>
+              <div class="stat-val" id="monthTotalSpend">₹0</div>
+              <div class="stat-lbl" id="monthTotalSpendLbl">Total Spent This Month</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap gold"><i class="fas fa-chart-line"></i></div>
+            <div>
+              <div class="stat-val" id="monthDailyAvg">₹0</div>
+              <div class="stat-lbl">Daily Average Run-Rate</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap blue"><i class="fas fa-crown"></i></div>
+            <div>
+              <div class="stat-val" id="monthTopCategory" style="font-size: 1.25rem;">-</div>
+              <div class="stat-lbl">Top Spending Category</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap purple"><i class="fas fa-list-check"></i></div>
+            <div>
+              <div class="stat-val" id="monthTxnCount">0</div>
+              <div class="stat-lbl">Total Transactions</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly Category Breakdown Card -->
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div class="admin-panel-title">
+              <i class="fas fa-chart-pie" style="color: var(--accent-gold);"></i> Category-Wise Cost Breakdown
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);" id="breakdownSubtitle">Distribution of monthly operational costs</span>
+          </div>
+
+          <div class="admin-list-body" id="categoryBreakdownContainer">
+            <!-- Rendered dynamically with progress bars -->
+          </div>
+        </div>
+
+        <!-- Historical Month-over-Month Summary Table -->
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div class="admin-panel-title">
+              <i class="fas fa-table-columns" style="color: var(--accent-gold);"></i> Month-by-Month Financial Overview
+            </div>
+          </div>
+
+          <div class="admin-list-body">
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Month & Year</th>
+                    <th>Substrate & Spawn</th>
+                    <th>Labor & Wages</th>
+                    <th>Electricity & Climate</th>
+                    <th>Packaging & Others</th>
+                    <th>Total Monthly Cost</th>
+                    <th>Entries</th>
+                  </tr>
+                </thead>
+                <tbody id="monthOverMonthTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
   </main>
 
+  <!-- ============================================== -->
+  <!-- ADD / EDIT BUYER CUSTOMER MODAL                -->
+  <!-- ============================================== -->
+  <div id="buyerModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="buyerModalTitle">
+          <i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add New Buyer Customer
+        </div>
+        <button type="button" class="modal-close-btn" id="closeBuyerModalBtn">&times;</button>
+      </div>
+
+      <form id="buyerForm">
+        <input type="hidden" id="buyerEditId" value="">
+        
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="buyerName">Customer / Buyer Name *</label>
+              <input type="text" id="buyerName" class="form-control" placeholder="e.g. Rahul Nair / Spice Garden Restaurant" required>
+            </div>
+
+            <div class="form-group">
+              <label for="buyerPhone">WhatsApp Phone Number *</label>
+              <input type="tel" id="buyerPhone" class="form-control" placeholder="e.g. 9876543210 (10 digits)" pattern="[0-9]{10,13}" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="buyerProduct">Product Wanted *</label>
+              <select id="buyerProduct" class="form-control" required>
+                <option value="Pearl & Grey Oyster Mushrooms">Pearl & Grey Oyster Mushrooms</option>
+                <option value="Kerala Milky Mushrooms">Kerala Milky Mushrooms</option>
+                <option value="Fresh White Button Mushrooms">Fresh White Button Mushrooms</option>
+                <option value="Organic Lion's Mane">Organic Lion's Mane</option>
+                <option value="Wholesale Oyster Bulk Crate">Wholesale Oyster Bulk Crate (5kg)</option>
+                <option value="Mycelium DIY Mushroom Grow Kit">Mycelium DIY Mushroom Grow Kit</option>
+                <option value="Custom / Mixed Mushroom Order">Custom / Mixed Mushroom Order</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="buyerQuantity">Weight / Quantity (in grams or kg) *</label>
+              <input type="text" id="buyerQuantity" class="form-control" placeholder="e.g. 500g, 1 kg, 2.5 kg, 5 kg crate" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="buyerMoney">Money / Price (₹) *</label>
+              <input type="number" id="buyerMoney" class="form-control" placeholder="e.g. 450" min="0" step="any" required>
+            </div>
+
+            <div class="form-group">
+              <label for="buyerPaymentStatus">Payment Mode / Status *</label>
+              <select id="buyerPaymentStatus" class="form-control" required>
+                <option value="Cash">💵 Cash</option>
+                <option value="UPI / GPay">📱 UPI / GPay / PhonePe</option>
+                <option value="Bank Transfer">🏦 Bank Transfer (NEFT / IMPS)</option>
+                <option value="Cash on Delivery">🚚 Cash on Delivery (COD)</option>
+                <option value="Pending">⏳ Payment Pending</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="buyerStockStatus">Product Availability Status *</label>
+              <select id="buyerStockStatus" class="form-control" required>
+                <option value="ready">🟢 In Stock / Harvest Ready</option>
+                <option value="waitlist">⏳ Waitlist / Growing</option>
+                <option value="delivered">✅ Delivered / Completed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="buyerMsgStatus">WhatsApp Alert Status *</label>
+              <select id="buyerMsgStatus" class="form-control" required>
+                <option value="not_sent">⏳ No Message Sent</option>
+                <option value="sent">✓ Message Sent</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="buyerAddress">Delivery Address / Location (Optional)</label>
+            <input type="text" id="buyerAddress" class="form-control" placeholder="e.g. Hill View Villa, Kakkanad, Kochi">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="buyerNotes">Customer Request Notes (Optional)</label>
+            <textarea id="buyerNotes" class="form-control" rows="2" placeholder="e.g. Wants morning delivery, prefers medium sized caps"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" id="cancelBuyerModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="saveBuyerBtn">
+            <i class="fas fa-check"></i> Save Customer Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- ADD / EDIT EXPENSE MODAL                       -->
+  <!-- ============================================== -->
+  <div id="expenseModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="expenseModalTitle">
+          <i class="fas fa-receipt" style="color: var(--accent-gold);"></i> Add New Farm Expense
+        </div>
+        <button type="button" class="modal-close-btn" id="closeExpenseModalBtn">&times;</button>
+      </div>
+
+      <form id="expenseForm">
+        <input type="hidden" id="expenseEditId" value="">
+        
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="expenseTitle">Expense Description / Item *</label>
+            <input type="text" id="expenseTitle" class="form-control" placeholder="e.g. Paddy Straw 500kg for Oyster Beds" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expenseCategory">Category *</label>
+              <select id="expenseCategory" class="form-control" required>
+                <option value="substrate">🌾 Substrate & Raw Materials</option>
+                <option value="spawn">🧪 Mushroom Spawn & Cultures</option>
+                <option value="labor">👷 Farm Labor & Wages</option>
+                <option value="electricity">⚡ Electricity & Climate Control</option>
+                <option value="packaging">📦 Packaging & Bags</option>
+                <option value="maintenance">🔧 Equipment & Maintenance</option>
+                <option value="transport">🚚 Transport & Fuel</option>
+                <option value="rent">🏢 Facility & Land Lease</option>
+                <option value="misc">🏷️ Miscellaneous & Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="expenseAmount">Amount (₹) *</label>
+              <input type="number" id="expenseAmount" class="form-control" placeholder="e.g. 3500" min="1" step="any" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expenseDate">Date of Expense *</label>
+              <input type="date" id="expenseDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="expensePaymentMode">Payment Method *</label>
+              <select id="expensePaymentMode" class="form-control" required>
+                <option value="UPI / GPay">UPI / GPay / PhonePe</option>
+                <option value="Cash">Cash</option>
+                <option value="Bank Transfer">Bank Transfer (NEFT / IMPS)</option>
+                <option value="Debit / Credit Card">Debit / Credit Card</option>
+                <option value="Credit / Due">Credit / Pending Due</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expenseVendor">Paid To / Supplier / Vendor (Optional)</label>
+            <input type="text" id="expenseVendor" class="form-control" placeholder="e.g. Kerala Agro Supplies / KSEB / Local Labor">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="expenseNotes">Bill / Invoice Reference / Remarks (Optional)</label>
+            <textarea id="expenseNotes" class="form-control" rows="2" placeholder="e.g. Bill #8492, batch 4 growing room setup"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" id="cancelExpenseModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="saveExpenseBtn">
+            <i class="fas fa-check"></i> Save Expense
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ----------------------------------------------------
+      // Initial Stock Products
+      // ----------------------------------------------------
       const initialProducts = [
         {
           id: 'oyster-fresh',
@@ -441,6 +1720,129 @@
         }
       ];
 
+      // ----------------------------------------------------
+      // Initial Pre-Seeded Buyer Customer Orders
+      // ----------------------------------------------------
+      const initialBuyers = [
+        {
+          id: 'buyer_1',
+          name: 'Dr. Ananya Sharma',
+          phone: '9845012345',
+          product: 'Organic Lion\'s Mane',
+          quantity: '500g (2 packs)',
+          money: 900,
+          paymentStatus: 'UPI / GPay',
+          stockStatus: 'ready',
+          msgStatus: 'sent',
+          msgSentAt: '2026-08-28 10:30 AM',
+          address: 'Panampilly Nagar, Kochi',
+          notes: 'Customer requires fresh morning harvest'
+        },
+        {
+          id: 'buyer_2',
+          name: 'Chef Mathew / Spice Bistro',
+          phone: '9746123890',
+          product: 'Wholesale Oyster Bulk Crate',
+          quantity: '5 kg Crate',
+          money: 2800,
+          paymentStatus: 'Bank Transfer',
+          stockStatus: 'ready',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'MG Road, Ernakulam',
+          notes: 'Restaurant weekly batch requirement'
+        },
+        {
+          id: 'buyer_3',
+          name: 'Suresh Kumar',
+          phone: '9447155621',
+          product: 'Kerala Milky Mushrooms',
+          quantity: '1 kg (4 packs)',
+          money: 880,
+          paymentStatus: 'Cash',
+          stockStatus: 'ready',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Edappally, Kochi',
+          notes: 'Requested call before arrival'
+        },
+        {
+          id: 'buyer_4',
+          name: 'Pooja Varma',
+          phone: '9895033412',
+          product: 'Pearl & Grey Oyster Mushrooms',
+          quantity: '750g (3 packs)',
+          money: 540,
+          paymentStatus: 'Cash on Delivery',
+          stockStatus: 'waitlist',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Kakkanad Infopark Road',
+          notes: 'Pre-ordered for upcoming weekend harvest'
+        },
+        {
+          id: 'buyer_5',
+          name: 'Green Leaf Organic Mart',
+          phone: '9400288114',
+          product: 'Fresh White Button Mushrooms',
+          quantity: '2.5 kg (10 packs)',
+          money: 1500,
+          paymentStatus: 'Bank Transfer',
+          stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: '2026-08-26 04:15 PM',
+          address: 'Vyttila Hub, Kochi',
+          notes: 'Store counter supply'
+        }
+      ];
+
+      // ----------------------------------------------------
+      // Farm Expenses (Clean slate, no demo data)
+      // ----------------------------------------------------
+      const initialExpenses = [];
+
+      // ----------------------------------------------------
+      // Category Mapping & Color Helpers
+      // ----------------------------------------------------
+      const CATEGORY_NAMES = {
+        substrate: 'Substrate & Raw Materials',
+        spawn: 'Spawn & Cultures',
+        labor: 'Labor & Wages',
+        electricity: 'Electricity & Climate',
+        packaging: 'Packaging & Storage',
+        maintenance: 'Equipment & Repairs',
+        transport: 'Transport & Fuel',
+        rent: 'Facility & Rent',
+        misc: 'Miscellaneous'
+      };
+
+      const CATEGORY_ICONS = {
+        substrate: 'fa-wheat-awn',
+        spawn: 'fa-flask-vial',
+        labor: 'fa-people-group',
+        electricity: 'fa-bolt',
+        packaging: 'fa-box',
+        maintenance: 'fa-wrench',
+        transport: 'fa-truck-fast',
+        rent: 'fa-building',
+        misc: 'fa-tag'
+      };
+
+      const CATEGORY_COLORS = {
+        substrate: '#d97706',
+        spawn: '#0284c7',
+        labor: '#4f46e5',
+        electricity: '#9333ea',
+        packaging: '#ea580c',
+        maintenance: '#475569',
+        transport: '#16a34a',
+        rent: '#0d9488',
+        misc: '#6b7280'
+      };
+
+      // ----------------------------------------------------
+      // State Management
+      // ----------------------------------------------------
       function loadStock() {
         try {
           const saved = localStorage.getItem('earthroot_inventory_stock');
@@ -463,7 +1865,53 @@
         return initialProducts;
       }
 
+      function loadBuyers() {
+        try {
+          const saved = localStorage.getItem('earthroot_buyer_customers');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              return parsed;
+            }
+          }
+        } catch (err) {
+          console.warn('Buyer storage read error:', err);
+        }
+        saveBuyersToStorage(initialBuyers);
+        return initialBuyers;
+      }
+
+      function saveBuyersToStorage(data) {
+        localStorage.setItem('earthroot_buyer_customers', JSON.stringify(data));
+      }
+
+      function loadExpenses() {
+        try {
+          const saved = localStorage.getItem('earthroot_farm_expenses');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) {
+              // Discard any old pre-seeded sample data entries (e.g. exp_1 to exp_11)
+              const hasOldSampleData = parsed.some(e => e && typeof e.id === 'string' && (e.id.startsWith('exp_') && parseInt(e.id.replace('exp_', '')) <= 15));
+              if (!hasOldSampleData) {
+                return parsed;
+              }
+            }
+          }
+        } catch (err) {
+          console.warn('Expense storage read error:', err);
+        }
+        saveExpensesToStorage([]);
+        return [];
+      }
+
+      function saveExpensesToStorage(data) {
+        localStorage.setItem('earthroot_farm_expenses', JSON.stringify(data));
+      }
+
       let products = loadStock();
+      let buyers = loadBuyers();
+      let expenses = loadExpenses();
 
       function saveStock() {
         const stockMap = {};
@@ -474,26 +1922,115 @@
           };
         });
         localStorage.setItem('earthroot_inventory_stock', JSON.stringify(stockMap));
-        updateStats();
+        updateStockStats();
       }
 
-      // UI Elements
+      // ----------------------------------------------------
+      // DOM Elements
+      // ----------------------------------------------------
       const authSection = document.getElementById('adminAuthSection');
       const dashboardSection = document.getElementById('adminDashboardSection');
       const loginForm = document.getElementById('adminLoginForm');
       const pinInput = document.getElementById('adminPinInput');
       const logoutBtn = document.getElementById('adminLogoutBtn');
+
+      // Tabs
+      const tabBtns = document.querySelectorAll('.admin-tab-btn');
+      const tabPanels = {
+        stockTab: document.getElementById('tabContentStock'),
+        buyersTab: document.getElementById('tabContentBuyers'),
+        farmExpTab: document.getElementById('tabContentFarmExp'),
+        monthlyExpTab: document.getElementById('tabContentMonthlyExp')
+      };
+
+      // Stock elements
       const stockGrid = document.getElementById('adminStockGrid');
       const searchInput = document.getElementById('adminSearchInput');
       const categoryFilter = document.getElementById('adminCategoryFilter');
       const restock10Btn = document.getElementById('adminRestock10Btn');
       const restock25Btn = document.getElementById('adminRestock25Btn');
       const saveAllBtn = document.getElementById('adminSaveAllBtn');
-
       const totalVarietyCount = document.getElementById('totalVarietyCount');
       const inStockCount = document.getElementById('inStockCount');
       const outOfStockCount = document.getElementById('outOfStockCount');
 
+      // Buyer elements
+      const totalBuyerCount = document.getElementById('totalBuyerCount');
+      const totalKgOrdered = document.getElementById('totalKgOrdered');
+      const totalBuyerRevenue = document.getElementById('totalBuyerRevenue');
+      const whatsappSentCount = document.getElementById('whatsappSentCount');
+      const whatsappNotSentCount = document.getElementById('whatsappNotSentCount');
+      const tabBuyerPendingBadge = document.getElementById('tabBuyerPendingBadge');
+
+      const buyerSearchInput = document.getElementById('buyerSearchInput');
+      const buyerMsgStatusFilter = document.getElementById('buyerMsgStatusFilter');
+      const buyerPaymentFilter = document.getElementById('buyerPaymentFilter');
+      const buyerCustomerTableBody = document.getElementById('buyerCustomerTableBody');
+      const openAddBuyerBtn = document.getElementById('openAddBuyerBtn');
+      const exportBuyersCsvBtn = document.getElementById('exportBuyersCsvBtn');
+
+      // Buyer Modal elements
+      const buyerModal = document.getElementById('buyerModal');
+      const buyerModalTitle = document.getElementById('buyerModalTitle');
+      const buyerForm = document.getElementById('buyerForm');
+      const buyerEditId = document.getElementById('buyerEditId');
+      const buyerName = document.getElementById('buyerName');
+      const buyerPhone = document.getElementById('buyerPhone');
+      const buyerProduct = document.getElementById('buyerProduct');
+      const buyerQuantity = document.getElementById('buyerQuantity');
+      const buyerMoney = document.getElementById('buyerMoney');
+      const buyerPaymentStatus = document.getElementById('buyerPaymentStatus');
+      const buyerStockStatus = document.getElementById('buyerStockStatus');
+      const buyerMsgStatus = document.getElementById('buyerMsgStatus');
+      const buyerAddress = document.getElementById('buyerAddress');
+      const buyerNotes = document.getElementById('buyerNotes');
+      const closeBuyerModalBtn = document.getElementById('closeBuyerModalBtn');
+      const cancelBuyerModalBtn = document.getElementById('cancelBuyerModalBtn');
+
+      // Expense elements
+      const totalExpenseStat = document.getElementById('totalExpenseStat');
+      const currentMonthExpenseStat = document.getElementById('currentMonthExpenseStat');
+      const topExpenseCatStat = document.getElementById('topExpenseCatStat');
+      const totalExpenseCountStat = document.getElementById('totalExpenseCountStat');
+      const tabExpenseBadge = document.getElementById('tabExpenseBadge');
+      
+      const expenseSearchInput = document.getElementById('expenseSearchInput');
+      const expenseCategoryFilter = document.getElementById('expenseCategoryFilter');
+      const expenseMonthFilter = document.getElementById('expenseMonthFilter');
+      const expenseTableBody = document.getElementById('expenseTableBody');
+      const openAddExpenseBtn = document.getElementById('openAddExpenseBtn');
+      const exportExpensesCsvBtn = document.getElementById('exportExpensesCsvBtn');
+
+      // Expense Modal elements
+      const expenseModal = document.getElementById('expenseModal');
+      const expenseModalTitle = document.getElementById('expenseModalTitle');
+      const expenseForm = document.getElementById('expenseForm');
+      const expenseEditId = document.getElementById('expenseEditId');
+      const expenseTitle = document.getElementById('expenseTitle');
+      const expenseCategory = document.getElementById('expenseCategory');
+      const expenseAmount = document.getElementById('expenseAmount');
+      const expenseDate = document.getElementById('expenseDate');
+      const expensePaymentMode = document.getElementById('expensePaymentMode');
+      const expenseVendor = document.getElementById('expenseVendor');
+      const expenseNotes = document.getElementById('expenseNotes');
+      const closeExpenseModalBtn = document.getElementById('closeExpenseModalBtn');
+      const cancelExpenseModalBtn = document.getElementById('cancelExpenseModalBtn');
+
+      // Monthly report elements
+      const monthlyReportSelect = document.getElementById('monthlyReportSelect');
+      const printMonthlyReportBtn = document.getElementById('printMonthlyReportBtn');
+      const exportMonthlyReportCsvBtn = document.getElementById('exportMonthlyReportCsvBtn');
+      const monthTotalSpend = document.getElementById('monthTotalSpend');
+      const monthTotalSpendLbl = document.getElementById('monthTotalSpendLbl');
+      const monthDailyAvg = document.getElementById('monthDailyAvg');
+      const monthTopCategory = document.getElementById('monthTopCategory');
+      const monthTxnCount = document.getElementById('monthTxnCount');
+      const categoryBreakdownContainer = document.getElementById('categoryBreakdownContainer');
+      const monthOverMonthTableBody = document.getElementById('monthOverMonthTableBody');
+
+      // ----------------------------------------------------
+      // Authentication Handling
+      // ----------------------------------------------------
       let isAuth = sessionStorage.getItem('earthroot_admin_auth') === 'true';
 
       function checkAuth() {
@@ -501,8 +2038,10 @@
           authSection.style.display = 'none';
           dashboardSection.style.display = 'block';
           logoutBtn.style.display = 'inline-flex';
-          renderGrid();
-          updateStats();
+          renderStockGrid();
+          updateStockStats();
+          refreshAllBuyerCustomerViews();
+          refreshAllExpenseViews();
         } else {
           authSection.style.display = 'block';
           dashboardSection.style.display = 'none';
@@ -512,7 +2051,7 @@
         }
       }
 
-      // Toggle show/hide password
+      // Show/Hide password toggle
       const togglePasswordBtn = document.getElementById('togglePasswordBtn');
       const togglePasswordIcon = document.getElementById('togglePasswordIcon');
       if (togglePasswordBtn && togglePasswordIcon) {
@@ -547,14 +2086,46 @@
         showToast('Logged out securely.');
       });
 
-      function updateStats() {
+      // ----------------------------------------------------
+      // Tab Navigation
+      // ----------------------------------------------------
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const targetTab = btn.getAttribute('data-tab');
+          Object.keys(tabPanels).forEach(key => {
+            if (tabPanels[key]) {
+              tabPanels[key].style.display = key === targetTab ? 'block' : 'none';
+            }
+          });
+
+          if (targetTab === 'stockTab') {
+            renderStockGrid();
+          } else if (targetTab === 'buyersTab') {
+            renderBuyerCustomerTable();
+            updateBuyerStats();
+          } else if (targetTab === 'farmExpTab') {
+            renderExpenseTable();
+            updateExpenseStats();
+          } else if (targetTab === 'monthlyExpTab') {
+            renderMonthlyReport();
+          }
+        });
+      });
+
+      // ----------------------------------------------------
+      // SECTION 1: Stock & Inventory Management
+      // ----------------------------------------------------
+      function updateStockStats() {
         if (totalVarietyCount) totalVarietyCount.textContent = products.length;
         const inStock = products.filter(p => p.inStock && p.stock > 0).length;
         if (inStockCount) inStockCount.textContent = inStock;
         if (outOfStockCount) outOfStockCount.textContent = products.length - inStock;
       }
 
-      function renderGrid() {
+      function renderStockGrid() {
         if (!stockGrid) return;
         stockGrid.innerHTML = '';
 
@@ -604,7 +2175,7 @@
           stockGrid.appendChild(row);
         });
 
-        // Toggle buttons
+        // Toggle button click
         document.querySelectorAll('.admin-toggle-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const id = e.currentTarget.getAttribute('data-id');
@@ -621,7 +2192,7 @@
                 if (input) input.value = product.stock;
               }
               saveStock();
-              renderGrid();
+              renderStockGrid();
               showToast(`Updated stock status for ${product.name}`);
             }
           });
@@ -638,36 +2209,36 @@
               product.stock = val;
               product.inStock = val > 0;
               saveStock();
-              renderGrid();
+              renderStockGrid();
               showToast(`Saved ${product.name} (${val} packs)`);
             }
           });
         });
       }
 
-      // Quick restock +10
+      // Restock +10
       restock10Btn.addEventListener('click', () => {
         products.forEach(p => {
           p.stock = (p.stock || 0) + 10;
           p.inStock = true;
         });
         saveStock();
-        renderGrid();
+        renderStockGrid();
         showToast('Restocked +10 packs for all varieties!');
       });
 
-      // Quick restock +25
+      // Restock +25
       restock25Btn.addEventListener('click', () => {
         products.forEach(p => {
           p.stock = (p.stock || 0) + 25;
           p.inStock = true;
         });
         saveStock();
-        renderGrid();
+        renderStockGrid();
         showToast('Restocked +25 packs for all varieties!');
       });
 
-      // Save all
+      // Save all stock
       saveAllBtn.addEventListener('click', () => {
         products.forEach(p => {
           const input = document.getElementById(`stock_${p.id}`);
@@ -678,13 +2249,867 @@
           }
         });
         saveStock();
-        renderGrid();
+        renderStockGrid();
         showToast('All stock quantities saved successfully!');
       });
 
-      searchInput.addEventListener('input', renderGrid);
-      categoryFilter.addEventListener('change', renderGrid);
+      searchInput.addEventListener('input', renderStockGrid);
+      categoryFilter.addEventListener('change', renderStockGrid);
 
+
+      // ----------------------------------------------------
+      // SECTION 2: BUYER CUSTOMERS & WHATSAPP ALERTS
+      // ----------------------------------------------------
+      function formatRupee(num) {
+        return '₹' + Number(num || 0).toLocaleString('en-IN');
+      }
+
+      function updateBuyerStats() {
+        if (totalBuyerCount) totalBuyerCount.textContent = buyers.length;
+
+        const totalMoney = buyers.reduce((acc, b) => acc + Number(b.money || 0), 0);
+        if (totalBuyerRevenue) totalBuyerRevenue.textContent = formatRupee(totalMoney);
+
+        const sent = buyers.filter(b => b.msgStatus === 'sent').length;
+        const notSent = buyers.filter(b => b.msgStatus !== 'sent').length;
+
+        if (whatsappSentCount) whatsappSentCount.textContent = sent;
+        if (whatsappNotSentCount) whatsappNotSentCount.textContent = notSent;
+        if (tabBuyerPendingBadge) {
+          tabBuyerPendingBadge.textContent = `${notSent} Alert${notSent === 1 ? '' : 's'}`;
+          tabBuyerPendingBadge.className = notSent > 0 ? 'badge-pill alert' : 'badge-pill';
+        }
+
+        // Approx sum of quantities
+        let countKg = 0;
+        buyers.forEach(b => {
+          const q = (b.quantity || '').toLowerCase();
+          if (q.includes('kg')) {
+            const match = q.match(/([0-9.]+)\s*kg/);
+            if (match) countKg += parseFloat(match[1]) || 0;
+          } else if (q.includes('g') || q.includes('gm') || q.includes('gram')) {
+            const match = q.match(/([0-9.]+)\s*(?:g|gm|gram)/);
+            if (match) countKg += (parseFloat(match[1]) || 0) / 1000;
+          }
+        });
+        if (totalKgOrdered) totalKgOrdered.textContent = countKg > 0 ? `${countKg.toFixed(1)} kg` : `${buyers.length} orders`;
+      }
+
+      function renderBuyerCustomerTable() {
+        if (!buyerCustomerTableBody) return;
+        buyerCustomerTableBody.innerHTML = '';
+
+        const search = (buyerSearchInput.value || '').toLowerCase().trim();
+        const msgFilter = buyerMsgStatusFilter.value || 'all';
+        const payFilter = buyerPaymentFilter ? buyerPaymentFilter.value : 'all';
+
+        const filtered = buyers.filter(b => {
+          const matchMsg = msgFilter === 'all' || (msgFilter === 'sent' && b.msgStatus === 'sent') || (msgFilter === 'not_sent' && b.msgStatus !== 'sent');
+          const matchPay = payFilter === 'all' || b.paymentStatus === payFilter;
+          const matchSearch = !search ||
+            (b.name && b.name.toLowerCase().includes(search)) ||
+            (b.phone && b.phone.toLowerCase().includes(search)) ||
+            (b.product && b.product.toLowerCase().includes(search)) ||
+            (b.quantity && b.quantity.toLowerCase().includes(search)) ||
+            (b.address && b.address.toLowerCase().includes(search)) ||
+            (b.notes && b.notes.toLowerCase().includes(search));
+          return matchMsg && matchPay && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          buyerCustomerTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                <i class="fas fa-users-slash" style="font-size: 2rem; opacity: 0.3; margin-bottom: 0.5rem; display: block;"></i>
+                No customer orders match your search or filter. Click <strong>+ Add Customer Order</strong> to create one.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        filtered.forEach(buyer => {
+          const isSent = buyer.msgStatus === 'sent';
+          
+          let availClass = 'avail-ready';
+          let availText = '<i class="fas fa-circle-check"></i> In Stock / Ready';
+          if (buyer.stockStatus === 'waitlist') {
+            availClass = 'avail-waitlist';
+            availText = '<i class="fas fa-clock"></i> Waitlist / Growing';
+          } else if (buyer.stockStatus === 'delivered') {
+            availClass = 'avail-delivered';
+            availText = '<i class="fas fa-truck-ramp-box"></i> Delivered';
+          }
+
+          // Payment badge & icon
+          const payStatus = buyer.paymentStatus || 'Pending';
+          let payClass = 'pay-default';
+          let payIcon = 'fa-wallet';
+          if (payStatus === 'Cash') {
+            payClass = 'pay-cash';
+            payIcon = 'fa-money-bill-wave';
+          } else if (payStatus.includes('UPI') || payStatus.includes('GPay')) {
+            payClass = 'pay-upi';
+            payIcon = 'fa-mobile-screen-button';
+          } else if (payStatus.includes('Bank')) {
+            payClass = 'pay-bank';
+            payIcon = 'fa-building-columns';
+          } else if (payStatus.includes('Delivery') || payStatus.includes('COD')) {
+            payClass = 'pay-cod';
+            payIcon = 'fa-truck';
+          } else if (payStatus.includes('Pending')) {
+            payClass = 'pay-pending';
+            payIcon = 'fa-clock';
+          }
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.94rem;">${buyer.name}</div>
+              <div style="font-size: 0.8rem; color: #1e7e34; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; margin-top: 2px;">
+                <i class="fa-brands fa-whatsapp"></i> +91 ${buyer.phone}
+              </div>
+              ${buyer.address ? `<div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;"><i class="fas fa-location-dot"></i> ${buyer.address}</div>` : ''}
+            </td>
+            <td>
+              <div style="font-weight: 600; color: var(--primary-dark);">${buyer.product}</div>
+              <div style="margin-top: 3px;">
+                <span class="qty-tag"><i class="fas fa-weight-hanging"></i> ${buyer.quantity}</span>
+              </div>
+              ${buyer.notes ? `<div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 3px;">Note: ${buyer.notes}</div>` : ''}
+            </td>
+            <td>
+              <div class="money-tag">${formatRupee(buyer.money)}</div>
+              <div style="margin-top: 3px;">
+                <span class="pay-badge ${payClass}"><i class="fas ${payIcon}"></i> ${payStatus}</span>
+              </div>
+            </td>
+            <td>
+              <span class="avail-badge ${availClass}">
+                ${availText}
+              </span>
+            </td>
+            <td>
+              <span class="msg-status-badge ${isSent ? 'sent' : 'not-sent'}">
+                <i class="fas ${isSent ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+                <span>${isSent ? 'Message Sent' : 'No Message Sent'}</span>
+              </span>
+              ${isSent && buyer.msgSentAt ? `<div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Sent: ${buyer.msgSentAt}</div>` : ''}
+            </td>
+            <td style="text-align: center;">
+              <button class="btn-whatsapp-send ${isSent ? 'resend' : ''}" data-id="${buyer.id}" title="Open WhatsApp and notify customer">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1rem;"></i>
+                <span>${isSent ? 'Resend WhatsApp' : 'Send Alert'}</span>
+              </button>
+            </td>
+            <td style="text-align: center;">
+              <div class="action-btn-group" style="justify-content: center;">
+                <button class="btn-action-icon edit edit-buyer-btn" data-id="${buyer.id}" title="Edit Customer Details">
+                  <i class="fas fa-pencil"></i>
+                </button>
+                <button class="btn-action-icon delete delete-buyer-btn" data-id="${buyer.id}" title="Delete Customer Record">
+                  <i class="fas fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          buyerCustomerTableBody.appendChild(tr);
+        });
+
+        // Send WhatsApp Button Click
+        document.querySelectorAll('.btn-whatsapp-send').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const buyer = buyers.find(x => x.id === id);
+            if (buyer) {
+              sendWhatsAppStockAlert(buyer);
+            }
+          });
+        });
+
+        // Edit Buyer
+        document.querySelectorAll('.edit-buyer-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            openEditBuyerModal(id);
+          });
+        });
+
+        // Delete Buyer
+        document.querySelectorAll('.delete-buyer-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const b = buyers.find(x => x.id === id);
+            if (b && confirm(`Are you sure you want to delete customer order for ${b.name} (${b.product} - ${b.quantity})?`)) {
+              buyers = buyers.filter(x => x.id !== id);
+              saveBuyersToStorage(buyers);
+              refreshAllBuyerCustomerViews();
+              showToast(`Customer record for ${b.name} deleted.`);
+            }
+          });
+        });
+      }
+
+      // WhatsApp Message Generation & Sender
+      function sendWhatsAppStockAlert(buyer) {
+        let cleanPhone = (buyer.phone || '').replace(/[^0-9]/g, '');
+        if (cleanPhone.length === 10) {
+          cleanPhone = '91' + cleanPhone;
+        }
+
+        const msgText = `🌱 *EARTHROOT MUSHROOMS - STOCK AVAILABILITY UPDATE* 🌱\n\n` +
+          `Hello *${buyer.name}*! 👋\n\n` +
+          `Great news from our organic farm! Your requested fresh harvest is now *AVAILABLE & READY* for pickup / delivery: 🍄✨\n\n` +
+          `📦 *Product:* ${buyer.product}\n` +
+          `⚖️ *Quantity / Weight:* ${buyer.quantity}\n` +
+          `💰 *Total Amount:* ${formatRupee(buyer.money)} (Payment: ${buyer.paymentStatus || 'Pending'})\n` +
+          `${buyer.address ? `📍 *Delivery Address:* ${buyer.address}\n` : ''}` +
+          `\n✅ Freshly harvested, 100% organic, chemical-free.\n\n` +
+          `Please reply to this message to confirm your delivery time or pickup slot!\n\n` +
+          `Thank you for choosing *Earthroot Mushrooms* 🌿\n` +
+          `📞 Phone: +91 98450 12345 | 🌐 earthrootmushrooms.com`;
+
+        const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgText)}`;
+
+        window.open(waUrl, '_blank');
+
+        buyer.msgStatus = 'sent';
+        const now = new Date();
+        buyer.msgSentAt = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        buyer.stockStatus = 'ready';
+
+        saveBuyersToStorage(buyers);
+        renderBuyerCustomerTable();
+        updateBuyerStats();
+        showToast(`WhatsApp message opened for ${buyer.name} & marked as Message Sent!`);
+      }
+
+      // Filter events
+      buyerSearchInput.addEventListener('input', renderBuyerCustomerTable);
+      buyerMsgStatusFilter.addEventListener('change', renderBuyerCustomerTable);
+      if (buyerPaymentFilter) buyerPaymentFilter.addEventListener('change', renderBuyerCustomerTable);
+
+      // Open Add Buyer Modal
+      openAddBuyerBtn.addEventListener('click', () => {
+        buyerEditId.value = '';
+        buyerForm.reset();
+        buyerModalTitle.innerHTML = '<i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add New Buyer Customer';
+        buyerStockStatus.value = 'ready';
+        buyerMsgStatus.value = 'not_sent';
+        buyerPaymentStatus.value = 'Cash';
+        buyerModal.classList.add('active');
+      });
+
+      function openEditBuyerModal(id) {
+        const b = buyers.find(x => x.id === id);
+        if (!b) return;
+
+        buyerEditId.value = b.id;
+        buyerName.value = b.name || '';
+        buyerPhone.value = b.phone || '';
+        buyerProduct.value = b.product || 'Pearl & Grey Oyster Mushrooms';
+        buyerQuantity.value = b.quantity || '';
+        buyerMoney.value = b.money || '';
+        buyerPaymentStatus.value = b.paymentStatus || 'Cash';
+        buyerStockStatus.value = b.stockStatus || 'ready';
+        buyerMsgStatus.value = b.msgStatus || 'not_sent';
+        buyerAddress.value = b.address || '';
+        buyerNotes.value = b.notes || '';
+
+        buyerModalTitle.innerHTML = '<i class="fas fa-user-pen" style="color: var(--accent-gold);"></i> Edit Customer Order';
+        buyerModal.classList.add('active');
+      }
+
+      function closeBuyerModal() {
+        buyerModal.classList.remove('active');
+      }
+
+      closeBuyerModalBtn.addEventListener('click', closeBuyerModal);
+      cancelBuyerModalBtn.addEventListener('click', closeBuyerModal);
+      buyerModal.addEventListener('click', (e) => {
+        if (e.target === buyerModal) closeBuyerModal();
+      });
+
+      // Save Buyer Form
+      buyerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = buyerEditId.value;
+        const cleanPhone = buyerPhone.value.replace(/[^0-9]/g, '');
+
+        const record = {
+          id: id || ('buyer_' + Date.now()),
+          name: buyerName.value.trim(),
+          phone: cleanPhone,
+          product: buyerProduct.value,
+          quantity: buyerQuantity.value.trim(),
+          money: parseFloat(buyerMoney.value) || 0,
+          paymentStatus: buyerPaymentStatus.value,
+          stockStatus: buyerStockStatus.value,
+          msgStatus: buyerMsgStatus.value,
+          msgSentAt: buyerMsgStatus.value === 'sent' ? (new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })) : null,
+          address: buyerAddress.value.trim(),
+          notes: buyerNotes.value.trim()
+        };
+
+        if (id) {
+          const idx = buyers.findIndex(x => x.id === id);
+          if (idx !== -1) {
+            buyers[idx] = record;
+            showToast(`Updated customer order for ${record.name}!`);
+          }
+        } else {
+          buyers.unshift(record);
+          showToast(`Added new buyer order for ${record.name}!`);
+        }
+
+        saveBuyersToStorage(buyers);
+        closeBuyerModal();
+        refreshAllBuyerCustomerViews();
+      });
+
+      // Export Buyers to CSV
+      exportBuyersCsvBtn.addEventListener('click', () => {
+        if (buyers.length === 0) {
+          alert('No buyer data available to export.');
+          return;
+        }
+
+        const headers = ['Customer Name', 'Phone (WhatsApp)', 'Product Ordered', 'Weight / Quantity', 'Money (INR)', 'Payment Status', 'Stock Status', 'WhatsApp Msg Status', 'Msg Sent At', 'Delivery Address', 'Notes'];
+        const csvRows = [headers.join(',')];
+
+        buyers.forEach(b => {
+          const row = [
+            `"${(b.name || '').replace(/"/g, '""')}"`,
+            `"${b.phone || ''}"`,
+            `"${(b.product || '').replace(/"/g, '""')}"`,
+            `"${(b.quantity || '').replace(/"/g, '""')}"`,
+            b.money,
+            `"${b.paymentStatus || ''}"`,
+            `"${b.stockStatus || ''}"`,
+            `"${b.msgStatus === 'sent' ? 'Message Sent' : 'No Message Sent'}"`,
+            `"${b.msgSentAt || ''}"`,
+            `"${(b.address || '').replace(/"/g, '""')}"`,
+            `"${(b.notes || '').replace(/"/g, '""')}"`
+          ];
+          csvRows.push(row.join(','));
+        });
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+        const link = document.createElement('a');
+        link.setAttribute('href', csvContent);
+        link.setAttribute('download', `Earthroot_Buyer_Customers_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Exported Buyer Customers list to CSV!');
+      });
+
+      function refreshAllBuyerCustomerViews() {
+        renderBuyerCustomerTable();
+        updateBuyerStats();
+      }
+
+
+      // ----------------------------------------------------
+      // SECTION 3: Farm Expenses Tracker
+      // ----------------------------------------------------
+      function getMonthKey(dateStr) {
+        if (!dateStr) return '';
+        return dateStr.substring(0, 7);
+      }
+
+      function getMonthDisplayName(yearMonthStr) {
+        if (!yearMonthStr || yearMonthStr.length < 7) return yearMonthStr;
+        const [y, m] = yearMonthStr.split('-');
+        const date = new Date(parseInt(y), parseInt(m) - 1, 1);
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      }
+
+      function updateExpenseStats() {
+        const total = expenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
+        if (totalExpenseStat) totalExpenseStat.textContent = formatRupee(total);
+        if (tabExpenseBadge) tabExpenseBadge.textContent = formatRupee(total);
+        if (totalExpenseCountStat) totalExpenseCountStat.textContent = expenses.length;
+
+        // Current Month calculation
+        const now = new Date();
+        const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const currentMonthExpenses = expenses.filter(e => getMonthKey(e.date) === currentMonthKey);
+        const currentMonthTotal = currentMonthExpenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
+        if (currentMonthExpenseStat) currentMonthExpenseStat.textContent = formatRupee(currentMonthTotal);
+
+        // Top Category calculation
+        const catTotals = {};
+        expenses.forEach(e => {
+          catTotals[e.category] = (catTotals[e.category] || 0) + Number(e.amount || 0);
+        });
+
+        let topCat = '-';
+        let maxCatAmount = 0;
+        Object.keys(catTotals).forEach(cat => {
+          if (catTotals[cat] > maxCatAmount) {
+            maxCatAmount = catTotals[cat];
+            topCat = CATEGORY_NAMES[cat] || cat;
+          }
+        });
+        if (topExpenseCatStat) topExpenseCatStat.textContent = topCat;
+      }
+
+      function populateMonthDropdowns() {
+        const monthsSet = new Set();
+        const now = new Date();
+        const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        monthsSet.add(currentMonthKey);
+
+        expenses.forEach(e => {
+          if (e.date) {
+            monthsSet.add(getMonthKey(e.date));
+          }
+        });
+
+        const sortedMonths = Array.from(monthsSet).sort().reverse();
+
+        // 1. Populate Expense Month Filter
+        if (expenseMonthFilter) {
+          const currentVal = expenseMonthFilter.value;
+          expenseMonthFilter.innerHTML = '<option value="all">All Months</option>';
+          sortedMonths.forEach(mKey => {
+            const opt = document.createElement('option');
+            opt.value = mKey;
+            opt.textContent = getMonthDisplayName(mKey);
+            expenseMonthFilter.appendChild(opt);
+          });
+          if (currentVal && Array.from(expenseMonthFilter.options).some(o => o.value === currentVal)) {
+            expenseMonthFilter.value = currentVal;
+          }
+        }
+
+        // 2. Populate Monthly Report Selector
+        if (monthlyReportSelect) {
+          const currentVal = monthlyReportSelect.value;
+          monthlyReportSelect.innerHTML = '';
+          sortedMonths.forEach(mKey => {
+            const opt = document.createElement('option');
+            opt.value = mKey;
+            opt.textContent = getMonthDisplayName(mKey);
+            monthlyReportSelect.appendChild(opt);
+          });
+          if (currentVal && Array.from(monthlyReportSelect.options).some(o => o.value === currentVal)) {
+            monthlyReportSelect.value = currentVal;
+          } else if (sortedMonths.length > 0) {
+            monthlyReportSelect.value = sortedMonths[0];
+          }
+        }
+      }
+
+      function renderExpenseTable() {
+        if (!expenseTableBody) return;
+        expenseTableBody.innerHTML = '';
+
+        const search = (expenseSearchInput.value || '').toLowerCase().trim();
+        const cat = expenseCategoryFilter.value || 'all';
+        const month = expenseMonthFilter.value || 'all';
+
+        // Sort descending by date
+        const sorted = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const filtered = sorted.filter(exp => {
+          const matchCat = cat === 'all' || exp.category === cat;
+          const matchMonth = month === 'all' || getMonthKey(exp.date) === month;
+          const matchSearch = !search || 
+            (exp.title && exp.title.toLowerCase().includes(search)) ||
+            (exp.vendor && exp.vendor.toLowerCase().includes(search)) ||
+            (exp.notes && exp.notes.toLowerCase().includes(search));
+          return matchCat && matchMonth && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          expenseTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                <i class="fas fa-receipt" style="font-size: 2rem; opacity: 0.3; margin-bottom: 0.5rem; display: block;"></i>
+                No expense records match your filter criteria. Click <strong>+ Add Expense</strong> to record a new cost.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        filtered.forEach(exp => {
+          const catName = CATEGORY_NAMES[exp.category] || exp.category;
+          const catIcon = CATEGORY_ICONS[exp.category] || 'fa-tag';
+          const catClass = `cat-${exp.category}`;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="font-weight: 600; white-space: nowrap;">${exp.date || '-'}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--primary-dark);">${exp.title}</div>
+              ${exp.notes ? `<div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">${exp.notes}</div>` : ''}
+            </td>
+            <td>
+              <span class="cat-badge ${catClass}">
+                <i class="fas ${catIcon}"></i> ${catName}
+              </span>
+            </td>
+            <td style="color: #4b5563;">${exp.vendor || '-'}</td>
+            <td>
+              <span class="pay-badge">${exp.paymentMode || 'Cash'}</span>
+            </td>
+            <td style="font-weight: 700; color: #b91c1c; font-size: 0.95rem; white-space: nowrap;">${formatRupee(exp.amount)}</td>
+            <td style="text-align: center;">
+              <div class="action-btn-group" style="justify-content: center;">
+                <button class="btn-action-icon edit edit-expense-btn" data-id="${exp.id}" title="Edit Expense">
+                  <i class="fas fa-pencil"></i>
+                </button>
+                <button class="btn-action-icon delete delete-expense-btn" data-id="${exp.id}" title="Delete Expense">
+                  <i class="fas fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          expenseTableBody.appendChild(tr);
+        });
+
+        // Edit handlers
+        document.querySelectorAll('.edit-expense-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            openEditExpenseModal(id);
+          });
+        });
+
+        // Delete handlers
+        document.querySelectorAll('.delete-expense-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const exp = expenses.find(x => x.id === id);
+            if (exp && confirm(`Are you sure you want to delete this expense record?\n\n"${exp.title}" - ${formatRupee(exp.amount)}`)) {
+              expenses = expenses.filter(x => x.id !== id);
+              saveExpensesToStorage(expenses);
+              refreshAllExpenseViews();
+              showToast('Expense record deleted.');
+            }
+          });
+        });
+      }
+
+      // Search & Filters for Expenses
+      expenseSearchInput.addEventListener('input', renderExpenseTable);
+      expenseCategoryFilter.addEventListener('change', renderExpenseTable);
+      expenseMonthFilter.addEventListener('change', renderExpenseTable);
+
+      // Add Expense Modal open
+      openAddExpenseBtn.addEventListener('click', () => {
+        expenseEditId.value = '';
+        expenseForm.reset();
+        expenseModalTitle.innerHTML = '<i class="fas fa-receipt" style="color: var(--accent-gold);"></i> Add New Farm Expense';
+        const todayStr = new Date().toISOString().split('T')[0];
+        expenseDate.value = todayStr;
+        expenseModal.classList.add('active');
+      });
+
+      function openEditExpenseModal(id) {
+        const exp = expenses.find(x => x.id === id);
+        if (!exp) return;
+
+        expenseEditId.value = exp.id;
+        expenseTitle.value = exp.title || '';
+        expenseCategory.value = exp.category || 'substrate';
+        expenseAmount.value = exp.amount || '';
+        expenseDate.value = exp.date || new Date().toISOString().split('T')[0];
+        expensePaymentMode.value = exp.paymentMode || 'UPI / GPay';
+        expenseVendor.value = exp.vendor || '';
+        expenseNotes.value = exp.notes || '';
+
+        expenseModalTitle.innerHTML = '<i class="fas fa-pencil" style="color: var(--accent-gold);"></i> Edit Farm Expense';
+        expenseModal.classList.add('active');
+      }
+
+      function closeExpenseModal() {
+        expenseModal.classList.remove('active');
+      }
+
+      closeExpenseModalBtn.addEventListener('click', closeExpenseModal);
+      cancelExpenseModalBtn.addEventListener('click', closeExpenseModal);
+      expenseModal.addEventListener('click', (e) => {
+        if (e.target === expenseModal) closeExpenseModal();
+      });
+
+      // Save Expense Form
+      expenseForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = expenseEditId.value;
+        const newRecord = {
+          id: id || ('exp_' + Date.now()),
+          title: expenseTitle.value.trim(),
+          category: expenseCategory.value,
+          amount: parseFloat(expenseAmount.value) || 0,
+          date: expenseDate.value,
+          paymentMode: expensePaymentMode.value,
+          vendor: expenseVendor.value.trim(),
+          notes: expenseNotes.value.trim()
+        };
+
+        if (id) {
+          const idx = expenses.findIndex(x => x.id === id);
+          if (idx !== -1) {
+            expenses[idx] = newRecord;
+            showToast('Expense updated successfully!');
+          }
+        } else {
+          expenses.unshift(newRecord);
+          showToast('New expense recorded successfully!');
+        }
+
+        saveExpensesToStorage(expenses);
+        closeExpenseModal();
+        refreshAllExpenseViews();
+      });
+
+      // Export Expenses to CSV
+      exportExpensesCsvBtn.addEventListener('click', () => {
+        if (expenses.length === 0) {
+          alert('No expense data available to export.');
+          return;
+        }
+
+        const headers = ['Date', 'Expense Title', 'Category', 'Vendor / Paid To', 'Payment Mode', 'Amount (INR)', 'Remarks / Notes'];
+        const csvRows = [headers.join(',')];
+
+        const sorted = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        sorted.forEach(exp => {
+          const row = [
+            `"${exp.date || ''}"`,
+            `"${(exp.title || '').replace(/"/g, '""')}"`,
+            `"${CATEGORY_NAMES[exp.category] || exp.category}"`,
+            `"${(exp.vendor || '').replace(/"/g, '""')}"`,
+            `"${exp.paymentMode || ''}"`,
+            exp.amount,
+            `"${(exp.notes || '').replace(/"/g, '""')}"`
+          ];
+          csvRows.push(row.join(','));
+        });
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+        const link = document.createElement('a');
+        link.setAttribute('href', csvContent);
+        link.setAttribute('download', `Earthroot_Farm_Expenses_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Farm Expenses exported to CSV!');
+      });
+
+
+      // ----------------------------------------------------
+      // SECTION 4: Monthly Expense Reports & Analysis
+      // ----------------------------------------------------
+      function renderMonthlyReport() {
+        const selectedMonth = monthlyReportSelect.value;
+        if (!selectedMonth) return;
+
+        const monthDisplayName = getMonthDisplayName(selectedMonth);
+        if (breakdownSubtitle) breakdownSubtitle.textContent = `Cost breakdown for ${monthDisplayName}`;
+        if (monthTotalSpendLbl) monthTotalSpendLbl.textContent = `Total Spent in ${monthDisplayName}`;
+
+        const monthExpenses = expenses.filter(e => getMonthKey(e.date) === selectedMonth);
+        const totalSpend = monthExpenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
+
+        if (monthTotalSpend) monthTotalSpend.textContent = formatRupee(totalSpend);
+        if (monthTxnCount) monthTxnCount.textContent = monthExpenses.length;
+
+        // Daily average
+        const [y, m] = selectedMonth.split('-');
+        const daysInMonth = new Date(parseInt(y), parseInt(m), 0).getDate();
+        const dailyAvg = totalSpend > 0 ? (totalSpend / daysInMonth) : 0;
+        if (monthDailyAvg) monthDailyAvg.textContent = formatRupee(Math.round(dailyAvg));
+
+        // Category breakdown
+        const catMap = {};
+        monthExpenses.forEach(e => {
+          catMap[e.category] = (catMap[e.category] || 0) + Number(e.amount || 0);
+        });
+
+        let topCat = '-';
+        let maxAmt = 0;
+        Object.keys(catMap).forEach(cat => {
+          if (catMap[cat] > maxAmt) {
+            maxAmt = catMap[cat];
+            topCat = CATEGORY_NAMES[cat] || cat;
+          }
+        });
+        if (monthTopCategory) monthTopCategory.textContent = topCat;
+
+        // Render progress breakdown bars
+        if (categoryBreakdownContainer) {
+          categoryBreakdownContainer.innerHTML = '';
+
+          if (monthExpenses.length === 0) {
+            categoryBreakdownContainer.innerHTML = `
+              <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                No expenses recorded for ${monthDisplayName}.
+              </div>
+            `;
+          } else {
+            const sortedCats = Object.keys(catMap).sort((a, b) => catMap[b] - catMap[a]);
+
+            sortedCats.forEach(cat => {
+              const amt = catMap[cat];
+              const pct = totalSpend > 0 ? ((amt / totalSpend) * 100).toFixed(1) : 0;
+              const catName = CATEGORY_NAMES[cat] || cat;
+              const catIcon = CATEGORY_ICONS[cat] || 'fa-tag';
+              const catColor = CATEGORY_COLORS[cat] || '#d4a342';
+              const txnCount = monthExpenses.filter(e => e.category === cat).length;
+
+              const item = document.createElement('div');
+              item.className = 'breakdown-item';
+              item.innerHTML = `
+                <div class="breakdown-header">
+                  <span class="breakdown-label">
+                    <i class="fas ${catIcon}" style="color: ${catColor}; width: 16px;"></i>
+                    ${catName} 
+                    <span style="font-weight: 400; font-size: 0.78rem; color: var(--text-muted);">(${txnCount} entries &bull; ${pct}%)</span>
+                  </span>
+                  <span class="breakdown-values">${formatRupee(amt)}</span>
+                </div>
+                <div class="breakdown-bar-bg">
+                  <div class="breakdown-bar-fill" style="width: ${pct}%; background-color: ${catColor};"></div>
+                </div>
+              `;
+              categoryBreakdownContainer.appendChild(item);
+            });
+          }
+        }
+
+        renderMonthOverMonthTable();
+      }
+
+      function renderMonthOverMonthTable() {
+        if (!monthOverMonthTableBody) return;
+        monthOverMonthTableBody.innerHTML = '';
+
+        const monthlyGroups = {};
+        expenses.forEach(e => {
+          const mKey = getMonthKey(e.date);
+          if (!mKey) return;
+          if (!monthlyGroups[mKey]) {
+            monthlyGroups[mKey] = {
+              total: 0,
+              count: 0,
+              substrateSpawn: 0,
+              labor: 0,
+              electricity: 0,
+              packagingOthers: 0
+            };
+          }
+          const amt = Number(e.amount || 0);
+          monthlyGroups[mKey].total += amt;
+          monthlyGroups[mKey].count += 1;
+
+          if (e.category === 'substrate' || e.category === 'spawn') {
+            monthlyGroups[mKey].substrateSpawn += amt;
+          } else if (e.category === 'labor') {
+            monthlyGroups[mKey].labor += amt;
+          } else if (e.category === 'electricity') {
+            monthlyGroups[mKey].electricity += amt;
+          } else {
+            monthlyGroups[mKey].packagingOthers += amt;
+          }
+        });
+
+        const sortedMonths = Object.keys(monthlyGroups).sort().reverse();
+
+        if (sortedMonths.length === 0) {
+          monthOverMonthTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">No monthly historical data available.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        sortedMonths.forEach(mKey => {
+          const data = monthlyGroups[mKey];
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="font-weight: 700; color: var(--primary-dark);">${getMonthDisplayName(mKey)}</td>
+            <td>${formatRupee(data.substrateSpawn)}</td>
+            <td>${formatRupee(data.labor)}</td>
+            <td>${formatRupee(data.electricity)}</td>
+            <td>${formatRupee(data.packagingOthers)}</td>
+            <td style="font-weight: 800; color: #b91c1c; font-size: 0.95rem;">${formatRupee(data.total)}</td>
+            <td><span class="pay-badge">${data.count} txns</span></td>
+          `;
+          monthOverMonthTableBody.appendChild(tr);
+        });
+      }
+
+      monthlyReportSelect.addEventListener('change', renderMonthlyReport);
+
+      // Print Monthly Report
+      printMonthlyReportBtn.addEventListener('click', () => {
+        window.print();
+      });
+
+      // Export Monthly Report CSV
+      exportMonthlyReportCsvBtn.addEventListener('click', () => {
+        const selectedMonth = monthlyReportSelect.value;
+        const monthExpenses = expenses.filter(e => getMonthKey(e.date) === selectedMonth);
+
+        if (monthExpenses.length === 0) {
+          alert('No expenses found for the selected month.');
+          return;
+        }
+
+        const monthName = getMonthDisplayName(selectedMonth);
+        const headers = ['Date', 'Expense Item', 'Category', 'Vendor', 'Payment Method', 'Amount (INR)', 'Notes'];
+        const csvRows = [
+          `"EARTHROOT MUSHROOMS - MONTHLY EXPENSE REPORT FOR ${monthName.toUpperCase()}"`,
+          headers.join(',')
+        ];
+
+        monthExpenses.forEach(exp => {
+          const row = [
+            `"${exp.date || ''}"`,
+            `"${(exp.title || '').replace(/"/g, '""')}"`,
+            `"${CATEGORY_NAMES[exp.category] || exp.category}"`,
+            `"${(exp.vendor || '').replace(/"/g, '""')}"`,
+            `"${exp.paymentMode || ''}"`,
+            exp.amount,
+            `"${(exp.notes || '').replace(/"/g, '""')}"`
+          ];
+          csvRows.push(row.join(','));
+        });
+
+        const total = monthExpenses.reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
+        csvRows.push('');
+        csvRows.push(`"TOTAL MONTHLY SPEND",,,,,${total},""`);
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+        const link = document.createElement('a');
+        link.setAttribute('href', csvContent);
+        link.setAttribute('download', `Earthroot_Monthly_Report_${selectedMonth}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast(`Exported ${monthName} Report to CSV!`);
+      });
+
+      // ----------------------------------------------------
+      // Unified Refresh Helper
+      // ----------------------------------------------------
+      function refreshAllExpenseViews() {
+        populateMonthDropdowns();
+        updateExpenseStats();
+        renderExpenseTable();
+        renderMonthlyReport();
+      }
+
+      // ----------------------------------------------------
+      // Toast Notification Helper
+      // ----------------------------------------------------
       function showToast(text) {
         let toast = document.getElementById('toastNotification');
         if (!toast) {
@@ -714,15 +3139,7 @@
         setTimeout(() => { toast.style.opacity = '0'; }, 2500);
       }
 
-      // Live updates when customers place orders in other tabs
-      window.addEventListener('storage', (e) => {
-        if (e.key === 'earthroot_inventory_stock') {
-          products = loadProductsWithStock();
-          renderGrid();
-          updateStats();
-        }
-      });
-
+      // Check auth on load
       checkAuth();
     });
   </script>
