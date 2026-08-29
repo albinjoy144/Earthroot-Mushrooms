@@ -129,20 +129,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      padding: 0.75rem 0.6rem;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding: 0.75rem 0.5rem;
       background: transparent;
       border: none;
       border-radius: var(--radius-sm);
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       font-weight: 600;
       color: var(--primary-mid);
       cursor: pointer;
       transition: all 0.2s ease;
-      white-space: nowrap;
       width: 100%;
       box-sizing: border-box;
       text-align: center;
+      min-height: 48px;
     }
 
     .admin-tab-btn i {
@@ -151,9 +152,9 @@
     }
 
     .admin-tab-btn span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      white-space: normal;
+      line-height: 1.25;
+      text-align: center;
     }
 
     .admin-tab-btn:hover {
@@ -189,26 +190,29 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.45rem;
-        padding: 0.35rem;
+        padding: 0.4rem;
       }
       .admin-tab-btn {
         width: 100%;
-        padding: 0.65rem 0.4rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 0.45rem;
+        font-size: 0.78rem;
         gap: 0.35rem;
         justify-content: center;
         border-radius: 8px;
+        min-height: 52px;
       }
       .admin-tab-btn i {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
         flex-shrink: 0;
       }
       .admin-tab-btn span {
-        white-space: nowrap;
+        white-space: normal;
+        line-height: 1.2;
       }
       .admin-tab-btn .badge-pill {
         font-size: 0.65rem;
         padding: 0.1rem 0.35rem;
+        flex-shrink: 0;
       }
     }
 
