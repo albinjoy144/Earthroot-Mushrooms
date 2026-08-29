@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthroot Poultry | Free-Range Country Eggs & Organic Meat Kerala</title>
+  <meta name="description"
+    content="Buy 100% free-range country eggs (Naadan Mutta), Kadaknath black eggs & meat, pasture-raised country chicken, and duck meat directly from Earthroot Farms Kerala. Antibiotic-free & chemical-free with daily harvest delivery.">
+  <meta name="keywords"
+    content="Earthroot Poultry, country chicken eggs Kerala, Naadan mutta online Kozhikode, Kadaknath chicken Kerala, free range eggs, duck eggs Kerala, country chicken meat Thiruvambady, Pullurampara poultry farm, organic meat delivery">
+  <meta name="author" content="Earthroot Farms">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Earthroot Poultry | Free-Range Country Eggs & Antibiotic-Free Meat">
+  <meta property="og:description"
+    content="Pasture-raised country chicken eggs, Kadaknath superfood meat, farm duck eggs, and quail harvested fresh daily in Pullurampara, Kozhikode. Order directly via WhatsApp.">
+  <meta property="og:image" content="assets/poultry_hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Poultry Specific Enhancements CSS -->
+  <style>
+    .poultry-hero {
+      background: linear-gradient(135deg, rgba(15, 39, 29, 0.92) 0%, rgba(29, 68, 52, 0.82) 100%),
+                  url('assets/poultry_hero.jpg') center/cover no-repeat;
+    }
+
+    .farm-switch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(212, 163, 66, 0.18);
+      color: var(--primary-dark);
+      border: 1px solid var(--accent-gold);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .farm-switch-badge:hover {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 163, 66, 0.35);
+    }
+
+    .poultry-highlight-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .poultry-highlight-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-terracotta);
+    }
+
+    .compare-table-wrap {
+      overflow-x: auto;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      margin-top: 2.5rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 600px;
+    }
+
+    .compare-table th {
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .compare-table th.highlight-col {
+      background: var(--primary-mid);
+      color: var(--accent-gold-light);
+      border-left: 2px solid var(--accent-gold);
+      border-right: 2px solid var(--accent-gold);
+    }
+
+    .compare-table td {
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table td.highlight-col {
+      background: rgba(212, 163, 66, 0.08);
+      font-weight: 600;
+      color: var(--primary-dark);
+      border-left: 2px solid rgba(212, 163, 66, 0.3);
+      border-right: 2px solid rgba(212, 163, 66, 0.3);
+    }
+
+    .meat-cut-select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-cream);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .meat-cut-select:focus {
+      border-color: var(--accent-terracotta);
+    }
+
+    .cart-notes-input {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      background: #ffffff;
+      outline: none;
+    }
+
+    .cart-notes-input:focus {
+      border-color: var(--accent-terracotta);
+    }
+
+    .feather-particle {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, rgba(212, 163, 66, 0.8) 0%, rgba(255, 255, 255, 0.2) 70%, transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatFeather 14s infinite ease-in-out;
+    }
+
+    @keyframes floatFeather {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.6);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.8;
+      }
+      75% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-260px) rotate(180deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <!-- JSON-LD Schema markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Earthroot Poultry & Farm Fresh Produce",
+    "image": "assets/poultry_hero.jpg",
+    "telephone": "+919048622044",
+    "email": "poultry@earthrootmushrooms.in",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Pullurampara, Thiruvambady",
+      "addressLocality": "Kozhikode",
+      "addressRegion": "Kerala",
+      "postalCode": "673603",
+      "addressCountry": "IN"
+    },
+    "url": "https://earthrootmushrooms.in/poultry.html",
+    "priceRange": "₹₹"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- Top Glowing Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="pulse-dot"></span> 🐔 100% Free-Range Country Eggs (Naadan Mutta) & Antibiotic-Free Meat | Daily Gathered in Pullurampara, Kozhikode!
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header" id="mainHeader">
+    <div class="container nav-container">
+      <a href="poultry.html" class="brand-logo-link">
+        <img src="assets/logo.jpg" alt="Earthroot Farms Logo" class="brand-logo-img">
+        <div class="brand-title">
+          <span>EARTHROOT</span>
+          <span class="brand-subtitle">POULTRY & FARM EGGS</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#poultry-catalog" class="nav-link">Eggs & Meat</a></li>
+          <li><a href="#standards" class="nav-link">Standards</a></li>
+          <li><a href="#poultry-heritage" class="nav-link">Our Pasture</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#recipes" class="nav-link">Recipes</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li class="mobile-only-link"><a href="index.html" class="farm-switch-badge" title="Go to Mushroom Farm"><i class="fas fa-seedling"></i> Mushroom Farm</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-overlay" id="navOverlay"></div>
+
+      <div class="nav-actions">
+        <a href="index.html" class="farm-switch-badge desktop-switch-badge" title="Go to Mushroom Farm"><i class="fas fa-seedling"></i> Mushroom Farm</a>
+        <button class="cart-icon-btn" id="poultryCartIconBtn" aria-label="View Poultry Cart">
+          <i class="fas fa-egg"></i>
+          <span class="cart-badge" id="poultryCartBadge">0</span>
+        </button>
+        <a href="https://wa.me/919048622044?text=Hi%2C%20Earthroot%20Poultry!%20I%20want%20to%20order%20farm%20fresh%20eggs%20and%20meat."
+          target="_blank" class="btn btn-primary btn-sm header-quick-order-btn">
+          <i class="fab fa-whatsapp"></i> Quick Order
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero poultry-hero" id="home">
+    <div class="spore-particles" id="featherParticles"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge" data-reveal="fade-down" data-delay="100">
+          <i class="fas fa-shield-virus"></i> 100% Free-Range Pasture-Raised & Zero Antibiotics
+        </div>
+        <h1 class="hero-title" data-reveal="fade-up" data-delay="200">Pasture-Raised Eggs & <span>Pure Country Meat</span></h1>
+        <p class="hero-description" data-reveal="fade-up" data-delay="300">
+          Experience the pure, natural difference of farm-fresh poultry. Our country chickens, Kadaknath, ducks, and quails
+          roam freely on lush green Kerala pastures, foraging on herbs, seeds, and sunshine with zero synthetic hormones or prophylactic drugs.
+        </p>
+        <div class="hero-cta-group" data-reveal="fade-up" data-delay="400">
+          <a href="#poultry-catalog" class="btn btn-primary">
+            <i class="fas fa-shopping-basket"></i> Order Fresh Eggs & Meat
+          </a>
+          <a href="https://wa.me/919048622044?text=Hi%20Earthroot!%20I%20would%20like%20to%20order%20fresh%20country%20eggs%20and%20meat."
+            target="_blank" class="btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp Order Now
+          </a>
+        </div>
+        <div class="hero-stats" data-reveal="fade-up" data-delay="500">
+          <div class="stat-item">
+            <span class="stat-number" data-counter="100" data-suffix="%">100%</span>
+            <span class="stat-label">Pasture Raised</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Daily</span>
+            <span class="stat-label">Morning Collection</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-counter="0" data-suffix="%">0%</span>
+            <span class="stat-label">Antibiotics & Hormones</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-counter="100" data-suffix="%">100%</span>
+            <span class="stat-label">Natural Herbal Feed</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;" data-reveal="fade-up" data-delay="600">
+          <a href="#poultry-catalog" class="hero-scroll-indicator" aria-label="Scroll down to poultry catalog">
+            <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+            <span>Explore Farm Catalog</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Ribbon -->
+  <div class="trust-ribbon">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-card" data-reveal="fade-up" data-delay="100">
+          <div class="trust-icon"><i class="fas fa-sun"></i></div>
+          <div class="trust-text">
+            <h4>100% Open Pasture</h4>
+            <p>Naturally foraging on green grass & herbs</p>
+          </div>
+        </div>
+        <div class="trust-card" data-reveal="fade-up" data-delay="200">
+          <div class="trust-icon"><i class="fas fa-egg"></i></div>
+          <div class="trust-text">
+            <h4>Daily Morning Gather</h4>
+            <p>Collected fresh at sunrise, peak nutrition</p>
+          </div>
+        </div>
+        <div class="trust-card" data-reveal="fade-up" data-delay="300">
+          <div class="trust-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <div class="trust-text">
+            <h4>Zero Antibiotics</h4>
+            <p>Raised with traditional immunity herbs</p>
+          </div>
+        </div>
+        <div class="trust-card" data-reveal="fade-up" data-delay="400">
+          <div class="trust-icon"><i class="fas fa-snowflake"></i></div>
+          <div class="trust-text">
+            <h4>Hygienic Cold Dispatch</h4>
+            <p>Dressed fresh to order with cold chain</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Catalog Section -->
+  <section class="section-padding" id="poultry-catalog">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <span class="section-tag"><i class="fas fa-drumstick-bite"></i> Farm-Fresh Collection</span>
+        <h2 class="section-title">Country Eggs & Organic Farm Meat</h2>
+        <p class="section-subtitle">Select from our pasture-raised country eggs, Kadaknath, tender country chicken, and duck. Hand-gathered and hygienically dressed fresh for home delivery.</p>
+      </div>
+
+      <!-- Catalog Filter Tabs -->
+      <div class="catalog-tabs" data-reveal="fade-up" data-delay="150">
+        <button class="tab-btn active" data-filter="all">All Farm Items</button>
+        <button class="tab-btn" data-filter="eggs">Fresh Eggs</button>
+        <button class="tab-btn" data-filter="meat">Tender Meat</button>
+        <button class="tab-btn" data-filter="combos">Family Value Combos</button>
+        <button class="tab-btn" data-filter="bulk">Wholesale Crates</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="poultryGrid">
+        <!-- Rendered dynamically by poultry.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Pincode Delivery Eligibility Checker -->
+  <section class="container" id="pincode-section" data-reveal="zoom-in">
+    <div class="pincode-banner">
+      <div class="pincode-wrap">
+        <span class="section-tag"
+          style="background: rgba(255,255,255,0.15); color: var(--accent-gold-light); border-color: rgba(255,255,255,0.3);">
+          <i class="fas fa-map-marker-alt"></i> Cold-Chain Delivery Radius
+        </span>
+        <h3 class="heading-serif" style="font-size: 2rem; color: #fff; margin-top: 0.5rem;">Check Farm-to-Door Delivery Coverage</h3>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-top: 0.5rem;">Enter your 6-digit Indian PIN code to check daily express delivery for eggs and fresh dressed meat.</p>
+        <form class="pincode-form" id="poultryPincodeForm">
+          <input type="text" inputmode="numeric" maxlength="6" class="pincode-input" id="poultryPincodeInput" placeholder="Enter 6-Digit PIN (e.g. 673602)"
+            required pattern="\d{6}">
+          <button type="submit" class="btn btn-primary"><i class="fas fa-search-location"></i> Check Delivery</button>
+        </form>
+        <div class="pincode-result" id="poultryPincodeResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Standards & Comparison Section -->
+  <section class="section-padding" id="standards">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <span class="section-tag"><i class="fas fa-award"></i> The Honest Standard</span>
+        <h2 class="section-title">Free-Range vs Commercial Broiler</h2>
+        <p class="section-subtitle">Why conscious families across Kerala choose Earthroot pasture-raised poultry over commercial mass-factory produce.</p>
+      </div>
+
+      <div class="compare-table-wrap" data-reveal="fade-up" data-delay="150">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Quality Attribute</th>
+              <th class="highlight-col"><i class="fas fa-check-circle" style="color: var(--accent-gold);"></i> Earthroot Free-Range</th>
+              <th>Commercial Factory / Broiler</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Living Environment</strong></td>
+              <td class="highlight-col">Open green pasture, sunlight, dust-bathing, free roaming</td>
+              <td>Confined in overcrowded dark sheds with restricted movement</td>
+            </tr>
+            <tr>
+              <td><strong>Feed & Nutrition</strong></td>
+              <td class="highlight-col">Natural grains, flaxseeds, moringa, turmeric, wild greens & insects</td>
+              <td>Commercial mash with synthetic growth boosters and fillers</td>
+            </tr>
+            <tr>
+              <td><strong>Antibiotics & Hormones</strong></td>
+              <td class="highlight-col"><strong>0% Antibiotics</strong> — Relying on natural immunity herbs</td>
+              <td>Routine prophylactic antibiotics & chemical growth stimulants</td>
+            </tr>
+            <tr>
+              <td><strong>Growth Period</strong></td>
+              <td class="highlight-col">Natural slow growth (90 – 120+ days for rich, firm meat)</td>
+              <td>Artificially fast-grown in just 32 – 40 days (watery texture)</td>
+            </tr>
+            <tr>
+              <td><strong>Egg Yolk Quality</strong></td>
+              <td class="highlight-col">Deep rich amber-orange yolk, high Omega-3 & Vitamin D</td>
+              <td>Pale yellow yolk with low nutrient density</td>
+            </tr>
+            <tr>
+              <td><strong>Taste & Aroma</strong></td>
+              <td class="highlight-col">Rich traditional authentic Kerala Naadan flavor & firm bite</td>
+              <td>Bland, mushy, high water retention</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farm Heritage & Permaculture Story Section -->
+  <section class="section-padding heritage-section" id="poultry-heritage" style="margin-top: 3rem;">
+    <div class="container">
+      <div class="heritage-grid">
+        <div class="heritage-content" data-reveal="fade-right">
+          <span class="section-tag"
+            style="background: rgba(212, 163, 66, 0.15); color: var(--accent-gold); border-color: rgba(212, 163, 66, 0.3);">
+            <i class="fas fa-mountain"></i> Regenerative Permaculture
+          </span>
+          <h2>The Earthroot Pasture: Harmony Between Soil, Shroom & Flock</h2>
+          <p>
+            Nestled in the pristine foothill valleys of Pullurampara, Thiruvambady, our farm operates on an integrated closed-loop permaculture philosophy.
+          </p>
+          <p>
+            Our free-range birds graze happily among fruit orchards and coconut trees, naturally aerating the soil. In return, organic spent mushroom substrate from our gourmet mushroom chambers is composted with poultry bedding to create living, microbial-rich organic soil.
+          </p>
+
+          <div class="heritage-highlights">
+            <div class="heritage-item" data-reveal="fade-up" data-delay="100">
+              <h4><i class="fas fa-check-circle"></i> Pure Spring Water</h4>
+              <p>Hydrated with untainted Western Ghats natural mountain brook water.</p>
+            </div>
+            <div class="heritage-item" data-reveal="fade-up" data-delay="200">
+              <h4><i class="fas fa-check-circle"></i> Herbal Immunity Routine</h4>
+              <p>Daily turmeric, garlic water, and neem leaves keeping birds naturally robust.</p>
+            </div>
+            <div class="heritage-item" data-reveal="fade-up" data-delay="300">
+              <h4><i class="fas fa-check-circle"></i> Authentic Native Breeds</h4>
+              <p>Preserving heritage Naadan Kozhi, pure Kadaknath, and Kuttanad ducks.</p>
+            </div>
+            <div class="heritage-item" data-reveal="fade-up" data-delay="400">
+              <h4><i class="fas fa-check-circle"></i> Ethical Hand Dressing</h4>
+              <p>Freshly dressed to order with zero chemical bleaching or brine injections.</p>
+            </div>
+          </div>
+
+          <a href="https://wa.me/919048622044?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Earthroot%20Poultry%20and%20farming%20practices."
+            target="_blank" class="btn btn-outline" style="color: #fff; border-color: var(--accent-gold);">
+            <i class="fas fa-comment-dots"></i> Talk with Our Farm Caretaker
+          </a>
+        </div>
+
+        <div class="heritage-image-frame" data-reveal="fade-left" data-delay="200">
+          <img src="assets/poultry_hero.jpg" alt="Earthroot Free-Range Poultry Pasture">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Timeline Section -->
+  <section class="section-padding" id="process">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <span class="section-tag"><i class="fas fa-feather-alt"></i> Ethical Methodology</span>
+        <h2 class="section-title">From Pasture to Your Table</h2>
+        <p class="section-subtitle">A transparent look into how we gather and prepare our pure eggs and meat daily.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card" data-reveal="fade-up" data-delay="100" data-step="1">
+          <div class="process-step-num">01</div>
+          <h3>Open Pasture Grazing</h3>
+          <p>Birds roam freely each morning under natural daylight, foraging on greens, mineral-rich soil, and wild insects.</p>
+        </div>
+        <div class="process-card" data-reveal="fade-up" data-delay="200" data-step="2">
+          <div class="process-step-num">02</div>
+          <h3>Herbal & Grain Feed</h3>
+          <p>Supplemented with cracked corn, flaxseeds, moringa leaves, and natural probiotics with zero synthetic antibiotics.</p>
+        </div>
+        <div class="process-card" data-reveal="fade-up" data-delay="300" data-step="3">
+          <div class="process-step-num">03</div>
+          <h3>Daily Sunrise Gather</h3>
+          <p>Eggs are hand-collected fresh at 6:00 AM, candled for perfection, and carefully nested into breathable pulp cartons.</p>
+        </div>
+        <div class="process-card" data-reveal="fade-up" data-delay="400" data-step="4">
+          <div class="process-step-num">04</div>
+          <h3>Custom Cut & Cold Pack</h3>
+          <p>Meat is hygienically dressed only upon your order, temperature-chilled, and dispatched with eco-ice cold packs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culinary Recipes Section -->
+  <section class="section-padding recipes-section" id="recipes">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <span class="section-tag"><i class="fas fa-utensils"></i> Traditional Kitchen Flavors</span>
+        <h2 class="section-title">Authentic Country Meat & Egg Recipes</h2>
+        <p class="section-subtitle">Bring out the mouthwatering natural flavors of farm-fresh poultry with these classic Kerala recipes.</p>
+      </div>
+
+      <div class="recipe-grid">
+        <div class="recipe-card" data-reveal="fade-up" data-delay="100">
+          <div class="recipe-body">
+            <span class="recipe-tag">Kerala Heritage</span>
+            <h3 class="recipe-title">Naadan Kozhi Roast with Coconut Cuts</h3>
+            <div class="recipe-meta">
+              <span><i class="far fa-clock"></i> 40 mins</span>
+              <span><i class="fas fa-signal"></i> Easy</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Country chicken pieces slow-roasted in cold-pressed coconut oil with sliced shallots, crispy coconut bits (thenga kothu), crushed black pepper, and curry leaves.
+            </p>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-reveal="fade-up" data-delay="200">
+          <div class="recipe-body">
+            <span class="recipe-tag">Kuttanad Specialty</span>
+            <h3 class="recipe-title">Spicy Kuttanad Duck Pepper Roast (Tharavu)</h3>
+            <div class="recipe-meta">
+              <span><i class="far fa-clock"></i> 50 mins</span>
+              <span><i class="fas fa-signal"></i> Medium</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Tender duck meat simmered in roasted coriander, fennel, black pepper, and thick coconut milk. The ultimate accompaniment for hot Appam or Idiyappam!
+            </p>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-reveal="fade-up" data-delay="300">
+          <div class="recipe-body">
+            <span class="recipe-tag">Superfood Wellness</span>
+            <h3 class="recipe-title">Kadaknath Herbal Immunity Broth</h3>
+            <div class="recipe-meta">
+              <span><i class="far fa-clock"></i> 45 mins</span>
+              <span><i class="fas fa-signal"></i> Easy</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Nutrient-dense Kadaknath black chicken simmered with crushed ginger, fresh wild turmeric, shallots, and coriander seeds for peak stamina and recovery.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-padding" id="faq">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <span class="section-tag"><i class="fas fa-question-circle"></i> Farm Knowledge</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about our free-range eggs, fresh dressed meat, and cold delivery.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item active" data-reveal="fade-up" data-delay="100">
+          <button class="faq-header">
+            <span>How are Earthroot eggs and meat different from broiler poultry?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-content">
+            <p>Commercial broilers are raised in cramped cages, given routine antibiotics, and accelerated to slaughter in under 35 days. Earthroot birds roam freely on open green grass, eat natural grains & medicinal herbs, grow at their natural slow pace (90–120 days), and receive <strong>zero antibiotics or hormones</strong>. This creates firm, deeply flavorful meat and eggs with vibrant, nutrient-dense orange yolks.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal="fade-up" data-delay="200">
+          <button class="faq-header">
+            <span>How is fresh dressed meat prepared and packed for delivery?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-content">
+            <p>We do not store pre-cut frozen meat. Once you place an order, the bird is hygienically dressed to your preferred cutting style (Curry Cut, Biryani Cut, Skinless, or Skin-On with turmeric wash), chilled under air-cooling, and packed in food-grade insulated packs with gel ice for same-day delivery.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal="fade-up" data-delay="300">
+          <button class="faq-header">
+            <span>What makes Kadaknath black chicken and eggs special?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-content">
+            <p>Kadaknath is an indigenous heritage Indian breed famous for its natural black pigmentation (melanin). Its meat contains over 25% protein (significantly higher than ordinary chicken), exceptionally low fat (0.73–1.03%), and high iron & amino acid levels, making it a revered medicinal superfood.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal="fade-up" data-delay="400">
+          <button class="faq-header">
+            <span>How long do your country eggs stay fresh?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-content">
+            <p>Because our unwashed country eggs retain their natural protective bloom cuticle, they stay naturally fresh for up to 14 days at cool room temperature, and 30 to 45 days when stored in your refrigerator crisper.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal="fade-up" data-delay="500">
+          <button class="faq-header">
+            <span>Do you offer weekly egg subscriptions or restaurant supply?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-content">
+            <p>Yes! We offer convenient weekly and bi-weekly Family Egg Crates delivered automatically to your doorstep, as well as 100-egg wholesale crates for cafes, bakeries, and organic stores across Kerala.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Call To Action Banner -->
+  <section class="section-padding" id="contact" style="background-color: var(--primary-dark); color: #fff;">
+    <div class="container text-center" data-reveal="zoom-in">
+      <img src="assets/logo.jpg" alt="Earthroot Logo" class="cta-logo-img">
+      <h2 class="heading-serif" style="font-size: 2.75rem; color: #fff; margin-bottom: 1rem;">Pure, Honest Farm Poultry for Your Family</h2>
+      <p style="font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 2.5rem auto;">
+        Have special cutting preferences, weekly subscription requests, or wholesale bulk inquiries? Chat directly with our farm team on WhatsApp for prompt assistance.
+      </p>
+      <a href="https://wa.me/919048622044?text=Hi%2C%20Earthroot%20Poultry!%20I%20want%20to%20place%20an%20order%20for%20eggs%20and%20meat."
+        target="_blank" class="btn btn-whatsapp btn-lg">
+        <i class="fab fa-whatsapp"></i> Chat & Order on WhatsApp (+91 90486 22044)
+      </a>
+    </div>
+  </section>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay" id="poultryCartDrawerOverlay"></div>
+  <div class="cart-drawer" id="poultryCartDrawer">
+    <div class="cart-header">
+      <div class="cart-title"><i class="fas fa-egg" style="color: var(--accent-terracotta);"></i> Your Poultry & Egg Order</div>
+      <button class="cart-close-btn" id="poultryCartCloseBtn">&times;</button>
+    </div>
+    <div class="cart-body" id="poultryCartItemsList">
+      <!-- Cart items inserted via JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total Amount:</span>
+        <span id="poultryCartTotalAmount">₹0</span>
+      </div>
+      <label for="poultryOrderNotes" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Cutting & Delivery Instructions (Optional):</label>
+      <input type="text" id="poultryOrderNotes" class="cart-notes-input" placeholder="e.g. Skinless Curry Cut, Deliver Sunday Morning">
+      <button class="btn btn-whatsapp" id="poultryWhatsappCheckoutBtn" style="width: 100%;">
+        <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Quick Button -->
+  <a href="https://wa.me/919048622044?text=Hi%2C%20Earthroot%20Poultry!%20I%20want%20to%20order%20fresh%20eggs%20and%20meat."
+    class="whatsapp-float" target="_blank" aria-label="Order on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Floating Scroll-To-Top Button with Circular SVG Progress Ring -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to Top">
+    <svg class="progress-ring" viewBox="0 0 52 52" width="52" height="52">
+      <circle class="progress-ring-bg" cx="26" cy="26" r="22"></circle>
+      <circle class="progress-ring-fill" id="progressRingFill" cx="26" cy="26" r="22"></circle>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="assets/logo.jpg" alt="Earthroot Logo" class="footer-logo-img">
+            <div>
+              <div style="font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff;">
+                EARTHROOT</div>
+              <div style="font-size: 0.7rem; color: var(--accent-gold); letter-spacing: 0.1em;">POULTRY & LIVESTOCK</div>
+            </div>
+          </div>
+          <p>
+            100% pasture-raised country chicken eggs, Kadaknath, organic meat, and farm produce from Pullurampara, Kozhikode. Raised ethically with zero synthetic chemicals.
+          </p>
+          <div style="margin-top: 1rem;">
+            <a href="index.html" class="farm-switch-badge" style="background: rgba(255,255,255,0.1); color: var(--accent-gold-light); border-color: rgba(255,255,255,0.3);">
+              <i class="fas fa-seedling"></i> Switch to Mushroom Farm
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#poultry-catalog">Eggs & Meat Catalog</a></li>
+            <li><a href="#standards">Raising Standards</a></li>
+            <li><a href="#poultry-heritage">Farm Story</a></li>
+            <li><a href="#recipes">Country Recipes</a></li>
+            <li><a href="index.html">Mushroom Division</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Farm Products</h4>
+          <ul class="footer-links">
+            <li><a href="#poultry-catalog">Country Chicken Eggs (Naadan)</a></li>
+            <li><a href="#poultry-catalog">Kadaknath Black Eggs</a></li>
+            <li><a href="#poultry-catalog">Kuttanad Duck Eggs & Meat</a></li>
+            <li><a href="#poultry-catalog">Dressed Country Chicken</a></li>
+            <li><a href="#poultry-catalog">Quail Eggs & Meat</a></li>
+            <li><a href="#poultry-catalog">Family Weekly Box</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Reach Our Farm</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fas fa-map-marker-alt"
+              style="color: var(--accent-gold);"></i> Pullurampara, Thiruvambady, Kozhikode 673603, Kerala</p>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fas fa-phone-alt"
+              style="color: var(--accent-gold);"></i> +91 90486 22044</p>
+          <p style="font-size: 0.9rem;"><i class="fas fa-clock" style="color: var(--accent-gold);"></i> Mon - Sat: 8:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Earthroot Farms & Poultry. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="js/poultry.js"></script>
+</body>
+
+</html>
