@@ -1820,80 +1820,9 @@
       ];
 
       // ----------------------------------------------------
-      // Initial Pre-Seeded Buyer Customer Orders
+      // Buyer Customer Orders (Clean slate, no demo data)
       // ----------------------------------------------------
-      const initialBuyers = [
-        {
-          id: 'buyer_1',
-          name: 'Dr. Ananya Sharma',
-          phone: '9845012345',
-          product: 'Organic Lion\'s Mane',
-          quantity: '500g (2 packs)',
-          money: 900,
-          paymentStatus: 'UPI / GPay',
-          stockStatus: 'ready',
-          msgStatus: 'sent',
-          msgSentAt: '2026-08-28 10:30 AM',
-          address: 'Panampilly Nagar, Kochi',
-          notes: 'Customer requires fresh morning harvest'
-        },
-        {
-          id: 'buyer_2',
-          name: 'Chef Mathew / Spice Bistro',
-          phone: '9746123890',
-          product: 'Wholesale Oyster Bulk Crate',
-          quantity: '5 kg Crate',
-          money: 2800,
-          paymentStatus: 'Bank Transfer',
-          stockStatus: 'ready',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
-          address: 'MG Road, Ernakulam',
-          notes: 'Restaurant weekly batch requirement'
-        },
-        {
-          id: 'buyer_3',
-          name: 'Suresh Kumar',
-          phone: '9447155621',
-          product: 'Kerala Milky Mushrooms',
-          quantity: '1 kg (4 packs)',
-          money: 880,
-          paymentStatus: 'Cash',
-          stockStatus: 'ready',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
-          address: 'Edappally, Kochi',
-          notes: 'Requested call before arrival'
-        },
-        {
-          id: 'buyer_4',
-          name: 'Pooja Varma',
-          phone: '9895033412',
-          product: 'Pearl & Grey Oyster Mushrooms',
-          quantity: '750g (3 packs)',
-          money: 540,
-          paymentStatus: 'Cash on Delivery',
-          stockStatus: 'waitlist',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
-          address: 'Kakkanad Infopark Road',
-          notes: 'Pre-ordered for upcoming weekend harvest'
-        },
-        {
-          id: 'buyer_5',
-          name: 'Green Leaf Organic Mart',
-          phone: '9400288114',
-          product: 'Fresh White Button Mushrooms',
-          quantity: '2.5 kg (10 packs)',
-          money: 1500,
-          paymentStatus: 'Bank Transfer',
-          stockStatus: 'delivered',
-          msgStatus: 'sent',
-          msgSentAt: '2026-08-26 04:15 PM',
-          address: 'Vyttila Hub, Kochi',
-          notes: 'Store counter supply'
-        }
-      ];
+      const initialBuyers = [];
 
       // ----------------------------------------------------
       // ----------------------------------------------------
@@ -2162,14 +2091,17 @@
           if (saved) {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed) && parsed.length > 0) {
-              return parsed;
+              const isOldMock = parsed.some(b => b && typeof b.id === 'string' && (b.id === 'buyer_1' || b.name === 'Dr. Ananya Sharma'));
+              if (!isOldMock) {
+                return parsed;
+              }
             }
           }
         } catch (err) {
           console.warn('Buyer storage read error:', err);
         }
-        saveBuyersToStorage(initialBuyers);
-        return initialBuyers;
+        saveBuyersToStorage([]);
+        return [];
       }
 
       function saveBuyersToStorage(data) {
