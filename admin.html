@@ -1797,9 +1797,201 @@
       ];
 
       // ----------------------------------------------------
-      // Farm Expenses (Clean slate, no demo data)
       // ----------------------------------------------------
-      const initialExpenses = [];
+      // Real Farm Expenses (Transcribed from Handwritten Ledger)
+      // ----------------------------------------------------
+      const initialExpenses = [
+        {
+          id: 'exp_real_1',
+          title: 'Sprayer (180)',
+          category: 'maintenance',
+          amount: 180,
+          date: '2026-07-06',
+          paymentMode: 'Cash',
+          vendor: 'Local Hardware Store',
+          notes: 'Hand pressure sprayer for growing room'
+        },
+        {
+          id: 'exp_real_2',
+          title: 'Harvest & Soaking Tray (180)',
+          category: 'maintenance',
+          amount: 180,
+          date: '2026-07-06',
+          paymentMode: 'Cash',
+          vendor: 'Local Store',
+          notes: 'Mushroom handling and soaking tray'
+        },
+        {
+          id: 'exp_real_3',
+          title: 'Plastape / Plastic Tape (300)',
+          category: 'packaging',
+          amount: 300,
+          date: '2026-07-06',
+          paymentMode: 'Cash',
+          vendor: 'Packaging Supplier',
+          notes: 'Air-tight tape for growing room & covers'
+        },
+        {
+          id: 'exp_real_4',
+          title: 'Scissors (50)',
+          category: 'maintenance',
+          amount: 50,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Stationery & Tools',
+          notes: 'Stem harvesting & trimming scissors'
+        },
+        {
+          id: 'exp_real_5',
+          title: 'Spray Bottle (30)',
+          category: 'maintenance',
+          amount: 30,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Local Store',
+          notes: 'Manual misting spray bottle'
+        },
+        {
+          id: 'exp_real_6',
+          title: 'Plastic + Green Net + Rope + Plastic Tape (1900)',
+          category: 'maintenance',
+          amount: 1900,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Agro Net Depot',
+          notes: 'Mushroom growing shed dark-room setup & insulation'
+        },
+        {
+          id: 'exp_real_7',
+          title: 'PP Cover + Normal Cover + Rubber Band (500)',
+          category: 'packaging',
+          amount: 500,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Poly Pack Center',
+          notes: 'Bed preparation poly bags & rubber bands'
+        },
+        {
+          id: 'exp_real_8',
+          title: 'Cable Tie (140)',
+          category: 'maintenance',
+          amount: 140,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Hardware Store',
+          notes: 'Shed frame & net tie fastenings'
+        },
+        {
+          id: 'exp_real_9',
+          title: 'Bulb (80)',
+          category: 'electricity',
+          amount: 80,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Electricals',
+          notes: 'Growing room lighting bulb'
+        },
+        {
+          id: 'exp_real_10',
+          title: 'Chakku Sooji - Sacking Needle (50)',
+          category: 'maintenance',
+          amount: 50,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Hardware',
+          notes: 'Gunny sack stitching needle'
+        },
+        {
+          id: 'exp_real_11',
+          title: 'Weigh Machine + Level Measuring (390)',
+          category: 'maintenance',
+          amount: 390,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Tools & Scale Shop',
+          notes: 'Digital weighing scale & water level meter'
+        },
+        {
+          id: 'exp_real_12',
+          title: 'Cover / Packaging Bag (10)',
+          category: 'packaging',
+          amount: 10,
+          date: '2026-07-08',
+          paymentMode: 'Cash',
+          vendor: 'Local Store',
+          notes: 'Packaging cover'
+        },
+        {
+          id: 'exp_real_13',
+          title: 'Cement + Ani + Colashekar (850)',
+          category: 'maintenance',
+          amount: 850,
+          date: '2026-07-09',
+          paymentMode: 'Cash',
+          vendor: 'Building Materials',
+          notes: 'Shed construction & iron hardware'
+        },
+        {
+          id: 'exp_real_14',
+          title: 'Cement Katta (40) + M-Sand (4) (1800)',
+          category: 'maintenance',
+          amount: 1800,
+          date: '2026-07-09',
+          paymentMode: 'Cash',
+          vendor: 'Masonry Supplier',
+          notes: '40 cement bricks & 4 sacks M-sand for bed rack base'
+        },
+        {
+          id: 'exp_real_15',
+          title: 'Cement + Manal + Vandi Kooli (Freight) (1000)',
+          category: 'transport',
+          amount: 1000,
+          date: '2026-07-11',
+          paymentMode: 'Cash',
+          vendor: 'Freight Vehicle',
+          notes: 'Cement, sand and delivery freight to farm'
+        },
+        {
+          id: 'exp_real_16',
+          title: 'Coon 4-Mesh Pallet Racks (750)',
+          category: 'maintenance',
+          amount: 750,
+          date: '2026-07-17',
+          paymentMode: 'Cash',
+          vendor: 'Farm Supplies',
+          notes: '4-tier mesh pallet racks for mushroom cultivation'
+        },
+        {
+          id: 'exp_real_17',
+          title: 'Green Net 10 Meter (800)',
+          category: 'maintenance',
+          amount: 800,
+          date: '2026-07-17',
+          paymentMode: 'Cash',
+          vendor: 'Agro Shade Depot',
+          notes: '10m green shade net for climate control'
+        },
+        {
+          id: 'exp_real_18',
+          title: 'Chakk / Gunny Sacks (10)',
+          category: 'substrate',
+          amount: 10,
+          date: '2026-07-17',
+          paymentMode: 'Cash',
+          vendor: 'Local Store',
+          notes: 'Substrate holding gunny bag'
+        },
+        {
+          id: 'exp_real_19',
+          title: 'Kakka / Lime Shell Powder (50)',
+          category: 'substrate',
+          amount: 50,
+          date: '2026-07-17',
+          paymentMode: 'Cash',
+          vendor: 'Agri Lime Depot',
+          notes: 'Calcium carbonate lime for substrate pH'
+        }
+      ];
 
       // ----------------------------------------------------
       // Category Mapping & Color Helpers
@@ -1810,7 +2002,7 @@
         labor: 'Labor & Wages',
         electricity: 'Electricity & Climate',
         packaging: 'Packaging & Storage',
-        maintenance: 'Equipment & Repairs',
+        maintenance: 'Equipment, Tools & Shed',
         transport: 'Transport & Fuel',
         rent: 'Facility & Rent',
         misc: 'Miscellaneous'
@@ -1890,10 +2082,9 @@
           const saved = localStorage.getItem('earthroot_farm_expenses');
           if (saved) {
             const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed)) {
-              // Discard any old pre-seeded sample data entries (e.g. exp_1 to exp_11)
-              const hasOldSampleData = parsed.some(e => e && typeof e.id === 'string' && (e.id.startsWith('exp_') && parseInt(e.id.replace('exp_', '')) <= 15));
-              if (!hasOldSampleData) {
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              const isOldMock = parsed.some(e => e && e.id === 'exp_1' && e.title && e.title.includes('Paddy Straw & Sawdust'));
+              if (!isOldMock) {
                 return parsed;
               }
             }
@@ -1901,8 +2092,8 @@
         } catch (err) {
           console.warn('Expense storage read error:', err);
         }
-        saveExpensesToStorage([]);
-        return [];
+        saveExpensesToStorage(initialExpenses);
+        return initialExpenses;
       }
 
       function saveExpensesToStorage(data) {
