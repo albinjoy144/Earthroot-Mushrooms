@@ -451,7 +451,7 @@ img {
 /* Floating Back To Top Button with Circular Progress Ring (Second in row, rightmost position) */
 .scroll-top-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 15px;
   right: 28px;
   left: auto;
   width: 52px;
@@ -2030,7 +2030,7 @@ img {
 /* Floating WhatsApp Quick Action Button (First in row, left of Scroll-To-Top) */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
+  bottom: 15px;
   right: 90px;
   background-color: #25D366;
   color: #ffffff;
