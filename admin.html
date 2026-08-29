@@ -1820,9 +1820,136 @@
       ];
 
       // ----------------------------------------------------
-      // Buyer Customer Orders (Clean slate, no demo data)
+      // Real Customer Sales (Transcribed from Handwritten Ledger)
       // ----------------------------------------------------
-      const initialBuyers = [];
+      const initialBuyers = [
+        {
+          id: 'cust_1',
+          name: 'Ammachi',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Jain Chettan Ammachi Home',
+          notes: 'Order dated 14/08/2026'
+        },
+        {
+          id: 'cust_2',
+          name: 'Shanitha',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '200g (1 pack)',
+          money: 75,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 24/08/2026'
+        },
+        {
+          id: 'cust_3',
+          name: 'Chandha',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '200g (1 pack)',
+          money: 75,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 24/08/2026'
+        },
+        {
+          id: 'cust_4',
+          name: 'Sulaikha',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 26/08/2026'
+        },
+        {
+          id: 'cust_5',
+          name: 'Raseena',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 26/08/2026'
+        },
+        {
+          id: 'cust_6',
+          name: 'Kunjumon',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 27/08/2026'
+        },
+        {
+          id: 'cust_7',
+          name: 'Suneena',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'UPI / GPay',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Paid via GPay (27/08/2026)'
+        },
+        {
+          id: 'cust_8',
+          name: 'Shajitha',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 28/08/2026'
+        },
+        {
+          id: 'cust_9',
+          name: 'Kamla',
+          phone: '',
+          product: 'Fresh Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Local Delivery',
+          notes: 'Order dated 28/08/2026'
+        }
+      ];
 
       // ----------------------------------------------------
       // ----------------------------------------------------
@@ -2100,8 +2227,8 @@
         } catch (err) {
           console.warn('Buyer storage read error:', err);
         }
-        saveBuyersToStorage([]);
-        return [];
+        saveBuyersToStorage(initialBuyers);
+        return initialBuyers;
       }
 
       function saveBuyersToStorage(data) {
