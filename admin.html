@@ -1590,6 +1590,10 @@
               <button class="btn btn-outline btn-sm" id="exportBuyersCsvBtn" title="Export Buyers to CSV">
                 <i class="fas fa-file-csv"></i> Export CSV
               </button>
+
+              <button class="btn btn-outline btn-sm" id="resetBuyersLedgerBtn" title="Restore/Sync Farm Ledger Orders (including 2 orders for Shanitha, Raseena, Ammachi, etc.)">
+                <i class="fas fa-rotate"></i> Sync Default Ledger
+              </button>
             </div>
           </div>
 
@@ -2236,7 +2240,21 @@
           msgStatus: 'sent',
           msgSentAt: 'Aug 26, 04:30 PM',
           address: 'Local Delivery',
-          notes: 'Order dated 26/08/2026'
+          notes: 'Order #1 dated 26/08/2026'
+        },
+        {
+          id: 'cust_5_repeat',
+          name: 'Raseena',
+          phone: '9633221100',
+          product: 'Pearl & Grey Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 29, 05:00 PM',
+          address: 'Local Delivery',
+          notes: 'Repeat Order #2 dated 29/08/2026'
         },
         {
           id: 'cust_6',
@@ -2557,10 +2575,13 @@
         return initialProducts;
       }
 
+      const BUYERS_STORAGE_VERSION = 'v5_ledger_repeat_orders_synced';
+
       function loadBuyers() {
         try {
+          const savedVersion = localStorage.getItem('earthroot_buyers_version');
           const saved = localStorage.getItem('earthroot_buyer_customers');
-          if (saved) {
+          if (saved && savedVersion === BUYERS_STORAGE_VERSION) {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed) && parsed.length > 0) {
               const isOldMock = parsed.some(b => b && typeof b.id === 'string' && (b.id === 'buyer_1' || b.name === 'Dr. Ananya Sharma'));
@@ -2573,6 +2594,7 @@
           console.warn('Buyer storage read error:', err);
         }
         saveBuyersToStorage(initialBuyers);
+        localStorage.setItem('earthroot_buyers_version', BUYERS_STORAGE_VERSION);
         return initialBuyers;
       }
 
@@ -2671,6 +2693,7 @@
       const buyerCustomerTableBody = document.getElementById('buyerCustomerTableBody');
       const openAddBuyerBtn = document.getElementById('openAddBuyerBtn');
       const exportBuyersCsvBtn = document.getElementById('exportBuyersCsvBtn');
+      const resetBuyersLedgerBtn = document.getElementById('resetBuyersLedgerBtn');
       const customerSuggestionsList = document.getElementById('customerSuggestionsList');
 
       // Buyer Modal elements
@@ -2971,28 +2994,32 @@
         return '₹' + Number(num || 0).toLocaleString('en-IN');
       }
 
-      // Customer Key Normalizer (groups by 10-digit phone or normalized name)
-      function getCustomerGroupKey(buyer) {
-        const cleanPhone = (buyer.phone || '').replace(/[^0-9]/g, '');
-        if (cleanPhone.length >= 10) {
-          return 'phone_' + cleanPhone.slice(-10);
-        }
-        const cleanName = (buyer.name || '').trim().toLowerCase();
-        return 'name_' + (cleanName || 'unknown');
-      }
-
-      // Group Orders by Customer
+      // Robust Group Orders by Customer (Matches by Normalized Name OR 10-Digit Phone)
       function getGroupedCustomers(ordersList) {
-        const groupsMap = new Map();
+        const groups = [];
 
         ordersList.forEach(order => {
-          const key = getCustomerGroupKey(order);
-          if (!groupsMap.has(key)) {
-            groupsMap.set(key, {
-              key: key,
-              name: order.name || 'Anonymous Customer',
+          const rawName = (order.name || '').trim();
+          const normName = rawName.toLowerCase();
+          const cleanPhone = (order.phone || '').replace(/[^0-9]/g, '');
+          const tenDigitPhone = cleanPhone.length >= 10 ? cleanPhone.slice(-10) : '';
+
+          // Match by normalized name OR 10-digit phone number
+          let matchedGroup = groups.find(g => {
+            const matchName = normName && g.names.has(normName);
+            const matchPhone = tenDigitPhone && g.phones.has(tenDigitPhone);
+            return matchName || matchPhone;
+          });
+
+          if (!matchedGroup) {
+            const safeKey = normName.replace(/[^a-z0-9]/g, '_') || tenDigitPhone || 'cust_' + Math.random().toString(36).substr(2, 6);
+            matchedGroup = {
+              key: 'grp_' + safeKey,
+              name: rawName || 'Anonymous Customer',
               phone: order.phone || '',
               address: order.address || '',
+              names: new Set(),
+              phones: new Set(),
               orders: [],
               totalMoney: 0,
               totalKg: 0,
@@ -3000,46 +3027,51 @@
               stockCounts: { ready: 0, waitlist: 0, delivered: 0 },
               msgCounts: { sent: 0, not_sent: 0 },
               productsSummary: []
-            });
+            };
+            groups.push(matchedGroup);
           }
 
-          const group = groupsMap.get(key);
-          group.orders.push(order);
-          group.totalMoney += Number(order.money || 0);
+          if (normName) matchedGroup.names.add(normName);
+          if (tenDigitPhone) matchedGroup.phones.add(tenDigitPhone);
+          if (!matchedGroup.phone && order.phone) matchedGroup.phone = order.phone;
+          if (!matchedGroup.address && order.address) matchedGroup.address = order.address;
+          if (rawName && (!matchedGroup.name || matchedGroup.name.length < rawName.length)) {
+            matchedGroup.name = rawName;
+          }
 
-          if (!group.phone && order.phone) group.phone = order.phone;
-          if (!group.address && order.address) group.address = order.address;
+          matchedGroup.orders.push(order);
+          matchedGroup.totalMoney += Number(order.money || 0);
 
           // Quantity parsing
           const q = (order.quantity || '').toLowerCase();
           if (q.includes('kg')) {
             const match = q.match(/([0-9.]+)\s*kg/);
-            if (match) group.totalKg += parseFloat(match[1]) || 0;
+            if (match) matchedGroup.totalKg += parseFloat(match[1]) || 0;
           } else if (q.includes('g') || q.includes('gm') || q.includes('gram')) {
             const match = q.match(/([0-9.]+)\s*(?:g|gm|gram)/);
-            if (match) group.totalKg += (parseFloat(match[1]) || 0) / 1000;
+            if (match) matchedGroup.totalKg += (parseFloat(match[1]) || 0) / 1000;
           }
 
           // Payment modes sum
           const pay = order.paymentStatus || 'Pending';
-          group.paymentMap[pay] = (group.paymentMap[pay] || 0) + Number(order.money || 0);
+          matchedGroup.paymentMap[pay] = (matchedGroup.paymentMap[pay] || 0) + Number(order.money || 0);
 
           // Stock status
           const st = order.stockStatus || 'ready';
-          group.stockCounts[st] = (group.stockCounts[st] || 0) + 1;
+          matchedGroup.stockCounts[st] = (matchedGroup.stockCounts[st] || 0) + 1;
 
           // Message status
           const msg = order.msgStatus || 'not_sent';
-          group.msgCounts[msg] = (group.msgCounts[msg] || 0) + 1;
+          matchedGroup.msgCounts[msg] = (matchedGroup.msgCounts[msg] || 0) + 1;
 
           // Products summary
           const prodTitle = `${order.product} (${order.quantity})`;
-          if (!group.productsSummary.includes(prodTitle)) {
-            group.productsSummary.push(prodTitle);
+          if (!matchedGroup.productsSummary.includes(prodTitle)) {
+            matchedGroup.productsSummary.push(prodTitle);
           }
         });
 
-        return Array.from(groupsMap.values());
+        return groups;
       }
 
       // Populate Datalist for Customer Autocomplete
@@ -3824,6 +3856,19 @@
           showToast('Exported Individual Orders to CSV!');
         }
       });
+
+      // Reset / Sync Default Farm Ledger Orders
+      if (resetBuyersLedgerBtn) {
+        resetBuyersLedgerBtn.addEventListener('click', () => {
+          if (confirm('Do you want to sync/reset to default Farm Ledger orders (including 2 orders for Shanitha, 2 orders for Raseena, 2 orders for Ammachi, Chandha, and Sulaikha)?')) {
+            buyers = JSON.parse(JSON.stringify(initialBuyers));
+            saveBuyersToStorage(buyers);
+            localStorage.setItem('earthroot_buyers_version', BUYERS_STORAGE_VERSION);
+            refreshAllBuyerCustomerViews();
+            showToast('Farm Customer Ledger synced with all repeat orders!');
+          }
+        });
+      }
 
       function refreshAllBuyerCustomerViews() {
         populateCustomerSuggestions();
