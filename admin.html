@@ -471,6 +471,256 @@
       white-space: nowrap;
     }
 
+    /* Buyer View Switcher & Customer Grouping Styles */
+    .buyer-view-toggle-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.75rem;
+      background: #faf7f2;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .buyer-view-tabs {
+      display: inline-flex;
+      background: #eadecd;
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      gap: 4px;
+    }
+
+    .buyer-view-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-mid);
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .buyer-view-tab-btn:hover {
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .buyer-view-tab-btn.active {
+      background: var(--primary-dark);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 39, 29, 0.2);
+    }
+
+    .buyer-view-tab-btn.active .view-badge {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+    }
+
+    .buyer-view-tab-btn .view-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+      background: #d8cbb7;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-left: 0.25rem;
+    }
+
+    .buyer-view-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Repeat Customer & Aggregated Badges */
+    .repeat-buyer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #92400e;
+      border: 1px solid #f59e0b;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-top: 3px;
+      box-shadow: 0 1px 3px rgba(245, 158, 11, 0.2);
+    }
+
+    .single-buyer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      padding: 0.18rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .total-customer-money-badge {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      display: inline-block;
+      min-width: 130px;
+    }
+
+    .total-customer-money-badge .money-amount {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #15803d;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .total-customer-money-badge .money-sub {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #166534;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .btn-toggle-orders {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-toggle-orders:hover {
+      border-color: var(--accent-gold);
+      background: #fffcf7;
+      color: var(--accent-gold-dark, #b5832a);
+    }
+
+    .btn-toggle-orders.active {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+    }
+
+    .btn-toggle-orders.active i {
+      transform: rotate(180deg);
+    }
+
+    .btn-toggle-orders i {
+      transition: transform 0.2s ease;
+      font-size: 0.72rem;
+    }
+
+    /* Customer Drawer Sub-table */
+    .customer-orders-drawer-row {
+      background: #faf8f5 !important;
+    }
+
+    .customer-orders-drawer-row > td {
+      padding: 0 !important;
+      border-bottom: 2px solid var(--border-color) !important;
+    }
+
+    .drawer-inner-card {
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(180deg, #fbf9f6 0%, #f5efe6 100%);
+      border-left: 4px solid var(--accent-gold);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .drawer-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nested-orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      font-size: 0.84rem;
+    }
+
+    .nested-orders-table th {
+      background: #ede6d8;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid #dccfbe;
+    }
+
+    .nested-orders-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #f0ebe2;
+      vertical-align: middle;
+    }
+
+    .nested-orders-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .nested-orders-table tr:hover {
+      background-color: #fdfcfa;
+    }
+
+    .product-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.18rem 0.5rem;
+      background: #f7f3ec;
+      border: 1px solid #e2d7c5;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin: 2px 2px 2px 0;
+    }
+
     .action-btn-group {
       display: flex;
       gap: 0.4rem;
@@ -1262,24 +1512,32 @@
           <div class="admin-stat-card">
             <div class="stat-icon-wrap blue"><i class="fas fa-users"></i></div>
             <div>
-              <div class="stat-val" id="totalBuyerCount">0</div>
-              <div class="stat-lbl">Total Buyer Orders</div>
+              <div class="stat-val" id="totalUniqueCustomersCount">0</div>
+              <div class="stat-lbl">Unique Customers</div>
             </div>
           </div>
 
           <div class="admin-stat-card">
-            <div class="stat-icon-wrap green"><i class="fas fa-scale-balanced"></i></div>
+            <div class="stat-icon-wrap gold"><i class="fas fa-receipt"></i></div>
             <div>
-              <div class="stat-val" id="totalKgOrdered">0 kg</div>
-              <div class="stat-lbl">Total Quantity Booked</div>
+              <div class="stat-val" id="totalBuyerCount">0</div>
+              <div class="stat-lbl">Total Orders Placed</div>
             </div>
           </div>
 
           <div class="admin-stat-card">
-            <div class="stat-icon-wrap gold"><i class="fas fa-indian-rupee-sign"></i></div>
+            <div class="stat-icon-wrap purple"><i class="fas fa-crown"></i></div>
+            <div>
+              <div class="stat-val" id="totalRepeatBuyersCount">0</div>
+              <div class="stat-lbl">Repeat Buyers (2+ Orders)</div>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap green"><i class="fas fa-indian-rupee-sign"></i></div>
             <div>
               <div class="stat-val" id="totalBuyerRevenue">₹0</div>
-              <div class="stat-lbl">Total Money Received / Due</div>
+              <div class="stat-lbl">Total Customer Money</div>
             </div>
           </div>
 
@@ -1295,7 +1553,7 @@
             <div class="stat-icon-wrap orange"><i class="fas fa-bell"></i></div>
             <div>
               <div class="stat-val" id="whatsappNotSentCount">0</div>
-              <div class="stat-lbl">No Message Sent (Pending)</div>
+              <div class="stat-lbl">Pending Stock Alerts</div>
             </div>
           </div>
         </div>
@@ -1304,11 +1562,11 @@
         <div class="admin-panel-card">
           <div class="admin-panel-header">
             <div class="admin-panel-title">
-              <i class="fas fa-user-tag" style="color: var(--accent-gold);"></i> Buyer Customer Orders & Stock Availability Alerts
+              <i class="fas fa-user-tag" style="color: var(--accent-gold);"></i> Buyer Customers & Order Ledger
             </div>
 
             <div class="admin-search-filter">
-              <input type="text" id="buyerSearchInput" class="admin-search-input" placeholder="Search customer, phone, item...">
+              <input type="text" id="buyerSearchInput" class="admin-search-input" placeholder="Search customer, phone, product...">
               
               <select id="buyerMsgStatusFilter" class="admin-filter-select">
                 <option value="all">All WhatsApp Status</option>
@@ -1335,29 +1593,42 @@
             </div>
           </div>
 
+          <!-- Customer View Switcher Bar -->
+          <div class="buyer-view-toggle-wrap">
+            <div class="buyer-view-tabs" role="tablist">
+              <button type="button" class="buyer-view-tab-btn active" id="btnCustomerSummaryView">
+                <i class="fas fa-users-viewfinder"></i>
+                <span>Customer Summary (Combined Money)</span>
+                <span class="view-badge" id="uniqueCustomersBadge">0</span>
+              </button>
+              <button type="button" class="buyer-view-tab-btn" id="btnAllOrdersView">
+                <i class="fas fa-receipt"></i>
+                <span>All Orders Log</span>
+                <span class="view-badge" id="totalOrdersBadge">0</span>
+              </button>
+            </div>
+
+            <div class="buyer-view-hint" id="buyerViewHint">
+              <i class="fas fa-info-circle" style="color: var(--accent-gold);"></i>
+              <span id="buyerViewHintText">Showing consolidated customer list with total money spent across multiple orders. Click any customer to view full order history.</span>
+            </div>
+          </div>
+
           <!-- Quick Tip Bar -->
-          <div style="padding: 0.85rem 1.75rem; background: #fffcf7; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="padding: 0.75rem 1.75rem; background: #fffcf7; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
             <div style="font-size: 0.84rem; color: var(--text-muted);">
-              💬 Click <strong>"Send Alert"</strong> when harvest is ready. It will open WhatsApp with custom order details and update status to <strong style="color: #166534;">"Message Sent"</strong> automatically.
+              💡 <strong>Smart Customer Aggregator:</strong> When a customer orders multiple times, all their orders & total money automatically combine into one entry in this list with complete purchase history!
             </div>
           </div>
 
           <div class="admin-list-body">
             <div class="data-table-container">
               <table class="data-table" id="buyerCustomerTable">
-                <thead>
-                  <tr>
-                    <th>Customer Name & Contact</th>
-                    <th>Product & Quantity (g/kg)</th>
-                    <th>Money / Price (₹)</th>
-                    <th>Stock Status</th>
-                    <th>WhatsApp Message Status</th>
-                    <th style="text-align: center;">Send WhatsApp</th>
-                    <th style="text-align: center;">Actions</th>
-                  </tr>
+                <thead id="buyerCustomerTableHead">
+                  <!-- Rendered dynamically based on view mode -->
                 </thead>
                 <tbody id="buyerCustomerTableBody">
-                  <!-- Rendered dynamically -->
+                  <!-- Rendered dynamically based on view mode -->
                 </tbody>
               </table>
             </div>
@@ -1593,7 +1864,8 @@
           <div class="form-row">
             <div class="form-group">
               <label for="buyerName">Customer / Buyer Name *</label>
-              <input type="text" id="buyerName" class="form-control" placeholder="e.g. Rahul Nair / Spice Garden Restaurant" required>
+              <input type="text" id="buyerName" class="form-control" list="customerSuggestionsList" placeholder="e.g. Shanitha / Ammachi" required autocomplete="off">
+              <datalist id="customerSuggestionsList"></datalist>
             </div>
 
             <div class="form-group">
@@ -1843,78 +2115,134 @@
         {
           id: 'cust_1',
           name: 'Ammachi',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9048622044',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
           stockStatus: 'delivered',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 14, 10:30 AM',
           address: 'Jain Chettan Ammachi Home',
-          notes: 'Order dated 14/08/2026'
+          notes: 'Order #1 dated 14/08/2026'
+        },
+        {
+          id: 'cust_1_repeat',
+          name: 'Ammachi',
+          phone: '9048622044',
+          product: 'Kerala Milky Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 29, 04:15 PM',
+          address: 'Jain Chettan Ammachi Home',
+          notes: 'Repeat Order #2 dated 29/08/2026'
         },
         {
           id: 'cust_2',
           name: 'Shanitha',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9847123450',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '200g (1 pack)',
           money: 75,
           paymentStatus: 'Cash',
           stockStatus: 'delivered',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
-          address: 'Local Delivery',
-          notes: 'Order dated 24/08/2026'
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 24, 11:20 AM',
+          address: 'Near Town Hall, Local Delivery',
+          notes: 'Order #1 dated 24/08/2026'
+        },
+        {
+          id: 'cust_2_repeat',
+          name: 'Shanitha',
+          phone: '9847123450',
+          product: 'Pearl & Grey Oyster Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'UPI / GPay',
+          stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 28, 05:40 PM',
+          address: 'Near Town Hall, Local Delivery',
+          notes: 'Repeat Order #2 dated 28/08/2026'
         },
         {
           id: 'cust_3',
           name: 'Chandha',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9745889911',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '200g (1 pack)',
           money: 75,
           paymentStatus: 'Cash',
           stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 24, 02:00 PM',
+          address: 'Local Delivery',
+          notes: 'Order #1 dated 24/08/2026'
+        },
+        {
+          id: 'cust_3_repeat',
+          name: 'Chandha',
+          phone: '9745889911',
+          product: 'Fresh White Button Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'Cash',
+          stockStatus: 'delivered',
           msgStatus: 'not_sent',
           msgSentAt: null,
           address: 'Local Delivery',
-          notes: 'Order dated 24/08/2026'
+          notes: 'Repeat Order #2 dated 30/08/2026'
         },
         {
           id: 'cust_4',
           name: 'Sulaikha',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9495112233',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
           stockStatus: 'delivered',
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 26, 09:45 AM',
+          address: 'Green Valley Road',
+          notes: 'Order #1 dated 26/08/2026'
+        },
+        {
+          id: 'cust_4_repeat',
+          name: 'Sulaikha',
+          phone: '9495112233',
+          product: 'Kerala Milky Mushrooms',
+          quantity: '250g (1 pack)',
+          money: 100,
+          paymentStatus: 'UPI / GPay',
+          stockStatus: 'ready',
           msgStatus: 'not_sent',
           msgSentAt: null,
-          address: 'Local Delivery',
-          notes: 'Order dated 26/08/2026'
+          address: 'Green Valley Road',
+          notes: 'Repeat Order #2 dated 31/08/2026'
         },
         {
           id: 'cust_5',
           name: 'Raseena',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9633221100',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
           stockStatus: 'delivered',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 26, 04:30 PM',
           address: 'Local Delivery',
           notes: 'Order dated 26/08/2026'
         },
         {
           id: 'cust_6',
           name: 'Kunjumon',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9846334455',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
@@ -1927,22 +2255,22 @@
         {
           id: 'cust_7',
           name: 'Suneena',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9744556677',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'UPI / GPay',
           stockStatus: 'delivered',
-          msgStatus: 'not_sent',
-          msgSentAt: null,
+          msgStatus: 'sent',
+          msgSentAt: 'Aug 27, 01:15 PM',
           address: 'Local Delivery',
           notes: 'Paid via GPay (27/08/2026)'
         },
         {
           id: 'cust_8',
           name: 'Shajitha',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9567881122',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
@@ -1955,8 +2283,8 @@
         {
           id: 'cust_9',
           name: 'Kamla',
-          phone: '',
-          product: 'Fresh Oyster Mushrooms',
+          phone: '9400223344',
+          product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
           paymentStatus: 'Cash',
@@ -2321,19 +2649,29 @@
       const outOfStockCount = document.getElementById('outOfStockCount');
 
       // Buyer elements
+      const totalUniqueCustomersCount = document.getElementById('totalUniqueCustomersCount');
       const totalBuyerCount = document.getElementById('totalBuyerCount');
+      const totalRepeatBuyersCount = document.getElementById('totalRepeatBuyersCount');
       const totalKgOrdered = document.getElementById('totalKgOrdered');
       const totalBuyerRevenue = document.getElementById('totalBuyerRevenue');
       const whatsappSentCount = document.getElementById('whatsappSentCount');
       const whatsappNotSentCount = document.getElementById('whatsappNotSentCount');
       const tabBuyerPendingBadge = document.getElementById('tabBuyerPendingBadge');
 
+      const btnCustomerSummaryView = document.getElementById('btnCustomerSummaryView');
+      const btnAllOrdersView = document.getElementById('btnAllOrdersView');
+      const uniqueCustomersBadge = document.getElementById('uniqueCustomersBadge');
+      const totalOrdersBadge = document.getElementById('totalOrdersBadge');
+      const buyerViewHintText = document.getElementById('buyerViewHintText');
+
       const buyerSearchInput = document.getElementById('buyerSearchInput');
       const buyerMsgStatusFilter = document.getElementById('buyerMsgStatusFilter');
       const buyerPaymentFilter = document.getElementById('buyerPaymentFilter');
+      const buyerCustomerTableHead = document.getElementById('buyerCustomerTableHead');
       const buyerCustomerTableBody = document.getElementById('buyerCustomerTableBody');
       const openAddBuyerBtn = document.getElementById('openAddBuyerBtn');
       const exportBuyersCsvBtn = document.getElementById('exportBuyersCsvBtn');
+      const customerSuggestionsList = document.getElementById('customerSuggestionsList');
 
       // Buyer Modal elements
       const buyerModal = document.getElementById('buyerModal');
@@ -2624,14 +2962,151 @@
 
 
       // ----------------------------------------------------
-      // SECTION 2: BUYER CUSTOMERS & WHATSAPP ALERTS
+      // SECTION 2: BUYER CUSTOMERS & WHATSAPP ALERTS (WITH COMBINED CUSTOMER LEDGER)
       // ----------------------------------------------------
+      let buyerViewMode = 'customer_summary'; // 'customer_summary' | 'all_orders'
+      const expandedCustomerDrawers = new Set(); // Stores customer keys for open drawers
+
       function formatRupee(num) {
         return '₹' + Number(num || 0).toLocaleString('en-IN');
       }
 
+      // Customer Key Normalizer (groups by 10-digit phone or normalized name)
+      function getCustomerGroupKey(buyer) {
+        const cleanPhone = (buyer.phone || '').replace(/[^0-9]/g, '');
+        if (cleanPhone.length >= 10) {
+          return 'phone_' + cleanPhone.slice(-10);
+        }
+        const cleanName = (buyer.name || '').trim().toLowerCase();
+        return 'name_' + (cleanName || 'unknown');
+      }
+
+      // Group Orders by Customer
+      function getGroupedCustomers(ordersList) {
+        const groupsMap = new Map();
+
+        ordersList.forEach(order => {
+          const key = getCustomerGroupKey(order);
+          if (!groupsMap.has(key)) {
+            groupsMap.set(key, {
+              key: key,
+              name: order.name || 'Anonymous Customer',
+              phone: order.phone || '',
+              address: order.address || '',
+              orders: [],
+              totalMoney: 0,
+              totalKg: 0,
+              paymentMap: {},
+              stockCounts: { ready: 0, waitlist: 0, delivered: 0 },
+              msgCounts: { sent: 0, not_sent: 0 },
+              productsSummary: []
+            });
+          }
+
+          const group = groupsMap.get(key);
+          group.orders.push(order);
+          group.totalMoney += Number(order.money || 0);
+
+          if (!group.phone && order.phone) group.phone = order.phone;
+          if (!group.address && order.address) group.address = order.address;
+
+          // Quantity parsing
+          const q = (order.quantity || '').toLowerCase();
+          if (q.includes('kg')) {
+            const match = q.match(/([0-9.]+)\s*kg/);
+            if (match) group.totalKg += parseFloat(match[1]) || 0;
+          } else if (q.includes('g') || q.includes('gm') || q.includes('gram')) {
+            const match = q.match(/([0-9.]+)\s*(?:g|gm|gram)/);
+            if (match) group.totalKg += (parseFloat(match[1]) || 0) / 1000;
+          }
+
+          // Payment modes sum
+          const pay = order.paymentStatus || 'Pending';
+          group.paymentMap[pay] = (group.paymentMap[pay] || 0) + Number(order.money || 0);
+
+          // Stock status
+          const st = order.stockStatus || 'ready';
+          group.stockCounts[st] = (group.stockCounts[st] || 0) + 1;
+
+          // Message status
+          const msg = order.msgStatus || 'not_sent';
+          group.msgCounts[msg] = (group.msgCounts[msg] || 0) + 1;
+
+          // Products summary
+          const prodTitle = `${order.product} (${order.quantity})`;
+          if (!group.productsSummary.includes(prodTitle)) {
+            group.productsSummary.push(prodTitle);
+          }
+        });
+
+        return Array.from(groupsMap.values());
+      }
+
+      // Populate Datalist for Customer Autocomplete
+      function populateCustomerSuggestions() {
+        if (!customerSuggestionsList) return;
+        customerSuggestionsList.innerHTML = '';
+        const allGrouped = getGroupedCustomers(buyers);
+        allGrouped.forEach(g => {
+          const opt = document.createElement('option');
+          opt.value = g.name;
+          opt.label = `${g.phone ? '+91 ' + g.phone + ' • ' : ''}${g.orders.length} order(s) (Total: ${formatRupee(g.totalMoney)})`;
+          customerSuggestionsList.appendChild(opt);
+        });
+      }
+
+      // Auto-fill phone and address when typing existing customer name
+      if (buyerName) {
+        buyerName.addEventListener('input', () => {
+          const typed = buyerName.value.trim().toLowerCase();
+          if (!typed) return;
+          const match = buyers.find(b => (b.name || '').trim().toLowerCase() === typed);
+          if (match) {
+            if (match.phone && (!buyerPhone.value || buyerPhone.value.trim() === '')) {
+              buyerPhone.value = match.phone;
+            }
+            if (match.address && (!buyerAddress.value || buyerAddress.value.trim() === '')) {
+              buyerAddress.value = match.address;
+            }
+          }
+        });
+      }
+
+      // View Switcher Buttons
+      if (btnCustomerSummaryView && btnAllOrdersView) {
+        btnCustomerSummaryView.addEventListener('click', () => {
+          buyerViewMode = 'customer_summary';
+          btnCustomerSummaryView.classList.add('active');
+          btnAllOrdersView.classList.remove('active');
+          if (buyerViewHintText) {
+            buyerViewHintText.textContent = 'Showing consolidated customer list with total money spent across multiple orders. Click any customer to view full order history.';
+          }
+          renderBuyerCustomerTable();
+        });
+
+        btnAllOrdersView.addEventListener('click', () => {
+          buyerViewMode = 'all_orders';
+          btnAllOrdersView.classList.add('active');
+          btnCustomerSummaryView.classList.remove('active');
+          if (buyerViewHintText) {
+            buyerViewHintText.textContent = 'Showing all individual order entries logged in the farm registry.';
+          }
+          renderBuyerCustomerTable();
+        });
+      }
+
+      // Update Buyer Stats & Badges
       function updateBuyerStats() {
-        if (totalBuyerCount) totalBuyerCount.textContent = buyers.length;
+        const allGrouped = getGroupedCustomers(buyers);
+        const uniqueCount = allGrouped.length;
+        const totalOrdersCount = buyers.length;
+        const repeatCount = allGrouped.filter(g => g.orders.length > 1).length;
+
+        if (totalUniqueCustomersCount) totalUniqueCustomersCount.textContent = uniqueCount;
+        if (totalBuyerCount) totalBuyerCount.textContent = totalOrdersCount;
+        if (totalRepeatBuyersCount) totalRepeatBuyersCount.textContent = repeatCount;
+        if (uniqueCustomersBadge) uniqueCustomersBadge.textContent = `${uniqueCount} Customer${uniqueCount === 1 ? '' : 's'}`;
+        if (totalOrdersBadge) totalOrdersBadge.textContent = `${totalOrdersCount} Order${totalOrdersCount === 1 ? '' : 's'}`;
 
         const totalMoney = buyers.reduce((acc, b) => acc + Number(b.money || 0), 0);
         if (totalBuyerRevenue) totalBuyerRevenue.textContent = formatRupee(totalMoney);
@@ -2661,6 +3136,7 @@
         if (totalKgOrdered) totalKgOrdered.textContent = countKg > 0 ? `${countKg.toFixed(1)} kg` : `${buyers.length} orders`;
       }
 
+      // Master Render function for Buyer Customer Table
       function renderBuyerCustomerTable() {
         if (!buyerCustomerTableBody) return;
         buyerCustomerTableBody.innerHTML = '';
@@ -2669,7 +3145,8 @@
         const msgFilter = buyerMsgStatusFilter.value || 'all';
         const payFilter = buyerPaymentFilter ? buyerPaymentFilter.value : 'all';
 
-        const filtered = buyers.filter(b => {
+        // Filter individual orders first
+        const filteredOrders = buyers.filter(b => {
           const matchMsg = msgFilter === 'all' || (msgFilter === 'sent' && b.msgStatus === 'sent') || (msgFilter === 'not_sent' && b.msgStatus !== 'sent');
           const matchPay = payFilter === 'all' || b.paymentStatus === payFilter;
           const matchSearch = !search ||
@@ -2682,7 +3159,32 @@
           return matchMsg && matchPay && matchSearch;
         });
 
-        if (filtered.length === 0) {
+        if (buyerViewMode === 'customer_summary') {
+          renderCustomerSummaryView(filteredOrders);
+        } else {
+          renderAllOrdersView(filteredOrders);
+        }
+      }
+
+      // VIEW 1: Consolidated Customer Summary (Same Customer Money Combined in One List)
+      function renderCustomerSummaryView(filteredOrders) {
+        if (buyerCustomerTableHead) {
+          buyerCustomerTableHead.innerHTML = `
+            <tr>
+              <th style="width: 250px;">Customer Profile & Contact</th>
+              <th style="text-align: center; width: 130px;">Orders Placed</th>
+              <th>Products & Varieties</th>
+              <th style="width: 190px;">Combined Money (₹)</th>
+              <th style="width: 150px;">Overall Status</th>
+              <th style="text-align: center; width: 130px;">WhatsApp</th>
+              <th style="text-align: center; width: 140px;">Actions</th>
+            </tr>
+          `;
+        }
+
+        const grouped = getGroupedCustomers(filteredOrders);
+
+        if (grouped.length === 0) {
           buyerCustomerTableBody.innerHTML = `
             <tr>
               <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
@@ -2694,9 +3196,231 @@
           return;
         }
 
-        filtered.forEach(buyer => {
+        grouped.forEach(cust => {
+          const isRepeat = cust.orders.length > 1;
+          const isDrawerOpen = expandedCustomerDrawers.has(cust.key);
+          const hasUnsent = cust.msgCounts.not_sent > 0;
+
+          // Payment badges summary
+          const payBadges = Object.keys(cust.paymentMap).map(p => {
+            const amt = cust.paymentMap[p];
+            let pClass = 'pay-cash';
+            let pIcon = 'fa-money-bill-wave';
+            if (p.includes('UPI') || p.includes('GPay')) {
+              pClass = 'pay-upi'; pIcon = 'fa-mobile-screen-button';
+            } else if (p.includes('Bank')) {
+              pClass = 'pay-bank'; pIcon = 'fa-building-columns';
+            } else if (p.includes('Delivery') || p.includes('COD')) {
+              pClass = 'pay-cod'; pIcon = 'fa-truck';
+            } else if (p.includes('Pending')) {
+              pClass = 'pay-pending'; pIcon = 'fa-clock';
+            }
+            return `<span class="pay-badge ${pClass}" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;"><i class="fas ${pIcon}"></i> ${p}: ${formatRupee(amt)}</span>`;
+          }).join(' ');
+
+          // Status summary
+          let statusHtml = '';
+          if (cust.stockCounts.delivered === cust.orders.length) {
+            statusHtml = '<span class="avail-badge avail-delivered"><i class="fas fa-truck-ramp-box"></i> All Delivered</span>';
+          } else if (cust.stockCounts.ready > 0) {
+            statusHtml = `<span class="avail-badge avail-ready"><i class="fas fa-circle-check"></i> ${cust.stockCounts.ready} Ready</span>`;
+          } else if (cust.stockCounts.waitlist > 0) {
+            statusHtml = `<span class="avail-badge avail-waitlist"><i class="fas fa-clock"></i> ${cust.stockCounts.waitlist} Waitlist</span>`;
+          }
+
+          // Products summary chips
+          const prodChipsHtml = cust.productsSummary.map(ps => `<span class="product-chip"><i class="fas fa-mushroom"></i> ${ps}</span>`).join('');
+
+          // Main Customer Row
+          const tr = document.createElement('tr');
+          tr.className = 'customer-summary-row';
+          tr.innerHTML = `
+            <td>
+              <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.95rem;">${cust.name}</div>
+              <div>
+                ${isRepeat 
+                  ? `<span class="repeat-buyer-badge"><i class="fas fa-crown"></i> Repeat Buyer (${cust.orders.length} Orders)</span>` 
+                  : `<span class="single-buyer-badge"><i class="fas fa-user-check"></i> 1 Order</span>`}
+              </div>
+              ${cust.phone ? `
+                <div style="font-size: 0.8rem; color: #1e7e34; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; margin-top: 3px;">
+                  <i class="fa-brands fa-whatsapp"></i> +91 ${cust.phone}
+                </div>
+              ` : ''}
+              ${cust.address ? `
+                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+                  <i class="fas fa-location-dot"></i> ${cust.address}
+                </div>
+              ` : ''}
+            </td>
+            <td style="text-align: center;">
+              <button type="button" class="btn-toggle-orders ${isDrawerOpen ? 'active' : ''}" data-key="${cust.key}" title="Click to view full order history">
+                <span>${cust.orders.length} Order${cust.orders.length > 1 ? 's' : ''}</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              ${cust.totalKg > 0 ? `<div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 4px;">${cust.totalKg.toFixed(1)} kg total</div>` : ''}
+            </td>
+            <td>
+              <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+                ${prodChipsHtml}
+              </div>
+            </td>
+            <td>
+              <div class="total-customer-money-badge">
+                <span class="money-amount">${formatRupee(cust.totalMoney)}</span>
+                <span class="money-sub">${cust.orders.length} order${cust.orders.length > 1 ? 's' : ''} combined</span>
+              </div>
+              <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 3px;">
+                ${payBadges}
+              </div>
+            </td>
+            <td>
+              <div>${statusHtml}</div>
+              <div style="margin-top: 4px;">
+                <span class="msg-status-badge ${!hasUnsent ? 'sent' : 'not-sent'}" style="font-size: 0.72rem; padding: 0.2rem 0.55rem;">
+                  <i class="fas ${!hasUnsent ? 'fa-circle-check' : 'fa-clock'}"></i>
+                  <span>${!hasUnsent ? 'All Alerts Sent' : `${cust.msgCounts.not_sent} Alert Pending`}</span>
+                </span>
+              </div>
+            </td>
+            <td style="text-align: center;">
+              <button class="btn-whatsapp-send send-customer-summary-btn" data-key="${cust.key}" title="Send consolidated WhatsApp summary to customer">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1rem;"></i>
+                <span>${isRepeat ? 'Send Summary' : 'Send Alert'}</span>
+              </button>
+            </td>
+            <td style="text-align: center;">
+              <div class="action-btn-group" style="justify-content: center;">
+                <button class="btn-action-icon edit add-order-prefill-btn" data-name="${cust.name}" data-phone="${cust.phone}" data-address="${cust.address}" title="Add Another Order for ${cust.name}">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button class="btn-action-icon view-history-btn ${isDrawerOpen ? 'edit' : ''}" data-key="${cust.key}" title="Toggle Order Breakdown">
+                  <i class="fas ${isDrawerOpen ? 'fa-eye-slash' : 'fa-list'}"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          buyerCustomerTableBody.appendChild(tr);
+
+          // Render Nested Orders Drawer if expanded
+          if (isDrawerOpen) {
+            const drawerTr = document.createElement('tr');
+            drawerTr.className = 'customer-orders-drawer-row';
+
+            let subRows = cust.orders.map((o, idx) => {
+              const isSent = o.msgStatus === 'sent';
+              return `
+                <tr>
+                  <td style="font-weight: 600; color: var(--primary-dark);">
+                    #${idx + 1}
+                    ${o.notes ? `<div style="font-size: 0.74rem; color: var(--text-muted); font-weight: 400;">${o.notes}</div>` : ''}
+                  </td>
+                  <td style="font-weight: 600;">${o.product}</td>
+                  <td><span class="qty-tag">${o.quantity}</span></td>
+                  <td style="font-weight: 700; color: #15803d; font-size: 0.92rem;">${formatRupee(o.money)}</td>
+                  <td><span class="pay-badge">${o.paymentStatus || 'Cash'}</span></td>
+                  <td>
+                    <span class="avail-badge ${o.stockStatus === 'delivered' ? 'avail-delivered' : (o.stockStatus === 'waitlist' ? 'avail-waitlist' : 'avail-ready')}">
+                      ${o.stockStatus === 'delivered' ? 'Delivered' : (o.stockStatus === 'waitlist' ? 'Waitlist' : 'Ready')}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="msg-status-badge ${isSent ? 'sent' : 'not-sent'}" style="font-size: 0.7rem; padding: 0.15rem 0.45rem;">
+                      ${isSent ? 'Sent' : 'Pending'}
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <div class="action-btn-group" style="justify-content: center;">
+                      <button class="btn-action-icon edit edit-buyer-btn" data-id="${o.id}" title="Edit this Order">
+                        <i class="fas fa-pencil"></i>
+                      </button>
+                      <button class="btn-action-icon delete delete-buyer-btn" data-id="${o.id}" title="Delete this Order">
+                        <i class="fas fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              `;
+            }).join('');
+
+            drawerTr.innerHTML = `
+              <td colspan="7">
+                <div class="drawer-inner-card">
+                  <div class="drawer-header">
+                    <div class="drawer-title">
+                      <i class="fas fa-history" style="color: var(--accent-gold);"></i>
+                      <span>Complete Order History for <strong>${cust.name}</strong> (${cust.orders.length} Orders &bull; Total Money: <strong style="color: #15803d;">${formatRupee(cust.totalMoney)}</strong>)</span>
+                    </div>
+                    <button class="btn btn-primary btn-sm add-order-prefill-btn" data-name="${cust.name}" data-phone="${cust.phone}" data-address="${cust.address}">
+                      <i class="fas fa-plus"></i> + Add Order for ${cust.name}
+                    </button>
+                  </div>
+
+                  <table class="nested-orders-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 140px;">Order & Notes</th>
+                        <th>Product Ordered</th>
+                        <th>Quantity</th>
+                        <th>Amount (₹)</th>
+                        <th>Payment</th>
+                        <th>Stock</th>
+                        <th>Alert</th>
+                        <th style="text-align: center; width: 90px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${subRows}
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            `;
+            buyerCustomerTableBody.appendChild(drawerTr);
+          }
+        });
+
+        attachCustomerSummaryEventHandlers();
+      }
+
+      // VIEW 2: Individual Orders Log (Flat list of all orders)
+      function renderAllOrdersView(filteredOrders) {
+        if (buyerCustomerTableHead) {
+          buyerCustomerTableHead.innerHTML = `
+            <tr>
+              <th>Customer Name & Contact</th>
+              <th>Product & Quantity (g/kg)</th>
+              <th>Money / Price (₹)</th>
+              <th>Stock Status</th>
+              <th>WhatsApp Status</th>
+              <th style="text-align: center;">Send WhatsApp</th>
+              <th style="text-align: center;">Actions</th>
+            </tr>
+          `;
+        }
+
+        if (filteredOrders.length === 0) {
+          buyerCustomerTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                <i class="fas fa-users-slash" style="font-size: 2rem; opacity: 0.3; margin-bottom: 0.5rem; display: block;"></i>
+                No individual orders match your search or filter.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        // Count total money & orders per customer for contextual badges
+        const allGroupedMap = new Map();
+        getGroupedCustomers(buyers).forEach(g => allGroupedMap.set(g.key, g));
+
+        filteredOrders.forEach(buyer => {
           const isSent = buyer.msgStatus === 'sent';
-          
+          const groupKey = getCustomerGroupKey(buyer);
+          const groupInfo = allGroupedMap.get(groupKey);
+          const isRepeat = groupInfo && groupInfo.orders.length > 1;
+
           let availClass = 'avail-ready';
           let availText = '<i class="fas fa-circle-check"></i> In Stock / Ready';
           if (buyer.stockStatus === 'waitlist') {
@@ -2707,34 +3431,35 @@
             availText = '<i class="fas fa-truck-ramp-box"></i> Delivered';
           }
 
-          // Payment badge & icon
           const payStatus = buyer.paymentStatus || 'Pending';
           let payClass = 'pay-default';
           let payIcon = 'fa-wallet';
           if (payStatus === 'Cash') {
-            payClass = 'pay-cash';
-            payIcon = 'fa-money-bill-wave';
+            payClass = 'pay-cash'; payIcon = 'fa-money-bill-wave';
           } else if (payStatus.includes('UPI') || payStatus.includes('GPay')) {
-            payClass = 'pay-upi';
-            payIcon = 'fa-mobile-screen-button';
+            payClass = 'pay-upi'; payIcon = 'fa-mobile-screen-button';
           } else if (payStatus.includes('Bank')) {
-            payClass = 'pay-bank';
-            payIcon = 'fa-building-columns';
+            payClass = 'pay-bank'; payIcon = 'fa-building-columns';
           } else if (payStatus.includes('Delivery') || payStatus.includes('COD')) {
-            payClass = 'pay-cod';
-            payIcon = 'fa-truck';
+            payClass = 'pay-cod'; payIcon = 'fa-truck';
           } else if (payStatus.includes('Pending')) {
-            payClass = 'pay-pending';
-            payIcon = 'fa-clock';
+            payClass = 'pay-pending'; payIcon = 'fa-clock';
           }
 
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>
               <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.94rem;">${buyer.name}</div>
-              <div style="font-size: 0.8rem; color: #1e7e34; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; margin-top: 2px;">
-                <i class="fa-brands fa-whatsapp"></i> +91 ${buyer.phone}
-              </div>
+              ${isRepeat ? `
+                <div style="font-size: 0.72rem; color: #92400e; font-weight: 700; margin-top: 1px;">
+                  <i class="fas fa-crown"></i> Total Spent: ${formatRupee(groupInfo.totalMoney)} (${groupInfo.orders.length} orders)
+                </div>
+              ` : ''}
+              ${buyer.phone ? `
+                <div style="font-size: 0.8rem; color: #1e7e34; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; margin-top: 2px;">
+                  <i class="fa-brands fa-whatsapp"></i> +91 ${buyer.phone}
+                </div>
+              ` : ''}
               ${buyer.address ? `<div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;"><i class="fas fa-location-dot"></i> ${buyer.address}</div>` : ''}
             </td>
             <td>
@@ -2782,8 +3507,54 @@
           buyerCustomerTableBody.appendChild(tr);
         });
 
-        // Send WhatsApp Button Click
-        document.querySelectorAll('.btn-whatsapp-send').forEach(btn => {
+        attachIndividualOrdersEventHandlers();
+      }
+
+      // Event handlers for Customer Summary view
+      function attachCustomerSummaryEventHandlers() {
+        // Toggle Customer Drawer
+        document.querySelectorAll('.btn-toggle-orders, .view-history-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const key = e.currentTarget.getAttribute('data-key');
+            if (expandedCustomerDrawers.has(key)) {
+              expandedCustomerDrawers.delete(key);
+            } else {
+              expandedCustomerDrawers.add(key);
+            }
+            renderBuyerCustomerTable();
+          });
+        });
+
+        // Prefill modal with customer info
+        document.querySelectorAll('.add-order-prefill-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const name = e.currentTarget.getAttribute('data-name');
+            const phone = e.currentTarget.getAttribute('data-phone');
+            const address = e.currentTarget.getAttribute('data-address');
+            openAddBuyerModalWithPrefill(name, phone, address);
+          });
+        });
+
+        // Send Consolidated WhatsApp
+        document.querySelectorAll('.send-customer-summary-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const key = e.currentTarget.getAttribute('data-key');
+            const allGrouped = getGroupedCustomers(buyers);
+            const cust = allGrouped.find(g => g.key === key);
+            if (cust) {
+              sendCustomerWhatsAppSummary(cust);
+            }
+          });
+        });
+
+        // Edit / Delete inside nested drawers
+        attachIndividualOrdersEventHandlers();
+      }
+
+      // Event handlers for Individual Orders view
+      function attachIndividualOrdersEventHandlers() {
+        // Single WhatsApp
+        document.querySelectorAll('.btn-whatsapp-send[data-id]').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const id = e.currentTarget.getAttribute('data-id');
             const buyer = buyers.find(x => x.id === id);
@@ -2806,17 +3577,55 @@
           btn.addEventListener('click', (e) => {
             const id = e.currentTarget.getAttribute('data-id');
             const b = buyers.find(x => x.id === id);
-            if (b && confirm(`Are you sure you want to delete customer order for ${b.name} (${b.product} - ${b.quantity})?`)) {
+            if (b && confirm(`Are you sure you want to delete order for ${b.name} (${b.product} - ${b.quantity})?`)) {
               buyers = buyers.filter(x => x.id !== id);
               saveBuyersToStorage(buyers);
               refreshAllBuyerCustomerViews();
-              showToast(`Customer record for ${b.name} deleted.`);
+              showToast(`Order record for ${b.name} deleted.`);
             }
           });
         });
       }
 
-      // WhatsApp Message Generation & Sender
+      // Send Consolidated WhatsApp to Customer (Multiple Orders combined)
+      function sendCustomerWhatsAppSummary(cust) {
+        let cleanPhone = (cust.phone || '').replace(/[^0-9]/g, '');
+        if (cleanPhone.length === 10) {
+          cleanPhone = '91' + cleanPhone;
+        }
+
+        let ordersBreakdown = cust.orders.map((o, i) => {
+          return `${i + 1}. *${o.product}* (${o.quantity}) - ${formatRupee(o.money)} [${o.stockStatus === 'delivered' ? 'Delivered' : 'Ready'}]`;
+        }).join('\n');
+
+        const msgText = `🌱 *EARTHROOT MUSHROOMS - CUSTOMER ORDER & ACCOUNT SUMMARY* 🌱\n\n` +
+          `Hello *${cust.name}*! 👋\n\n` +
+          `Here is your consolidated harvest order summary from our organic farm:\n\n` +
+          `📋 *Your Orders (${cust.orders.length}):*\n` +
+          `${ordersBreakdown}\n\n` +
+          `💰 *Total Combined Amount:* *${formatRupee(cust.totalMoney)}*\n` +
+          `${cust.address ? `📍 *Delivery Address:* ${cust.address}\n` : ''}` +
+          `\n✅ 100% Naturally cultivated, chemical-free fresh harvest.\n\n` +
+          `Thank you for being our valued customer at *Earthroot Mushrooms*! 🍄✨\n` +
+          `📞 Phone: +91 90486 22044 | 🌐 earthrootmushrooms.com`;
+
+        const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgText)}`;
+        window.open(waUrl, '_blank');
+
+        // Mark all orders as sent
+        const nowStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        cust.orders.forEach(o => {
+          o.msgStatus = 'sent';
+          o.msgSentAt = nowStr;
+        });
+
+        saveBuyersToStorage(buyers);
+        renderBuyerCustomerTable();
+        updateBuyerStats();
+        showToast(`Consolidated WhatsApp summary opened for ${cust.name}!`);
+      }
+
+      // Single Order WhatsApp Alert
       function sendWhatsAppStockAlert(buyer) {
         let cleanPhone = (buyer.phone || '').replace(/[^0-9]/g, '');
         if (cleanPhone.length === 10) {
@@ -2836,7 +3645,6 @@
           `📞 Phone: +91 90486 22044 | 🌐 earthrootmushrooms.com`;
 
         const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgText)}`;
-
         window.open(waUrl, '_blank');
 
         buyer.msgStatus = 'sent';
@@ -2855,16 +3663,33 @@
       buyerMsgStatusFilter.addEventListener('change', renderBuyerCustomerTable);
       if (buyerPaymentFilter) buyerPaymentFilter.addEventListener('change', renderBuyerCustomerTable);
 
-      // Open Add Buyer Modal
+      // Open Add Buyer Modal (Clean)
       openAddBuyerBtn.addEventListener('click', () => {
         buyerEditId.value = '';
         buyerForm.reset();
-        buyerModalTitle.innerHTML = '<i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add New Buyer Customer';
+        buyerModalTitle.innerHTML = '<i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add New Customer Order';
         buyerStockStatus.value = 'ready';
         buyerMsgStatus.value = 'not_sent';
         buyerPaymentStatus.value = 'Cash';
+        populateCustomerSuggestions();
         buyerModal.classList.add('active');
       });
+
+      // Open Add Buyer Modal pre-filled for an existing customer
+      function openAddBuyerModalWithPrefill(name, phone, address) {
+        buyerEditId.value = '';
+        buyerForm.reset();
+        buyerName.value = name || '';
+        buyerPhone.value = phone || '';
+        buyerAddress.value = address || '';
+        buyerStockStatus.value = 'ready';
+        buyerMsgStatus.value = 'not_sent';
+        buyerPaymentStatus.value = 'Cash';
+        buyerModalTitle.innerHTML = `<i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add Another Order for <strong>${name}</strong>`;
+        populateCustomerSuggestions();
+        buyerModal.classList.add('active');
+        if (buyerQuantity) buyerQuantity.focus();
+      }
 
       function openEditBuyerModal(id) {
         const b = buyers.find(x => x.id === id);
@@ -2883,6 +3708,7 @@
         buyerNotes.value = b.notes || '';
 
         buyerModalTitle.innerHTML = '<i class="fas fa-user-pen" style="color: var(--accent-gold);"></i> Edit Customer Order';
+        populateCustomerSuggestions();
         buyerModal.classList.add('active');
       }
 
@@ -2921,11 +3747,11 @@
           const idx = buyers.findIndex(x => x.id === id);
           if (idx !== -1) {
             buyers[idx] = record;
-            showToast(`Updated customer order for ${record.name}!`);
+            showToast(`Updated order for ${record.name}!`);
           }
         } else {
           buyers.unshift(record);
-          showToast(`Added new buyer order for ${record.name}!`);
+          showToast(`Added order for ${record.name} (Total will combine automatically)!`);
         }
 
         saveBuyersToStorage(buyers);
@@ -2933,44 +3759,74 @@
         refreshAllBuyerCustomerViews();
       });
 
-      // Export Buyers to CSV
+      // Export Buyers to CSV (Adapts to View Mode)
       exportBuyersCsvBtn.addEventListener('click', () => {
         if (buyers.length === 0) {
           alert('No buyer data available to export.');
           return;
         }
 
-        const headers = ['Customer Name', 'Phone (WhatsApp)', 'Product Ordered', 'Weight / Quantity', 'Money (INR)', 'Payment Status', 'Stock Status', 'WhatsApp Msg Status', 'Msg Sent At', 'Delivery Address', 'Notes'];
-        const csvRows = [headers.join(',')];
+        if (buyerViewMode === 'customer_summary') {
+          // Export Grouped Customer Summary
+          const grouped = getGroupedCustomers(buyers);
+          const headers = ['Customer Name', 'WhatsApp Phone', 'Total Orders Count', 'Total Money Spent (INR)', 'Products Ordered', 'Delivery Address'];
+          const csvRows = [headers.join(',')];
 
-        buyers.forEach(b => {
-          const row = [
-            `"${(b.name || '').replace(/"/g, '""')}"`,
-            `"${b.phone || ''}"`,
-            `"${(b.product || '').replace(/"/g, '""')}"`,
-            `"${(b.quantity || '').replace(/"/g, '""')}"`,
-            b.money,
-            `"${b.paymentStatus || ''}"`,
-            `"${b.stockStatus || ''}"`,
-            `"${b.msgStatus === 'sent' ? 'Message Sent' : 'No Message Sent'}"`,
-            `"${b.msgSentAt || ''}"`,
-            `"${(b.address || '').replace(/"/g, '""')}"`,
-            `"${(b.notes || '').replace(/"/g, '""')}"`
-          ];
-          csvRows.push(row.join(','));
-        });
+          grouped.forEach(g => {
+            const row = [
+              `"${(g.name || '').replace(/"/g, '""')}"`,
+              `"${g.phone || ''}"`,
+              g.orders.length,
+              g.totalMoney,
+              `"${g.productsSummary.join('; ').replace(/"/g, '""')}"`,
+              `"${(g.address || '').replace(/"/g, '""')}"`
+            ];
+            csvRows.push(row.join(','));
+          });
 
-        const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
-        const link = document.createElement('a');
-        link.setAttribute('href', csvContent);
-        link.setAttribute('download', `Earthroot_Buyer_Customers_${new Date().toISOString().split('T')[0]}.csv`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        showToast('Exported Buyer Customers list to CSV!');
+          const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+          const link = document.createElement('a');
+          link.setAttribute('href', csvContent);
+          link.setAttribute('download', `Earthroot_Customer_Summary_${new Date().toISOString().split('T')[0]}.csv`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          showToast('Exported Consolidated Customer Summary to CSV!');
+        } else {
+          // Export Individual Orders Log
+          const headers = ['Order ID', 'Customer Name', 'Phone', 'Product', 'Quantity', 'Money (INR)', 'Payment Status', 'Stock Status', 'Msg Status', 'Date / Note', 'Address'];
+          const csvRows = [headers.join(',')];
+
+          buyers.forEach(b => {
+            const row = [
+              `"${b.id}"`,
+              `"${(b.name || '').replace(/"/g, '""')}"`,
+              `"${b.phone || ''}"`,
+              `"${(b.product || '').replace(/"/g, '""')}"`,
+              `"${(b.quantity || '').replace(/"/g, '""')}"`,
+              b.money,
+              `"${b.paymentStatus || ''}"`,
+              `"${b.stockStatus || ''}"`,
+              `"${b.msgStatus || ''}"`,
+              `"${(b.notes || '').replace(/"/g, '""')}"`,
+              `"${(b.address || '').replace(/"/g, '""')}"`
+            ];
+            csvRows.push(row.join(','));
+          });
+
+          const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+          const link = document.createElement('a');
+          link.setAttribute('href', csvContent);
+          link.setAttribute('download', `Earthroot_Individual_Orders_${new Date().toISOString().split('T')[0]}.csv`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          showToast('Exported Individual Orders to CSV!');
+        }
       });
 
       function refreshAllBuyerCustomerViews() {
+        populateCustomerSuggestions();
         renderBuyerCustomerTable();
         updateBuyerStats();
       }
