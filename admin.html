@@ -1900,10 +1900,17 @@
 
           <div class="form-row">
             <div class="form-group">
+              <label for="buyerDate"><i class="fas fa-calendar-day" style="color: var(--accent-gold);"></i> Sell / Order Date *</label>
+              <input type="date" id="buyerDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
               <label for="buyerMoney">Money / Price (₹) *</label>
               <input type="number" id="buyerMoney" class="form-control" placeholder="e.g. 450" min="0" step="any" required>
             </div>
+          </div>
 
+          <div class="form-row">
             <div class="form-group">
               <label for="buyerPaymentStatus">Payment Mode / Status *</label>
               <select id="buyerPaymentStatus" class="form-control" required>
@@ -1914,9 +1921,7 @@
                 <option value="Pending">⏳ Payment Pending</option>
               </select>
             </div>
-          </div>
 
-          <div class="form-row">
             <div class="form-group">
               <label for="buyerStockStatus">Product Availability Status *</label>
               <select id="buyerStockStatus" class="form-control" required>
@@ -1925,7 +1930,9 @@
                 <option value="delivered">✅ Delivered / Completed</option>
               </select>
             </div>
+          </div>
 
+          <div class="form-row">
             <div class="form-group">
               <label for="buyerMsgStatus">WhatsApp Alert Status *</label>
               <select id="buyerMsgStatus" class="form-control" required>
@@ -1933,11 +1940,11 @@
                 <option value="sent">✓ Message Sent</option>
               </select>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="buyerAddress">Delivery Address / Location (Optional)</label>
-            <input type="text" id="buyerAddress" class="form-control" placeholder="e.g. Hill View Villa, Kakkanad, Kochi">
+            <div class="form-group">
+              <label for="buyerAddress">Delivery Address / Location (Optional)</label>
+              <input type="text" id="buyerAddress" class="form-control" placeholder="e.g. Hill View Villa, Kakkanad, Kochi">
+            </div>
           </div>
 
           <div class="form-group" style="margin-bottom: 0;">
@@ -2120,6 +2127,7 @@
           id: 'cust_1',
           name: 'Ammachi',
           phone: '9048622044',
+          date: '2026-08-14',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2134,6 +2142,7 @@
           id: 'cust_1_repeat',
           name: 'Ammachi',
           phone: '9048622044',
+          date: '2026-08-29',
           product: 'Kerala Milky Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2148,6 +2157,7 @@
           id: 'cust_2',
           name: 'Shanitha',
           phone: '9847123450',
+          date: '2026-08-24',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '200g (1 pack)',
           money: 75,
@@ -2162,6 +2172,7 @@
           id: 'cust_2_repeat',
           name: 'Shanitha',
           phone: '9847123450',
+          date: '2026-08-28',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2176,6 +2187,7 @@
           id: 'cust_3',
           name: 'Chandha',
           phone: '9745889911',
+          date: '2026-08-24',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '200g (1 pack)',
           money: 75,
@@ -2190,6 +2202,7 @@
           id: 'cust_3_repeat',
           name: 'Chandha',
           phone: '9745889911',
+          date: '2026-08-30',
           product: 'Fresh White Button Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2204,6 +2217,7 @@
           id: 'cust_4',
           name: 'Sulaikha',
           phone: '9495112233',
+          date: '2026-08-26',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2218,6 +2232,7 @@
           id: 'cust_4_repeat',
           name: 'Sulaikha',
           phone: '9495112233',
+          date: '2026-08-31',
           product: 'Kerala Milky Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2232,6 +2247,7 @@
           id: 'cust_5',
           name: 'Raseena',
           phone: '9633221100',
+          date: '2026-08-26',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2246,6 +2262,7 @@
           id: 'cust_5_repeat',
           name: 'Raseena',
           phone: '9633221100',
+          date: '2026-08-29',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2260,6 +2277,7 @@
           id: 'cust_6',
           name: 'Kunjumon',
           phone: '9846334455',
+          date: '2026-08-27',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2274,6 +2292,7 @@
           id: 'cust_7',
           name: 'Suneena',
           phone: '9744556677',
+          date: '2026-08-27',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2288,6 +2307,7 @@
           id: 'cust_8',
           name: 'Shajitha',
           phone: '9567881122',
+          date: '2026-08-28',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2302,6 +2322,7 @@
           id: 'cust_9',
           name: 'Kamla',
           phone: '9400223344',
+          date: '2026-08-28',
           product: 'Pearl & Grey Oyster Mushrooms',
           quantity: '250g (1 pack)',
           money: 100,
@@ -2311,6 +2332,21 @@
           msgSentAt: null,
           address: 'Local Delivery',
           notes: 'Order dated 28/08/2026'
+        },
+        {
+          id: 'cust_ranjendhran',
+          name: 'ranjendhran doctor',
+          phone: '1234567890',
+          date: '2026-08-30',
+          product: 'Pearl & Grey Oyster Mushrooms',
+          quantity: '1.2 kg (1200g)',
+          money: 500,
+          paymentStatus: 'Cash',
+          stockStatus: 'ready',
+          msgStatus: 'not_sent',
+          msgSentAt: null,
+          address: 'Doctor Clinic / Home Delivery',
+          notes: 'Single order for fresh oyster mushrooms'
         }
       ];
 
@@ -2575,17 +2611,112 @@
         return initialProducts;
       }
 
-      const BUYERS_STORAGE_VERSION = 'v5_ledger_repeat_orders_synced';
+      const BUYERS_STORAGE_VERSION = 'v7_ranjendhran_single_order_and_server_date';
+
+      function getLocalISTDate() {
+        try {
+          const now = new Date();
+          const d = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(now);
+          if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+        } catch (e) {}
+        return new Date().toISOString().split('T')[0];
+      }
+      let currentServerDate = getLocalISTDate();
+
+      // Proactively fetch latest server date
+      function fetchServerDate() {
+        if (typeof window !== 'undefined' && window.location.protocol.startsWith('http')) {
+          fetch('/api/server-date')
+            .then(res => res.ok ? res.json() : null)
+            .then(data => {
+              if (data && data.serverDate) {
+                currentServerDate = data.serverDate;
+                const buyerDateInput = document.getElementById('buyerDate');
+                const buyerEditIdInput = document.getElementById('buyerEditId');
+                if (buyerDateInput && (!buyerDateInput.value || (buyerEditIdInput && !buyerEditIdInput.value))) {
+                  buyerDateInput.value = currentServerDate;
+                }
+              }
+            })
+            .catch(() => {});
+        }
+      }
+
+      // Sync server date and orders ledger with Node backend (if running)
+      function syncServerData() {
+        fetchServerDate();
+        if (typeof window !== 'undefined' && window.location.protocol.startsWith('http')) {
+          // Fetch server buyers ledger (if server has saved orders file)
+          fetch('/api/buyers')
+            .then(res => res.ok ? res.json() : null)
+            .then(serverBuyers => {
+              if (Array.isArray(serverBuyers) && serverBuyers.length > 0) {
+                buyers = serverBuyers;
+                saveBuyersToStorage(buyers);
+                refreshAllBuyerCustomerViews();
+              }
+            })
+            .catch(() => {});
+        }
+      }
 
       function loadBuyers() {
         try {
           const savedVersion = localStorage.getItem('earthroot_buyers_version');
           const saved = localStorage.getItem('earthroot_buyer_customers');
-          if (saved && savedVersion === BUYERS_STORAGE_VERSION) {
+          if (saved) {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed) && parsed.length > 0) {
               const isOldMock = parsed.some(b => b && typeof b.id === 'string' && (b.id === 'buyer_1' || b.name === 'Dr. Ananya Sharma'));
               if (!isOldMock) {
+                // Ensure all existing orders have a valid date
+                parsed.forEach(b => {
+                  if (!b.date) {
+                    const match = (b.notes || '').match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+                    if (match) {
+                      b.date = `${match[3]}-${match[2].padStart(2, '0')}-${match[1].padStart(2, '0')}`;
+                    } else {
+                      b.date = currentServerDate || getLocalISTDate();
+                    }
+                  }
+                });
+
+                // Dedup / Fix: ranjendhran doctor has ONLY ONE order
+                const ranjenMatches = parsed.filter(b => b && b.name && /ranjendhran/i.test(b.name));
+                if (ranjenMatches.length > 1) {
+                  // Keep only one primary order, remove extra duplicates
+                  const primary = ranjenMatches.find(b => Number(b.money) === 500) || ranjenMatches[0];
+                  primary.name = 'ranjendhran doctor';
+                  primary.money = 500;
+                  if (!primary.quantity || primary.quantity === '300' || primary.quantity === '900') {
+                    primary.quantity = '1.2 kg (1200g)';
+                  }
+                  if (!primary.product) primary.product = 'Pearl & Grey Oyster Mushrooms';
+                  if (!primary.paymentStatus) primary.paymentStatus = 'Cash';
+                  if (!primary.stockStatus) primary.stockStatus = 'ready';
+                  if (!primary.date) primary.date = currentServerDate || getLocalISTDate();
+
+                  // Remove all other duplicate entries for ranjendhran
+                  const filtered = parsed.filter(b => !(b && b.name && /ranjendhran/i.test(b.name) && b.id !== primary.id));
+                  parsed.length = 0;
+                  parsed.push(...filtered);
+                  saveBuyersToStorage(parsed);
+                } else if (ranjenMatches.length === 1) {
+                  const o = ranjenMatches[0];
+                  if (!o.money || Number(o.money) === 0) o.money = 500;
+                  if (o.quantity === '300' || o.quantity === '900') o.quantity = '1.2 kg (1200g)';
+                } else {
+                  // If ranjendhran doctor is not yet in parsed, ensure he is added from initialBuyers
+                  const initRanjen = initialBuyers.find(b => /ranjendhran/i.test(b.name));
+                  if (initRanjen) {
+                    parsed.push(Object.assign({}, initRanjen));
+                  }
+                }
+
+                if (savedVersion !== BUYERS_STORAGE_VERSION) {
+                  localStorage.setItem('earthroot_buyers_version', BUYERS_STORAGE_VERSION);
+                  saveBuyersToStorage(parsed);
+                }
                 return parsed;
               }
             }
@@ -2600,6 +2731,14 @@
 
       function saveBuyersToStorage(data) {
         localStorage.setItem('earthroot_buyer_customers', JSON.stringify(data));
+        // Also persist to Node server file if available
+        if (typeof window !== 'undefined' && window.location.protocol.startsWith('http')) {
+          fetch('/api/buyers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          }).catch(() => {});
+        }
       }
 
       function loadExpenses() {
@@ -2703,6 +2842,7 @@
       const buyerEditId = document.getElementById('buyerEditId');
       const buyerName = document.getElementById('buyerName');
       const buyerPhone = document.getElementById('buyerPhone');
+      const buyerDate = document.getElementById('buyerDate');
       const buyerProduct = document.getElementById('buyerProduct');
       const buyerQuantity = document.getElementById('buyerQuantity');
       const buyerMoney = document.getElementById('buyerMoney');
@@ -2765,6 +2905,7 @@
           authSection.style.display = 'none';
           dashboardSection.style.display = 'block';
           logoutBtn.style.display = 'inline-flex';
+          syncServerData();
           renderStockGrid();
           updateStockStats();
           refreshAllBuyerCustomerViews();
@@ -2994,7 +3135,54 @@
         return '₹' + Number(num || 0).toLocaleString('en-IN');
       }
 
-      // Robust Group Orders by Customer (Matches by Normalized Name OR 10-Digit Phone)
+      function formatDisplayDate(dateStr) {
+        if (!dateStr) return 'N/A';
+        if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+          const parts = dateStr.split('-');
+          const year = parseInt(parts[0], 10);
+          const month = parseInt(parts[1], 10) - 1;
+          const day = parseInt(parts[2], 10);
+          const d = new Date(year, month, day);
+          return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+        return dateStr;
+      }
+
+      // Check for placeholder, dummy, or invalid phones (should NEVER group across customers)
+      function isDummyOrInvalidPhone(phone) {
+        if (!phone) return true;
+        const clean = String(phone).replace(/[^0-9]/g, '');
+        if (clean.length < 10) return true;
+        const last10 = clean.slice(-10);
+        const dummyList = [
+          '1234567890', '0123456789', '9876543210', '0000000000',
+          '1111111111', '2222222222', '3333333333', '4444444444',
+          '5555555555', '6666666666', '7777777777', '8888888888', '9999999999',
+          '1234512345', '9876598765', '1234567891'
+        ];
+        if (dummyList.includes(last10)) return true;
+        if (/^(\d)\1{9}$/.test(last10)) return true;
+        return false;
+      }
+
+      // Check if two customer names are compatible (matching or title variation like Dr / Doctor)
+      function areCustomerNamesCompatible(nameA, nameB) {
+        const a = (nameA || '').trim().toLowerCase();
+        const b = (nameB || '').trim().toLowerCase();
+        if (!a || !b) return true; // one is empty
+        if (a === b) return true;
+        const stripTitles = s => s.replace(/^(dr|doctor|mr|mrs|ms|prof)\.?\s+/i, '')
+                                  .replace(/\s+(dr|doctor)$/i, '')
+                                  .trim();
+        const cleanA = stripTitles(a);
+        const cleanB = stripTitles(b);
+        if (cleanA && cleanB && (cleanA === cleanB || cleanA.includes(cleanB) || cleanB.includes(cleanA))) {
+          return true;
+        }
+        return false;
+      }
+
+      // Robust Group Orders by Customer (Never combines different customers on placeholder phones)
       function getGroupedCustomers(ordersList) {
         const groups = [];
 
@@ -3003,23 +3191,29 @@
           const normName = rawName.toLowerCase();
           const cleanPhone = (order.phone || '').replace(/[^0-9]/g, '');
           const tenDigitPhone = cleanPhone.length >= 10 ? cleanPhone.slice(-10) : '';
+          const hasGenuinePhone = !isDummyOrInvalidPhone(tenDigitPhone);
 
-          // Match by normalized name OR 10-digit phone number
+          // Match customer group:
+          // 1. Normalized name matches (or compatible title variation like Dr / Doctor)
+          // 2. OR phone matches, ONLY IF phone is genuine AND names are compatible (never merge different names!)
           let matchedGroup = groups.find(g => {
-            const matchName = normName && g.names.has(normName);
-            const matchPhone = tenDigitPhone && g.phones.has(tenDigitPhone);
-            return matchName || matchPhone;
+            const nameMatch = normName && Array.from(g.names).some(gn => areCustomerNamesCompatible(normName, gn));
+            const phoneMatch = hasGenuinePhone && g.phones.has(tenDigitPhone) && (
+              !normName || Array.from(g.names).some(gn => areCustomerNamesCompatible(normName, gn))
+            );
+            return nameMatch || phoneMatch;
           });
 
           if (!matchedGroup) {
-            const safeKey = normName.replace(/[^a-z0-9]/g, '_') || tenDigitPhone || 'cust_' + Math.random().toString(36).substr(2, 6);
+            const safeKey = normName.replace(/[^a-z0-9]/g, '_') || (hasGenuinePhone ? tenDigitPhone : '') || 'cust_' + Math.random().toString(36).substr(2, 6);
             matchedGroup = {
-              key: 'grp_' + safeKey,
+              key: 'grp_' + safeKey + '_' + (groups.length + 1),
               name: rawName || 'Anonymous Customer',
               phone: order.phone || '',
               address: order.address || '',
               names: new Set(),
               phones: new Set(),
+              dates: [],
               orders: [],
               totalMoney: 0,
               totalKg: 0,
@@ -3032,24 +3226,35 @@
           }
 
           if (normName) matchedGroup.names.add(normName);
-          if (tenDigitPhone) matchedGroup.phones.add(tenDigitPhone);
+          if (hasGenuinePhone) matchedGroup.phones.add(tenDigitPhone);
           if (!matchedGroup.phone && order.phone) matchedGroup.phone = order.phone;
           if (!matchedGroup.address && order.address) matchedGroup.address = order.address;
           if (rawName && (!matchedGroup.name || matchedGroup.name.length < rawName.length)) {
             matchedGroup.name = rawName;
           }
+          if (order.date) {
+            matchedGroup.dates.push(order.date);
+            matchedGroup.dates.sort();
+          }
 
           matchedGroup.orders.push(order);
           matchedGroup.totalMoney += Number(order.money || 0);
 
-          // Quantity parsing
-          const q = (order.quantity || '').toLowerCase();
+          // Quantity parsing (Handles grams, kg, or raw numbers like 300 or 900)
+          const q = (order.quantity || '').toLowerCase().trim();
           if (q.includes('kg')) {
             const match = q.match(/([0-9.]+)\s*kg/);
             if (match) matchedGroup.totalKg += parseFloat(match[1]) || 0;
           } else if (q.includes('g') || q.includes('gm') || q.includes('gram')) {
             const match = q.match(/([0-9.]+)\s*(?:g|gm|gram)/);
             if (match) matchedGroup.totalKg += (parseFloat(match[1]) || 0) / 1000;
+          } else if (/^[0-9.]+$/.test(q)) {
+            const num = parseFloat(q);
+            if (num >= 50) {
+              matchedGroup.totalKg += num / 1000;
+            } else if (num > 0) {
+              matchedGroup.totalKg += num;
+            }
           }
 
           // Payment modes sum
@@ -3274,6 +3479,12 @@
                   ? `<span class="repeat-buyer-badge"><i class="fas fa-crown"></i> Repeat Buyer (${cust.orders.length} Orders)</span>` 
                   : `<span class="single-buyer-badge"><i class="fas fa-user-check"></i> 1 Order</span>`}
               </div>
+              ${cust.dates && cust.dates.length > 0 ? `
+                <div style="font-size: 0.76rem; color: #4b5563; margin-top: 3px; display: flex; align-items: center; gap: 0.35rem; font-weight: 500;">
+                  <i class="fas fa-calendar-day" style="color: var(--accent-gold);"></i>
+                  <span>Sell Date: <strong>${formatDisplayDate(cust.dates[cust.dates.length - 1])}</strong>${cust.dates.length > 1 ? ` <span style="color:var(--text-muted); font-size:0.7rem;">(${cust.dates.length} dates)</span>` : ''}</span>
+                </div>
+              ` : ''}
               ${cust.phone ? `
                 <div style="font-size: 0.8rem; color: #1e7e34; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; margin-top: 3px;">
                   <i class="fa-brands fa-whatsapp"></i> +91 ${cust.phone}
@@ -3300,7 +3511,7 @@
             <td>
               <div class="total-customer-money-badge">
                 <span class="money-amount">${formatRupee(cust.totalMoney)}</span>
-                <span class="money-sub">${cust.orders.length} order${cust.orders.length > 1 ? 's' : ''} combined</span>
+                <span class="money-sub">${cust.orders.length > 1 ? `${cust.orders.length} orders combined` : 'Single order'}</span>
               </div>
               <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 3px;">
                 ${payBadges}
@@ -3323,12 +3534,20 @@
             </td>
             <td style="text-align: center;">
               <div class="action-btn-group" style="justify-content: center;">
-                <button class="btn-action-icon edit add-order-prefill-btn" data-name="${cust.name}" data-phone="${cust.phone}" data-address="${cust.address}" title="Add Another Order for ${cust.name}">
-                  <i class="fas fa-plus"></i>
+                <button class="btn-action-icon edit edit-buyer-btn" data-id="${cust.orders[0].id}" title="Edit Order Details">
+                  <i class="fas fa-pencil"></i>
                 </button>
-                <button class="btn-action-icon view-history-btn ${isDrawerOpen ? 'edit' : ''}" data-key="${cust.key}" title="Toggle Order Breakdown">
+                <button class="btn-action-icon view-history-btn ${isDrawerOpen ? 'edit' : ''}" data-key="${cust.key}" title="View Order History (${cust.orders.length})">
                   <i class="fas ${isDrawerOpen ? 'fa-eye-slash' : 'fa-list'}"></i>
                 </button>
+                <button class="btn-action-icon add-order-prefill-btn" data-name="${cust.name}" data-phone="${cust.phone}" data-address="${cust.address}" title="Add New / Repeat Order for ${cust.name}">
+                  <i class="fas fa-plus"></i>
+                </button>
+                ${cust.orders.length === 1 ? `
+                <button class="btn-action-icon delete delete-buyer-btn" data-id="${cust.orders[0].id}" title="Delete Order">
+                  <i class="fas fa-trash-can"></i>
+                </button>
+                ` : ''}
               </div>
             </td>
           `;
@@ -3346,6 +3565,12 @@
                   <td style="font-weight: 600; color: var(--primary-dark);">
                     #${idx + 1}
                     ${o.notes ? `<div style="font-size: 0.74rem; color: var(--text-muted); font-weight: 400;">${o.notes}</div>` : ''}
+                  </td>
+                  <td>
+                    <div style="font-size: 0.8rem; font-weight: 600; color: #1e3a8a; display: flex; align-items: center; gap: 4px;">
+                      <i class="fas fa-calendar-day" style="color: var(--accent-gold);"></i>
+                      <span>${formatDisplayDate(o.date)}</span>
+                    </div>
                   </td>
                   <td style="font-weight: 600;">${o.product}</td>
                   <td><span class="qty-tag">${o.quantity}</span></td>
@@ -3391,7 +3616,8 @@
                   <table class="nested-orders-table">
                     <thead>
                       <tr>
-                        <th style="width: 140px;">Order & Notes</th>
+                        <th style="width: 130px;">Order # & Notes</th>
+                        <th style="width: 125px;">Sell Date</th>
                         <th>Product Ordered</th>
                         <th>Quantity</th>
                         <th>Amount (₹)</th>
@@ -3420,13 +3646,14 @@
         if (buyerCustomerTableHead) {
           buyerCustomerTableHead.innerHTML = `
             <tr>
-              <th>Customer Name & Contact</th>
+              <th style="width: 220px;">Customer Name & Contact</th>
+              <th style="width: 120px;">Sell Date</th>
               <th>Product & Quantity (g/kg)</th>
-              <th>Money / Price (₹)</th>
-              <th>Stock Status</th>
-              <th>WhatsApp Status</th>
-              <th style="text-align: center;">Send WhatsApp</th>
-              <th style="text-align: center;">Actions</th>
+              <th style="width: 160px;">Money / Price (₹)</th>
+              <th style="width: 130px;">Stock Status</th>
+              <th style="width: 140px;">WhatsApp Status</th>
+              <th style="text-align: center; width: 120px;">Send WhatsApp</th>
+              <th style="text-align: center; width: 100px;">Actions</th>
             </tr>
           `;
         }
@@ -3434,7 +3661,7 @@
         if (filteredOrders.length === 0) {
           buyerCustomerTableBody.innerHTML = `
             <tr>
-              <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+              <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
                 <i class="fas fa-users-slash" style="font-size: 2rem; opacity: 0.3; margin-bottom: 0.5rem; display: block;"></i>
                 No individual orders match your search or filter.
               </td>
@@ -3444,13 +3671,15 @@
         }
 
         // Count total money & orders per customer for contextual badges
-        const allGroupedMap = new Map();
-        getGroupedCustomers(buyers).forEach(g => allGroupedMap.set(g.key, g));
+        const allGrouped = getGroupedCustomers(buyers);
+        const buyerGroupMap = new Map();
+        allGrouped.forEach(g => {
+          g.orders.forEach(o => buyerGroupMap.set(o.id, g));
+        });
 
         filteredOrders.forEach(buyer => {
           const isSent = buyer.msgStatus === 'sent';
-          const groupKey = getCustomerGroupKey(buyer);
-          const groupInfo = allGroupedMap.get(groupKey);
+          const groupInfo = buyerGroupMap.get(buyer.id);
           const isRepeat = groupInfo && groupInfo.orders.length > 1;
 
           let availClass = 'avail-ready';
@@ -3493,6 +3722,12 @@
                 </div>
               ` : ''}
               ${buyer.address ? `<div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;"><i class="fas fa-location-dot"></i> ${buyer.address}</div>` : ''}
+            </td>
+            <td>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #1e3a8a; display: flex; align-items: center; gap: 4px;">
+                <i class="fas fa-calendar-day" style="color: var(--accent-gold);"></i>
+                <span>${formatDisplayDate(buyer.date)}</span>
+              </div>
             </td>
             <td>
               <div style="font-weight: 600; color: var(--primary-dark);">${buyer.product}</div>
@@ -3627,7 +3862,7 @@
         }
 
         let ordersBreakdown = cust.orders.map((o, i) => {
-          return `${i + 1}. *${o.product}* (${o.quantity}) - ${formatRupee(o.money)} [${o.stockStatus === 'delivered' ? 'Delivered' : 'Ready'}]`;
+          return `${i + 1}. *${o.product}* (${o.quantity}) - ${formatRupee(o.money)} [${o.stockStatus === 'delivered' ? 'Delivered' : 'Ready'}]${o.date ? ` (Date: ${formatDisplayDate(o.date)})` : ''}`;
         }).join('\n');
 
         const msgText = `🌱 *EARTHROOT MUSHROOMS - CUSTOMER ORDER & ACCOUNT SUMMARY* 🌱\n\n` +
@@ -3670,6 +3905,7 @@
           `📦 *Product:* ${buyer.product}\n` +
           `⚖️ *Quantity / Weight:* ${buyer.quantity}\n` +
           `💰 *Total Amount:* ${formatRupee(buyer.money)} (Payment: ${buyer.paymentStatus || 'Pending'})\n` +
+          `${buyer.date ? `📅 *Sell Date:* ${formatDisplayDate(buyer.date)}\n` : ''}` +
           `${buyer.address ? `📍 *Delivery Address:* ${buyer.address}\n` : ''}` +
           `\n✅ Freshly harvested, 100% organic, chemical-free.\n\n` +
           `Please reply to this message to confirm your delivery time or pickup slot!\n\n` +
@@ -3700,6 +3936,8 @@
         buyerEditId.value = '';
         buyerForm.reset();
         buyerModalTitle.innerHTML = '<i class="fas fa-user-plus" style="color: var(--accent-gold);"></i> Add New Customer Order';
+        if (buyerDate) buyerDate.value = currentServerDate || getLocalISTDate();
+        fetchServerDate();
         buyerStockStatus.value = 'ready';
         buyerMsgStatus.value = 'not_sent';
         buyerPaymentStatus.value = 'Cash';
@@ -3713,6 +3951,8 @@
         buyerForm.reset();
         buyerName.value = name || '';
         buyerPhone.value = phone || '';
+        if (buyerDate) buyerDate.value = currentServerDate || getLocalISTDate();
+        fetchServerDate();
         buyerAddress.value = address || '';
         buyerStockStatus.value = 'ready';
         buyerMsgStatus.value = 'not_sent';
@@ -3730,6 +3970,7 @@
         buyerEditId.value = b.id;
         buyerName.value = b.name || '';
         buyerPhone.value = b.phone || '';
+        if (buyerDate) buyerDate.value = b.date || currentServerDate || getLocalISTDate();
         buyerProduct.value = b.product || 'Pearl & Grey Oyster Mushrooms';
         buyerQuantity.value = b.quantity || '';
         buyerMoney.value = b.money || '';
@@ -3759,11 +4000,13 @@
         e.preventDefault();
         const id = buyerEditId.value;
         const cleanPhone = buyerPhone.value.replace(/[^0-9]/g, '');
+        const chosenDate = (buyerDate && buyerDate.value) ? buyerDate.value : (currentServerDate || new Date().toISOString().split('T')[0]);
 
         const record = {
           id: id || ('buyer_' + Date.now()),
           name: buyerName.value.trim(),
           phone: cleanPhone,
+          date: chosenDate,
           product: buyerProduct.value,
           quantity: buyerQuantity.value.trim(),
           money: parseFloat(buyerMoney.value) || 0,
@@ -3783,7 +4026,7 @@
           }
         } else {
           buyers.unshift(record);
-          showToast(`Added order for ${record.name} (Total will combine automatically)!`);
+          showToast(`Added order for ${record.name}!`);
         }
 
         saveBuyersToStorage(buyers);
@@ -3801,13 +4044,15 @@
         if (buyerViewMode === 'customer_summary') {
           // Export Grouped Customer Summary
           const grouped = getGroupedCustomers(buyers);
-          const headers = ['Customer Name', 'WhatsApp Phone', 'Total Orders Count', 'Total Money Spent (INR)', 'Products Ordered', 'Delivery Address'];
+          const headers = ['Customer Name', 'WhatsApp Phone', 'Latest Sell Date', 'Total Orders Count', 'Total Money Spent (INR)', 'Products Ordered', 'Delivery Address'];
           const csvRows = [headers.join(',')];
 
           grouped.forEach(g => {
+            const latestDate = g.dates && g.dates.length > 0 ? formatDisplayDate(g.dates[g.dates.length - 1]) : 'N/A';
             const row = [
               `"${(g.name || '').replace(/"/g, '""')}"`,
               `"${g.phone || ''}"`,
+              `"${latestDate}"`,
               g.orders.length,
               g.totalMoney,
               `"${g.productsSummary.join('; ').replace(/"/g, '""')}"`,
@@ -3826,12 +4071,13 @@
           showToast('Exported Consolidated Customer Summary to CSV!');
         } else {
           // Export Individual Orders Log
-          const headers = ['Order ID', 'Customer Name', 'Phone', 'Product', 'Quantity', 'Money (INR)', 'Payment Status', 'Stock Status', 'Msg Status', 'Date / Note', 'Address'];
+          const headers = ['Order ID', 'Sell Date', 'Customer Name', 'Phone', 'Product', 'Quantity', 'Money (INR)', 'Payment Status', 'Stock Status', 'Msg Status', 'Date / Note', 'Address'];
           const csvRows = [headers.join(',')];
 
           buyers.forEach(b => {
             const row = [
               `"${b.id}"`,
+              `"${formatDisplayDate(b.date)}"`,
               `"${(b.name || '').replace(/"/g, '""')}"`,
               `"${b.phone || ''}"`,
               `"${(b.product || '').replace(/"/g, '""')}"`,
