@@ -485,20 +485,15 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="price-amount">₹${product.price}</span>
               <span class="price-unit">${product.unit}</span>
             </div>
-            <div class="product-actions-group">
-              <button class="btn-inspect-3d" data-product-id="${product.id}" title="Inspect in 3D">
-                <i class="fas fa-cube"></i> 3D View
+            ${isAvailable ? `
+              <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
+                <i class="fas fa-cart-plus"></i> Add to Order
               </button>
-              ${isAvailable ? `
-                <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${product.id}">
-                  <i class="fas fa-cart-plus"></i> Add
-                </button>
-              ` : `
-                <button class="btn btn-disabled btn-sm" disabled data-id="${product.id}">
-                  <i class="fas fa-times-circle"></i> Sold Out
-                </button>
-              `}
-            </div>
+            ` : `
+              <button class="btn btn-disabled btn-sm" disabled data-id="${product.id}">
+                <i class="fas fa-times-circle"></i> Out of Stock
+              </button>
+            `}
           </div>
         </div>
       `;
